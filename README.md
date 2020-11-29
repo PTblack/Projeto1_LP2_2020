@@ -2,7 +2,7 @@
 
 ## Autoria
 
-* Diogo Rodrigues, nº 21802132
+* Diogo Henriques, nº 21802132
 * João Dias, nº 21803573
 * Pedro Fernandes, nº 21803791
 
@@ -11,7 +11,7 @@
 1. O que foi feito pela equipa em geral
 
 2. O que cada pessoa fez
-    * Diogo Rodrigues:
+    * Diogo Henriques:
 
             Lista do que fez
 
