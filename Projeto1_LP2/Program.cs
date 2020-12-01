@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 
 namespace Projeto1_LP2
 {
@@ -6,7 +7,6 @@ namespace Projeto1_LP2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
