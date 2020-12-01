@@ -37,8 +37,9 @@ namespace Projeto1_LP2
         public float DistToSun { get; }
 
         // Constructor Parameters ordered as displayed in CSV file
-        public Star(string disc_method, int disc_year, int effTemp, float radius, 
-        float mass, int age, float rotVel, int rotPer, float distSun)
+        public Star(string disc_method, int disc_year, int effTemp, 
+        float radius, float mass, int age, float rotVel, int rotPer, 
+        float distSun)
         {
             DiscoveryMethod = disc_method;
             DiscoveryYear = disc_year;
