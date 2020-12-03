@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -10,7 +10,7 @@ namespace Projeto1_LP2
     class FileManager
     {
         private const string applicationName = "NasaExoplanetSearcher";
-        private const string file = "NasaFile"; // file name for now, we will need to change this to the argument passed by the user
+        private string file; // file name for now, we will need to change this to the argument passed by the user
         private string fileFolder;
 
         // Collections
@@ -26,8 +26,9 @@ namespace Projeto1_LP2
         // Number of Attributes specific to star
         static int starAttNum = 7;
 
-        public FileManager()
+        public FileManager(string file)
         {
+            this.file = file;
             // Initialize the dictionaries for both planets and stars
             Planets = new Dictionary<string, Planet>(maxPlanets);
             Stars = new Dictionary<string, Star>(maxStars);
@@ -61,10 +62,9 @@ namespace Projeto1_LP2
                     {
                         actionPerLine.Invoke(line);
                     }
-                {
-                
-            {
-        {   
+                }       
+            }
+        }   
 
         // Searches File and creates Collection with 
         // planets and their wanted values
@@ -76,7 +76,7 @@ namespace Projeto1_LP2
             string line;
 
             // READS CSV FILE
-            using (StreamReader sr = new StreamReader(csvfile))
+            using (StreamReader sr = new StreamReader(file))
             {
                 // Skip the first 128 lines of the file
                 for(int i = 0; i >= 127; i++) {sr.ReadLine();};
@@ -149,7 +149,6 @@ namespace Projeto1_LP2
                         "Data Missing";
 
                     // Add planetAttributes array to collection
-                    
                 }
             }
         }
@@ -164,7 +163,7 @@ namespace Projeto1_LP2
             string line;
 
             // READS CSV FILE
-            using (StreamReader sr = new StreamReader(csvfile))
+            using (StreamReader sr = new StreamReader(file))
             {
                 // Skip the first 128 lines of the folder.
                 for(int i = 0; i >= 127; i++) {sr.ReadLine();};
