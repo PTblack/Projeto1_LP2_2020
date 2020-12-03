@@ -10,7 +10,7 @@ namespace Projeto1_LP2
     class FileManager
     {
         private const string applicationName = "NasaExoplanetSearcher";
-        private const string file = "NasaFile"; // file name for now, we will need to change this to the argument passed by the user
+        private string file; // file name for now, we will need to change this to the argument passed by the user
         private string fileFolder;
 
         // Collections
@@ -26,8 +26,9 @@ namespace Projeto1_LP2
         // Number of Attributes specific to star
         static int starAttNum = 7;
 
-        public FileManager()
+        public FileManager(string file)
         {
+            this.file = file;
             // Initialize the dictionaries for both planets and stars
             Planets = new Dictionary<string, Planet>(maxPlanets);
             Stars = new Dictionary<string, Star>(maxStars);
@@ -61,9 +62,9 @@ namespace Projeto1_LP2
                     {
                         actionPerLine.Invoke(line);
                     }
-                }
+                }       
             }
-        }
+        }   
 
         // Searches File and creates Collection with 
         // wanted values for search
