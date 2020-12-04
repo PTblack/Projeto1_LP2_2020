@@ -34,7 +34,8 @@ namespace Projeto1_LP2
 
         // Constructor Parameters ordered as displayed in CSV file
         public Planet(string name, string hostName, string disc_method,
-        string disc_year, string orbPer, string radiusRt, string massRT, string eqTemp)
+                      string disc_year, string orbPer, string radiusRt, 
+                      string massRT, string eqTemp)
         {   
             //myStar = star;
             Name = name;
