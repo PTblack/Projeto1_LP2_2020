@@ -8,7 +8,8 @@ namespace Projeto1_LP2
     public struct Star
     {
         // Properties ordered as displayed in CSV file 
-        
+
+        public HashSet<Planet> myPlanetas;
         // Method of Discovery
         public string DiscoveryMethod { get; }
         
@@ -50,6 +51,8 @@ namespace Projeto1_LP2
             RotationVel = rotVel;
             RotationPeriod = rotPer;
             DistToSun = distSun;
+
+            myPlanetas = new HashSet<Planet>();
         }
 
         // Returns string with the Star's Values in format determined by User
