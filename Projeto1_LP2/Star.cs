@@ -10,10 +10,11 @@ namespace Projeto1_LP2
         // Properties ordered as displayed in CSV file 
 
         public HashSet<string> myPlanetas;
-        // Method of Discovery
+        
+        // Method of Discovery (this information belongs to the planet)
         public string DiscoveryMethod { get; }
         
-        // Year of Discovery
+        // Year of Discovery (this information belongs to the planet)
         public string DiscoveryYear { get; }
 
         // Effective Temperature (unit: Kelvins)
@@ -38,9 +39,9 @@ namespace Projeto1_LP2
         public string DistToSun { get; }
 
         // Constructor Parameters ordered as displayed in CSV file
-        public Star(string nomePL, string disc_method, string disc_year, string effTemp, 
-        string radius, string mass, string age, string rotVel, string rotPer, 
-        string distSun)
+        public Star(string nomePL, string disc_method, string disc_year, 
+                    string effTemp, string radius, string mass, string age, 
+                    string rotVel, string rotPer, string distSun)
         {
             DiscoveryMethod = disc_method;
             DiscoveryYear = disc_year;
