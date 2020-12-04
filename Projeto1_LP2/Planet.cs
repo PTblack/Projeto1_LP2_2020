@@ -7,7 +7,7 @@ namespace Projeto1_LP2
     public struct Planet
     {
         // Properties ordered as displayed in CSV file
-        Star myStar;
+        //Star myStar;
         // Planet's Name
         public string Name { get; }
         
@@ -18,23 +18,23 @@ namespace Projeto1_LP2
         public string DiscoveryMethod { get; }
         
         // Year of Discovery
-        public float DiscoveryYear { get; }
+        public string DiscoveryYear { get; }
 
         // Orbit Period (days)
-        public float OrbitPeriod { get; }
+        public string OrbitPeriod { get; }
 
         // Planet's Radius compared to the Earth's Radius
-        public float RadiusRatio { get; }
+        public string RadiusRatio { get; }
 
         // Planet's Mass compared to the Earth's Mass
-        public float MassRatio { get; }
+        public string MassRatio { get; }
 
         // Planet's Equilibrium Temperature (unit: Kelvins)
-        public float EqTemperature { get; }
+        public string EqTemperature { get; }
 
         // Constructor Parameters ordered as displayed in CSV file
-        public Planet(string name, string hostName, string disc_method, 
-        float disc_year, float orbPer, float radiusRt, float massRT, float eqTemp)
+        public Planet(string name, string hostName, string disc_method,
+        string disc_year, string orbPer, string radiusRt, string massRT, string eqTemp)
         {   
             //myStar = star;
             Name = name;

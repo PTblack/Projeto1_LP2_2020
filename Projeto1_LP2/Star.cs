@@ -9,38 +9,38 @@ namespace Projeto1_LP2
     {
         // Properties ordered as displayed in CSV file 
 
-        public HashSet<Planet> myPlanetas;
+        public HashSet<string> myPlanetas;
         // Method of Discovery
         public string DiscoveryMethod { get; }
         
         // Year of Discovery
-        public int DiscoveryYear { get; }
+        public string DiscoveryYear { get; }
 
         // Effective Temperature (unit: Kelvins)
-        public int EffectiveTemp { get; }
+        public string EffectiveTemp { get; }
 
         // Star's radius compared to the Sun's radius
-        public float RadiusRatio { get; }
+        public string RadiusRatio { get; }
 
         // Star's mass compared to the Sun's mass
-        public float MassRatio { get; }
+        public string MassRatio { get; }
 
         // Age in Giga-years (unit: Gy)
-        public int Age { get; }
+        public string Age { get; }
 
         // Rotation Velocity (unit: km/s)
-        public float RotationVel { get; }
+        public string RotationVel { get; }
 
         // Rotation Period (days)
-        public int RotationPeriod { get; }
+        public string RotationPeriod { get; }
 
         // Distance bettween Star and Sun (unit: Parsecs)
-        public float DistToSun { get; }
+        public string DistToSun { get; }
 
         // Constructor Parameters ordered as displayed in CSV file
-        public Star(string disc_method, int disc_year, int effTemp, 
-        float radius, float mass, int age, float rotVel, int rotPer, 
-        float distSun)
+        public Star(string nomePL, string disc_method, string disc_year, string effTemp, 
+        string radius, string mass, string age, string rotVel, string rotPer, 
+        string distSun)
         {
             DiscoveryMethod = disc_method;
             DiscoveryYear = disc_year;
@@ -52,7 +52,8 @@ namespace Projeto1_LP2
             RotationPeriod = rotPer;
             DistToSun = distSun;
 
-            myPlanetas = new HashSet<Planet>();
+            myPlanetas = new HashSet<string>();
+            myPlanetas.Add(nomePL);
         }
 
         // Returns string with the Star's Values in format determined by User
