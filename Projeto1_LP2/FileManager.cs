@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -11,7 +11,7 @@ namespace Projeto1_LP2
     class FileManager
     {
         private const string applicationName = "NasaExoplanetSearcher";
-        private const string file = "NasaFile"; // file name for now, we will need to change this to the argument passed by the user
+        private string file; // file name for now, we will need to change this to the argument passed by the user
         private string fileFolder;
 
         // Collections
@@ -24,8 +24,9 @@ namespace Projeto1_LP2
         // Number of Attributes specific to star
         static int starAttNum = 7;
 
-        public FileManager()
+        public FileManager(string file)
         {
+            this.file = file;
             // Initialize the dictionaries for both planets and stars
             hashSetPL = new Dictionary<string, Planet>();
             hashSetST = new HashSet<Star>();
@@ -42,10 +43,11 @@ namespace Projeto1_LP2
         // planets and their wanted values
         private void CreatePlanetCollection(Func<string> actionForEachPlanet)
         {
-            // Array that holds one planet's attributes as strings
-            string[] planetAttributes = new string[8];
+            // Array that holds one line's important attributes as strings
+            string[] elementAttributes = new string[15];
             // String representing line of the file
             string line;
+
 
             using (FileStream fileStream = new FileStream(
                 fileFolder, FileMode.Open, FileAccess.Read))
@@ -125,10 +127,7 @@ namespace Projeto1_LP2
                         Planet p = new Planet(planetAttributes[0], planetAttributes[1], planetAttributes[2], planetAttributes[3],
                                 planetAttributes[4], planetAttributes[5], planetAttributes[6], planetAttributes[7]);
 
-
-
                     }
-
                 }
 
             }
@@ -139,7 +138,7 @@ namespace Projeto1_LP2
         private void CreateStarCollection(Action<string> actionForEachStar)
         {
             // Array that holds one star's attributes as strings
-            string[] starAttributes = new string[7];
+            string[] starAttributes = new string[8];
             // String representing line of the file
             string line;
 
@@ -161,49 +160,49 @@ namespace Projeto1_LP2
                      */
 
                     // Effective Temperature
-                    starAttributes [0] = attribs.ElementAt(
+                    starAttributes [0] = attribs.ElementAt( 
                     (int)AttributePositions.st_teffPOS) != null? 
                         attribs.ElementAt(
                             (int)AttributePositions.st_teffPOS) : 
                         "Data Missing";
 
                     // Star Radius
-                    starAttributes [1] = attribs.ElementAt(
+                    elementAttributes [1] = attribs.ElementAt(
                     (int)AttributePositions.st_radPOS) != null? 
                         attribs.ElementAt(
                             (int)AttributePositions.st_radPOS) : 
                         "Data Missing";
 
                     // Star Mass
-                    starAttributes [2] = attribs.ElementAt(
+                    elementAttributes [2] = attribs.ElementAt(
                     (int)AttributePositions.st_massPOS) != null? 
                         attribs.ElementAt(
                             (int)AttributePositions.st_massPOS) : 
                         "Data Missing";
 
-                    // Star age
-                    starAttributes [3] = attribs.ElementAt(
+                    // Star Age
+                    elementAttributes [3] = attribs.ElementAt(
                     (int)AttributePositions.st_agePOS) != null? 
                         attribs.ElementAt(
                             (int)AttributePositions.st_agePOS) : 
                         "Data Missing";
 
                     // Star Rotation Velocity
-                    starAttributes [4] = attribs.ElementAt(
+                    elementAttributes [4] = attribs.ElementAt(
                     (int)AttributePositions.st_vsinPOS) != null? 
                         attribs.ElementAt(
                             (int)AttributePositions.st_vsinPOS) : 
                         "Data Missing";
 
                     // Star Rotation Period
-                    starAttributes [5] = attribs.ElementAt(
+                    elementAttributes [5] = attribs.ElementAt(
                     (int)AttributePositions.st_rotpPOS) != null? 
                         attribs.ElementAt(
                             (int)AttributePositions.st_rotpPOS) : 
                         "Data Missing";
 
                     // Distance to Sun
-                    starAttributes [6] = attribs.ElementAt(
+                    elementAttributes [6] = attribs.ElementAt(
                     (int)AttributePositions.sy_distPOS) != null? 
                         attribs.ElementAt(
                             (int)AttributePositions.sy_distPOS) : 
