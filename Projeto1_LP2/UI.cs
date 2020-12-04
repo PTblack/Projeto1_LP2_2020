@@ -16,10 +16,11 @@ namespace Projeto1_LP2
         private Dictionary<string, string> stringArgs;  
         private Dictionary<string, float> floatArgs;
 
-        new FileManager FM;
-        new FileSearcher FS;
+        private HashSet<Planet> PlanetCollection;
 
-        private string file;
+        private FileManager fm;
+        private FileSearcher fs;
+
         public UI(string[] a)
         {
             args = a;
@@ -90,8 +91,16 @@ namespace Projeto1_LP2
         public void Show()
         {
             Options();
-            FM = new FileManager(stringArgs.TryGetValue("-file", out file));
-            FS = new FileSearcher(boolArgs, stringArgs, floatArgs);
+            fm = new FileManager(stringArgs["-file"]);
+            fs = new FileSearcher();
+            PlanetCollection = fm.ReturnPlanet();
+            foreach (Planet p in PlanetCollection)
+            {
+                Console.WriteLine("{0} {1} {2} {3} {4} {5} {6} {7}", p.Name,
+                    p.HostName, p.DiscoveryMethod, p.DiscoveryYear,
+                    p.OrbitPeriod, p.RadiusRatio, p.MassRatio,
+                    p.EqTemperature);
+            }               
         }
     }
 }
