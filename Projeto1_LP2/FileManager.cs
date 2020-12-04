@@ -10,37 +10,33 @@ namespace Projeto1_LP2
 {
     class FileManager
     {
-        private const string applicationName = "NasaExoplanetSearcher";
-        private const string file = "NasaFile"; // file name for now, we will need to change this to the argument passed by the user
+        //private const string applicationName = "NasaExoplanetSearcher.csv";
+        private string file; // file name for now, we will need to change this to the argument passed by the user
         private string fileFolder;
 
         // Collections
-        private Dictionary<string, Planet> hashSetPL;
+        private HashSet<Planet> HashsetPL;
         private HashSet<Star> hashSetST;
 
-        // Number of Attributes specific to planet
-        private int planetAttNum = 8;
-
-        // Number of Attributes specific to star
-        static int starAttNum = 7;
-
-        public FileManager()
+        public FileManager(string file)
         {
+            this.file = file;
             // Initialize the dictionaries for both planets and stars
-            hashSetPL = new Dictionary<string, Planet>();
+            HashsetPL = new HashSet<Planet>();
             hashSetST = new HashSet<Star>();
 
             // Location of the folder that is going to be read
             fileFolder = Path.Combine(
                 Environment.GetFolderPath(
-                    Environment.SpecialFolder.LocalApplicationData), 
-                        applicationName);
-                   
+                    Environment.SpecialFolder.Desktop), 
+                        file);
+
+            CreatePlanetCollection();                   
         }
 
         // Searches File and creates Collection with 
         // planets and their wanted values
-        private void CreatePlanetCollection(Func<string> actionForEachPlanet)
+        private void CreatePlanetCollection()
         {
             // Array that holds one planet's attributes as strings
             string[] planetAttributes = new string[8];
@@ -67,66 +63,66 @@ namespace Projeto1_LP2
                          */
 
                         // Name
-                        planetAttributes[0] = attribs.ElementAt(
-                        (int)AttributePositions.pl_namePOS) != null ?
+                        planetAttributes[0]= attribs.ElementAt(
+                        (int)AttributePositions.pl_namePOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.pl_namePOS) :
-                            "Data Missing";
+                            "N/A";
 
                         // Host Name
                         planetAttributes[1] = attribs.ElementAt(
-                        (int)AttributePositions.pl_hostNamePOS) != null ?
+                        (int)AttributePositions.pl_hostNamePOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.pl_hostNamePOS) :
-                            "Data Missing";
+                            "N/A";
 
                         // Discovery Method
                         planetAttributes[2] = attribs.ElementAt(
-                        (int)AttributePositions.pl_discMethodPOS) != null ?
+                        (int)AttributePositions.pl_discMethodPOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.pl_discMethodPOS) :
-                            "Data Missing";
+                            "N/A";
 
                         // Discovery Year
                         planetAttributes[3] = attribs.ElementAt(
-                        (int)AttributePositions.pl_discYearPOS) != null ?
+                        (int)AttributePositions.pl_discYearPOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.pl_discYearPOS) :
-                            "Data Missing";
+                            "N/A";
 
                         // Orbit Period
                         planetAttributes[4] = attribs.ElementAt(
-                        (int)AttributePositions.pl_orbPerPOS) != null ?
+                        (int)AttributePositions.pl_orbPerPOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.pl_orbPerPOS) :
-                            "Data Missing";
+                            "N/A";
 
                         // Radius
                         planetAttributes[5] = attribs.ElementAt(
-                        (int)AttributePositions.pl_radePOS) != null ?
+                        (int)AttributePositions.pl_radePOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.pl_radePOS) :
-                            "Data Missing";
+                            "N/A";
 
                         // Mass
                         planetAttributes[6] = attribs.ElementAt(
-                        (int)AttributePositions.pl_massPOS) != null ?
+                        (int)AttributePositions.pl_massPOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.pl_massPOS) :
-                            "Data Missing";
+                            "N/A";
 
                         // Equilibrium Temperature
                         planetAttributes[7] = attribs.ElementAt(
-                        (int)AttributePositions.pl_eqtPOS) != null ?
+                        (int)AttributePositions.pl_eqtPOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.pl_eqtPOS) :
-                            "Data Missing";
+                            "N/A";
 
                         Planet p = new Planet(planetAttributes[0], planetAttributes[1], planetAttributes[2], planetAttributes[3],
                                 planetAttributes[4], planetAttributes[5], planetAttributes[6], planetAttributes[7]);
 
 
-
+                        HashsetPL.Add(p);
                     }
 
                 }
@@ -144,7 +140,7 @@ namespace Projeto1_LP2
             string line;
 
             // READS CSV FILE
-            using (StreamReader sr = new StreamReader(csvfile))
+            using (StreamReader sr = new StreamReader(file))
             {
                 // Skip the first 128 lines of the folder.
                 for(int i = 0; i >= 127; i++) {sr.ReadLine();};
@@ -214,5 +210,8 @@ namespace Projeto1_LP2
                 }
             }
         }
+
+        public HashSet<Planet> ReturnPlanet() => HashsetPL;
+        
     }
 }
