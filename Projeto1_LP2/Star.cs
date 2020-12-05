@@ -11,6 +11,9 @@ namespace Projeto1_LP2
         
         // Properties ordered as displayed in CSV file 
 
+        // Star Name
+        public string StarName { get; }
+
         // Effective Temperature (unit: Kelvins)
         public string EffectiveTemp { get; }
 
@@ -33,9 +36,11 @@ namespace Projeto1_LP2
         public string DistToSun { get; }
 
         // Constructor Parameters ordered as displayed in CSV file
-        public Star(string namePL, string effTemp, string radius, string mass, 
-                    string age, string rotVel, string rotPer, string distSun)
+        public Star(string namePL, string starName, string effTemp, 
+                    string radius, string mass, string age, string rotVel, 
+                    string rotPer, string distSun)
         {
+            StarName = starName;
             EffectiveTemp = effTemp;
             RadiusRatio = radius;
             MassRatio = mass;
@@ -54,14 +59,15 @@ namespace Projeto1_LP2
             if (csv)
             {
                 // Return values in CSV format
-                return EffectiveTemp + "," + RadiusRatio + "," + 
-                MassRatio + "," + Age + "," + RotationVel + "," + 
-                RotationPeriod + "," + DistToSun;
+                return StarName + "," + EffectiveTemp + "," + 
+                RadiusRatio + "," + MassRatio + "," + Age + "," + 
+                RotationVel + "," + RotationPeriod + "," + DistToSun;
             }
             else
             {
                 return
                 "STAR VALUES/n/n" +
+                $"Name: {StarName}" +
                 $"Effective Temperature: {EffectiveTemp} kelvin/n" + 
                 $"Radius (vs Earth): {RadiusRatio}/n" + 
                 $"Mass (vs Earth): {MassRatio}/n" + 
