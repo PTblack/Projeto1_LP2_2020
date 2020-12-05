@@ -9,7 +9,7 @@ namespace Projeto1_LP2
         static void Main(string[] args)
         {
             UI Menu = new UI(args);
-            Menu.Show();
+            Menu.ShowPlCollection();
         }
     }
 }

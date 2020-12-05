@@ -24,7 +24,7 @@ namespace Projeto1_LP2
             HashSetPL = new HashSet<Planet>();
             HashSetST = new HashSet<Star>();
 
-            // Location of the folder that is going to be read
+            // Location of the folder that is going to be read (Desktop)
             fileFolder = Path.Combine(
                 Environment.GetFolderPath(
                 Environment.SpecialFolder.Desktop), file);

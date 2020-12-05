@@ -7,10 +7,10 @@ namespace Projeto1_LP2
 {
     public struct Star
     {
+        public HashSet<string> myPlanets;
+        
         // Properties ordered as displayed in CSV file 
 
-        public HashSet<string> myPlanetas;
-        
         // Method of Discovery (this information belongs to the planet)
         public string DiscoveryMethod { get; }
         
@@ -39,7 +39,7 @@ namespace Projeto1_LP2
         public string DistToSun { get; }
 
         // Constructor Parameters ordered as displayed in CSV file
-        public Star(string nomePL, string disc_method, string disc_year, 
+        public Star(string namePL, string disc_method, string disc_year, 
                     string effTemp, string radius, string mass, string age, 
                     string rotVel, string rotPer, string distSun)
         {
@@ -53,8 +53,8 @@ namespace Projeto1_LP2
             RotationPeriod = rotPer;
             DistToSun = distSun;
 
-            myPlanetas = new HashSet<string>();
-            myPlanetas.Add(nomePL);
+            myPlanets = new HashSet<string>();
+            myPlanets.Add(namePL);
         }
 
         // Returns string with the Star's Values in format determined by User

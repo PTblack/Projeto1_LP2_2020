@@ -25,6 +25,7 @@ namespace Projeto1_LP2
         {
             args = a;
         }
+
         private void Options()
         {
             AddToDictionary();
@@ -40,6 +41,7 @@ namespace Projeto1_LP2
                     floatArgs[args[i]] = Single.Parse(args[i + 1]);
             }
         }
+        
         private void AddToDictionary()
         {
             boolArgs = new Dictionary<string, bool>();
