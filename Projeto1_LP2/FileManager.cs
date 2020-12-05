@@ -142,7 +142,7 @@ namespace Projeto1_LP2
         private void CreateStarCollection()
         {
             // Array that holds one line's important attributes as strings
-            string[] starAttributes = new string[10];
+            string[] starAttributes = new string[8];
             // String representing line of the file
             string line;
 
@@ -173,64 +173,50 @@ namespace Projeto1_LP2
                                 (int)AttributePositions.pl_namePOS) :
                                 "N/A";
 
-                        // Discovery Method
-                        starAttributes[1] = attribs.ElementAt(
-                        (int)AttributePositions.pl_discMethodPOS) != "" ?
-                            attribs.ElementAt(
-                                (int)AttributePositions.pl_discMethodPOS) :
-                                "N/A";
-
-                        // Discovery Year
-                        starAttributes[2] = attribs.ElementAt(
-                        (int)AttributePositions.pl_discYearPOS) != "" ?
-                            attribs.ElementAt(
-                                (int)AttributePositions.pl_discYearPOS) :
-                                "N/A";
-                        
                         // Effective Temperature
-                        starAttributes[3] = attribs.ElementAt(
+                        starAttributes[1] = attribs.ElementAt(
                         (int)AttributePositions.st_teffPOS) != "" ?
                             attribs.ElementAt(
                                 (int)AttributePositions.st_teffPOS) :
                                 "N/A";
 
                         // Star Radius
-                        starAttributes[4] = attribs.ElementAt(
+                        starAttributes[2] = attribs.ElementAt(
                         (int)AttributePositions.st_radPOS) != "" ? 
                             attribs.ElementAt(
                                 (int)AttributePositions.st_radPOS) : 
                                 "N/A";
 
                         // Star Mass
-                        starAttributes[5] = attribs.ElementAt(
+                        starAttributes[3] = attribs.ElementAt(
                         (int)AttributePositions.st_massPOS) != "" ? 
                             attribs.ElementAt(
                                 (int)AttributePositions.st_massPOS) : 
                                 "N/A";
 
                         // Star Age
-                        starAttributes[6] = attribs.ElementAt(
+                        starAttributes[4] = attribs.ElementAt(
                         (int)AttributePositions.st_agePOS) != "" ? 
                             attribs.ElementAt(
                                 (int)AttributePositions.st_agePOS) : 
                                 "N/A";
 
                         // Star Rotation Velocity
-                        starAttributes[7] = attribs.ElementAt(
+                        starAttributes[5] = attribs.ElementAt(
                         (int)AttributePositions.st_vsinPOS) != "" ? 
                             attribs.ElementAt(
                                 (int)AttributePositions.st_vsinPOS) : 
                                 "N/A";
 
                         // Star Rotation Period
-                        starAttributes[8] = attribs.ElementAt(
+                        starAttributes[6] = attribs.ElementAt(
                         (int)AttributePositions.st_rotpPOS) != "" ? 
                             attribs.ElementAt(
                                 (int)AttributePositions.st_rotpPOS) : 
                                 "N/A";
 
                         // Distance to Sun
-                        starAttributes[9] = attribs.ElementAt(
+                        starAttributes[7] = attribs.ElementAt(
                         (int)AttributePositions.sy_distPOS) != "" ? 
                             attribs.ElementAt(
                                 (int)AttributePositions.sy_distPOS) : 
@@ -240,8 +226,7 @@ namespace Projeto1_LP2
                                 starAttributes[0], starAttributes[1], 
                                 starAttributes[2], starAttributes[3],
                                 starAttributes[4], starAttributes[5], 
-                                starAttributes[6], starAttributes[7],
-                                starAttributes[8], starAttributes[9]);
+                                starAttributes[6], starAttributes[7]);
 
                         HashSetST.Add(s);
                     }
