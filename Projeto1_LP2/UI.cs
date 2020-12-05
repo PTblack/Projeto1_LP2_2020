@@ -112,6 +112,8 @@ namespace Projeto1_LP2
             PlanetCollection = fm.ReturnPlanet();
             foreach (Planet p in PlanetCollection)
             {
+                // >> ISSUE <<
+                // DECIMALS ARE NOT BEING LIMITED TO FOUR(?)
                 Console.WriteLine(
                     "{0} / {1} / {2} / {3} / {4:f4} / {5:f4} / {6:f4} / {7:f4}", 
                     p.Name, p.HostName, p.DiscoveryMethod, p.DiscoveryYear,
