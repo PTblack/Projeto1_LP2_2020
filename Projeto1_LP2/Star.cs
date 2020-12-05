@@ -7,14 +7,12 @@ namespace Projeto1_LP2
 {
     public struct Star
     {
+        public HashSet<string> myPlanets;
+        
         // Properties ordered as displayed in CSV file 
 
-        public HashSet<string> myPlanetas;
-        // Method of Discovery
-        public string DiscoveryMethod { get; }
-        
-        // Year of Discovery
-        public string DiscoveryYear { get; }
+        // Star Name
+        public string StarName { get; }
 
         // Effective Temperature (unit: Kelvins)
         public string EffectiveTemp { get; }
@@ -38,12 +36,11 @@ namespace Projeto1_LP2
         public string DistToSun { get; }
 
         // Constructor Parameters ordered as displayed in CSV file
-        public Star(string nomePL, string disc_method, string disc_year, string effTemp, 
-        string radius, string mass, string age, string rotVel, string rotPer, 
-        string distSun)
+        public Star(string namePL, string starName, string effTemp, 
+                    string radius, string mass, string age, string rotVel, 
+                    string rotPer, string distSun)
         {
-            DiscoveryMethod = disc_method;
-            DiscoveryYear = disc_year;
+            StarName = starName;
             EffectiveTemp = effTemp;
             RadiusRatio = radius;
             MassRatio = mass;
@@ -52,8 +49,8 @@ namespace Projeto1_LP2
             RotationPeriod = rotPer;
             DistToSun = distSun;
 
-            myPlanetas = new HashSet<string>();
-            myPlanetas.Add(nomePL);
+            myPlanets = new HashSet<string>();
+            myPlanets.Add(namePL);
         }
 
         // Returns string with the Star's Values in format determined by User
@@ -62,17 +59,15 @@ namespace Projeto1_LP2
             if (csv)
             {
                 // Return values in CSV format
-                return DiscoveryMethod + "," + DiscoveryYear + "," + 
-                EffectiveTemp + "," + RadiusRatio + "," + MassRatio + "," + 
-                Age + "," + RotationVel + "," + RotationPeriod + "," + 
-                DistToSun;
+                return StarName + "," + EffectiveTemp + "," + 
+                RadiusRatio + "," + MassRatio + "," + Age + "," + 
+                RotationVel + "," + RotationPeriod + "," + DistToSun;
             }
             else
             {
                 return
                 "STAR VALUES/n/n" +
-                $"Discovery Method: {DiscoveryMethod}/n" + 
-                $"Discovery Year: {DiscoveryYear}/n" +
+                $"Name: {StarName}" +
                 $"Effective Temperature: {EffectiveTemp} kelvin/n" + 
                 $"Radius (vs Earth): {RadiusRatio}/n" + 
                 $"Mass (vs Earth): {MassRatio}/n" + 
