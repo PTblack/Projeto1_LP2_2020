@@ -40,10 +40,12 @@ namespace Projeto1_LP2
 
             FindValAttributeIndex();
             CreatePlanetCollection();
-            // CreateStarCollection(); 
+            CreateStarCollection(); 
         }
 
         public HashSet<Planet> ReturnPlanet() => HashSetPL;
+
+        public HashSet<Star> ReturnStar() => HashSetST;
 
         // Searches File and creates Collection with 
         // planets and their wanted values

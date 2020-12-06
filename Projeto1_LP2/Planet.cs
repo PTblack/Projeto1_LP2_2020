@@ -67,15 +67,15 @@ namespace Projeto1_LP2
             else
             {
                 return
-                "PLANET VALUES/n/n" +
-                $"Name: {Name}/n" + 
-                $"Host Star: {HostName}/n" +
-                $"Discovery Method: {DiscoveryMethod}/n" + 
-                $"Discovery Year: {DiscoveryYear}/n" + 
-                $"Orbit Period: {OrbitPeriod} days/n" + 
-                $"Radius (vs Earth): {RadiusRatio}/n" +
-                $"Mass (vs Earth): {MassRatio}/n" +
-                $"Equilibrium Temperature: {EqTemperature} kelvin/n";
+                "PLANET VALUES\n\n" +
+                $"Name: {Name}\n" + 
+                $"Host Star: {HostName}\n" +
+                $"Discovery Method: {DiscoveryMethod}\n" + 
+                $"Discovery Year: {DiscoveryYear}\n" + 
+                $"Orbit Period: {OrbitPeriod} days\n" + 
+                $"Radius (vs Earth): {RadiusRatio}\n" +
+                $"Mass (vs Earth): {MassRatio}\n" +
+                $"Equilibrium Temperature: {EqTemperature} kelvin\n";
             }
         }
     }   
