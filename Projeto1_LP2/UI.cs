@@ -14,9 +14,10 @@ namespace Projeto1_LP2
 
         private Dictionary<string, bool> boolArgs;      
         private Dictionary<string, string> stringArgs;  
-        private Dictionary<string, float> floatArgs;
+        private Dictionary<string, float?> floatArgs;
 
         private HashSet<Planet> planetCollection;
+        private HashSet<Star> starCollection;
 
         private FileManager fm;
         private FileSearcher fs;
@@ -24,6 +25,7 @@ namespace Projeto1_LP2
         public UI(string[] a)
         {
             args = a;
+            GetCollections();
         }
 
         private void Options()
@@ -46,80 +48,89 @@ namespace Projeto1_LP2
         {
             boolArgs = new Dictionary<string, bool>();
             stringArgs =new Dictionary<string, string>();
-            floatArgs =new Dictionary<string, float>();
+            floatArgs =new Dictionary<string, float?>();
 
             // Search Criteria
             boolArgs.Add("-search-planet", false);
             boolArgs.Add("-search-star", false);
             boolArgs.Add("-planet-info", false);
             boolArgs.Add("-star-info", false);
+            boolArgs.Add("-csv", false);
 
             // Names
             stringArgs.Add("-file", "");
             stringArgs.Add("-planet-name", "");
             stringArgs.Add("-star-name", "");
             stringArgs.Add("-host-name", "");
+            stringArgs.Add("-disc-method", "");
 
             // Temperature
-            floatArgs.Add("-star-temp-min", 0);
-            floatArgs.Add("-star-temp", 0);
-            floatArgs.Add("-planet-temp-min", 0);
-            floatArgs.Add("-planet-temp", 0);
+            floatArgs.Add("-star-temp-min", float.MinValue);
+            floatArgs.Add("-star-temp-max", float.MaxValue);
+            floatArgs.Add("-planet-temp-min", float.MinValue);
+            floatArgs.Add("-planet-temp-max", float.MaxValue);
 
             // Radius
-            floatArgs.Add("-star-rade-min", 0);
-            floatArgs.Add("-star-rade", 0);
-            floatArgs.Add("-planet-rade-min", 0);
-            floatArgs.Add("-planet-rade", 0);
+            floatArgs.Add("-star-rade-min", float.MinValue);
+            floatArgs.Add("-star-rade-max", float.MaxValue);
+            floatArgs.Add("-planet-rade-min", float.MinValue);
+            floatArgs.Add("-planet-rade-max", null);
 
             // Mass
-            floatArgs.Add("-star-mass-min", 0);
-            floatArgs.Add("-star-mass", 0);
-            floatArgs.Add("-planet-mass-min", 0);
-            floatArgs.Add("-planet-mass", 0);
+            floatArgs.Add("-star-mass-min", float.MinValue);
+            floatArgs.Add("-star-mass-max", float.MaxValue);
+            floatArgs.Add("-planet-mass-min", float.MinValue);
+            floatArgs.Add("-planet-mass-max", float.MaxValue);
             
             // Rotation Velocity
-            floatArgs.Add("-star-vsin-min", 0);
-            floatArgs.Add("-star-vsin", 0);
+            floatArgs.Add("-star-vsin-min", float.MinValue);
+            floatArgs.Add("-star-vsin-max", float.MaxValue);
 
             // Rotation Period
-            floatArgs.Add("-star-rotp-min", 0);
-            floatArgs.Add("-star-rotp", 0);
+            floatArgs.Add("-star-rotp-min", float.MinValue);
+            floatArgs.Add("-star-rotp-max", float.MaxValue);
 
             // Star Age
-            floatArgs.Add("-star-age-min", 0);
-            floatArgs.Add("--star-age", 0);
+            floatArgs.Add("-star-age-min", float.MinValue);
+            floatArgs.Add("--star-age-max", float.MaxValue);
 
             // Planet Orbital Period
-            floatArgs.Add("-planet-orbper-min", 0);
-            floatArgs.Add("-planet-orbper", 0);
+            floatArgs.Add("-planet-orbper-min", float.MinValue);
+            floatArgs.Add("-planet-orbper-max", float.MaxValue);
 
             // Discovery Specs
-            floatArgs.Add("-disc-year", 0);
-            floatArgs.Add("-disc-method", 0);
+            floatArgs.Add("-disc-year-min", float.MinValue);
+            floatArgs.Add("-disc-year-max", float.MaxValue);
 
             // Star Distance to Sun
-            floatArgs.Add("-sy-dist", 0);
+            floatArgs.Add("-sy-dist-min", float.MinValue);
+            floatArgs.Add("-sy-dist-max", float.MaxValue);
         }
 
         // PASSAR PARA CLASSE DE UI NOVA QUE FOR CRIADA
         // Show collection of planets that fit the user's requests
-        public void ShowPlCollection()
+        private void GetCollections()
         {
             Options();
             fm = new FileManager(stringArgs["-file"]);
             planetCollection = fm.ReturnPlanet();
+            starCollection = fm.ReturnStar();
             fs = new FileSearcher(boolArgs,  stringArgs, floatArgs, 
-                planetCollection);
-            foreach (Planet p in planetCollection)
-            {
-                // >> ISSUE <<
-                // DECIMALS ARE NOT BEING LIMITED TO FOUR(?)
-                Console.WriteLine(
-                    "{0} / {1} / {2} / {3} / {4:f4} / {5:f4} / {6:f4} / {7:f4}", 
-                    p.Name, p.HostName, p.DiscoveryMethod, p.DiscoveryYear,
-                    p.OrbitPeriod, p.RadiusRatio, p.MassRatio, p.EqTemperature);
-            }               
+                planetCollection, starCollection);
+
+            ShowCollection();
+        }
+
+        public void ShowCollection()
+        {
+            if(boolArgs["-search-planet"] == true || boolArgs["-planet-info"] == true)
+                foreach (Planet p in fs.FilteredPlanetCollection)
+                    Console.WriteLine(p.ToString(boolArgs["-csv"]));
+
+
+            if (boolArgs["-search-star"] == true || boolArgs["-star-info"] == true)
+                foreach (Star s in fs.FilteredStarCollection)
+                    Console.WriteLine(s.ToString(boolArgs["-csv"]));
         }
     }
 }

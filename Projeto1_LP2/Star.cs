@@ -25,7 +25,7 @@ namespace Projeto1_LP2
 
         // Age in Giga-years (unit: Gy)
         public string Age { get; }
-
+            
         // Rotation Velocity (unit: km/s)
         public string RotationVel { get; }
 
@@ -61,22 +61,23 @@ namespace Projeto1_LP2
             if (csv)
             {
                 // Return values in CSV format
-                return StarName + "," + EffectiveTemp + "," + 
+                return myPlanets.Count + "," + StarName + "," + EffectiveTemp + "," + 
                 RadiusRatio + "," + MassRatio + "," + Age + "," + 
                 RotationVel + "," + RotationPeriod + "," + DistToSun;
             }
             else
             {
                 return
-                "STAR VALUES/n/n" +
-                $"Name: {StarName}" +
-                $"Effective Temperature: {EffectiveTemp} kelvin/n" + 
-                $"Radius (vs Earth): {RadiusRatio}/n" + 
-                $"Mass (vs Earth): {MassRatio}/n" + 
-                $"Age: {Age} giga-years/n" +
-                $"Rotation Velocity: {RotationVel} km/h/n" +
-                $"Rotation Period: {RotationPeriod} days/n" +
-                $"Distance to Sun: {DistToSun} parsecs";
+                "STAR VALUES\n\n" +
+                $"Planets: {myPlanets.Count}\n" +
+                $"Name: {StarName}\n" +
+                $"Effective Temperature: {EffectiveTemp} kelvin\n" + 
+                $"Radius (vs Earth): {RadiusRatio}\n" + 
+                $"Mass (vs Earth): {MassRatio}\n" + 
+                $"Age: {Age} giga-years\n" +
+                $"Rotation Velocity: {RotationVel} km/h\n" +
+                $"Rotation Period: {RotationPeriod} days\n" +
+                $"Distance to Sun: {DistToSun} parsecs\n";
             }
         }
     }
