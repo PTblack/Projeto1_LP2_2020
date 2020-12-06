@@ -16,6 +16,8 @@ namespace Projeto1_LP2
         // Array that holds The positions of the valuable attributes
         private int[] valAttPos;
 
+        ExceptionManager exceptionM = new ExceptionManager();
+
         // Number of first valid line in file
         private int firstValLine;
 
@@ -289,6 +291,7 @@ namespace Projeto1_LP2
         {
             // String representing line of the file
             string attributeline;
+            int necessaryAts = 0;
 
             using (FileStream fileStream = new FileStream(
                 fileFolder, FileMode.Open, FileAccess.Read))
@@ -300,7 +303,7 @@ namespace Projeto1_LP2
                     attributeline = sr.ReadLine();
 
                     // Skips lines that start with '#' or that are empty strings
-                    // Ends with line holding collumn contents
+                    // Ends with line holding column contents
                     while(attributeline[0] == '#' || attributeline == "")
                     {
                         attributeline = sr.ReadLine(); firstValLine++;
@@ -315,9 +318,11 @@ namespace Projeto1_LP2
                         {
                             case "pl_name":
                                 valAttPos[(int)AttribPos.pl_name] = i;
+                                necessaryAts++;
                                 break;
                             case "hostname":
                                 valAttPos[(int)AttribPos.pl_hostName] = i;
+                                necessaryAts++;
                                 break;
                             case "discoverymethod":
                                 valAttPos[(int)AttribPos.pl_discMethod] = i;
@@ -357,11 +362,14 @@ namespace Projeto1_LP2
                                 break;
                             case "sy_dist":
                                 valAttPos[(int)AttribPos.sy_dist] = i;
-                                // This line makes it so that 'i' will not meet 
-                                // the criteria to continue
-                                i = attribs.Length;
                                 break;
                         }
+                    }
+
+                    if (necessaryAts < 2)
+                    { 
+                    exceptionM.ExceptionControl(
+                        (int)ErrorCodes.AttribsMissing);
                     }
                 }
             }
