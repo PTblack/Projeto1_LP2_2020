@@ -10,11 +10,6 @@ namespace Projeto1_LP2
         // Properties ordered as displayed in CSV file 
 
         public HashSet<string> myPlanets;
-        // Method of Discovery
-        public string DiscoveryMethod { get; }
-        
-        // Year of Discovery
-        public string DiscoveryYear { get; }
 
         // Star Name
         public string StarName { get; }

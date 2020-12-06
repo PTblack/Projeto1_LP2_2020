@@ -1,7 +1,7 @@
 namespace Projeto1_LP2
 {
     // The order by which the valuable attributes are displayed in the documents
-    public enum AttributePositions
+    public enum AttribPos
     {
         // Planet Attributes
         pl_name,

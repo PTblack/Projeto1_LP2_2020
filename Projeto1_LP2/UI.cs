@@ -111,7 +111,7 @@ namespace Projeto1_LP2
             planetCollection = fm.ReturnPlanet();
             fs = new FileSearcher(boolArgs,  stringArgs, floatArgs, 
                 planetCollection);
-            foreach (Planet p in fs.PlanetCollection)
+            foreach (Planet p in planetCollection)
             {
                 // >> ISSUE <<
                 // DECIMALS ARE NOT BEING LIMITED TO FOUR(?)
