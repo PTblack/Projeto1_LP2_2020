@@ -16,7 +16,7 @@ namespace Projeto1_LP2
         private Dictionary<string, string> stringArgs;  
         private Dictionary<string, float> floatArgs;
 
-        private HashSet<Planet> PlanetCollection;
+        private HashSet<Planet> planetCollection;
 
         private FileManager fm;
         private FileSearcher fs;
@@ -108,9 +108,10 @@ namespace Projeto1_LP2
         {
             Options();
             fm = new FileManager(stringArgs["-file"]);
-            fs = new FileSearcher();
-            PlanetCollection = fm.ReturnPlanet();
-            foreach (Planet p in PlanetCollection)
+            planetCollection = fm.ReturnPlanet();
+            fs = new FileSearcher(boolArgs,  stringArgs, floatArgs, 
+                planetCollection);
+            foreach (Planet p in fs.PlanetCollection)
             {
                 // >> ISSUE <<
                 // DECIMALS ARE NOT BEING LIMITED TO FOUR(?)

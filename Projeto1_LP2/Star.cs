@@ -7,9 +7,14 @@ namespace Projeto1_LP2
 {
     public struct Star
     {
-        public HashSet<string> myPlanets;
-        
         // Properties ordered as displayed in CSV file 
+
+        public HashSet<string> myPlanets;
+        // Method of Discovery
+        public string DiscoveryMethod { get; }
+        
+        // Year of Discovery
+        public string DiscoveryYear { get; }
 
         // Star Name
         public string StarName { get; }
@@ -50,7 +55,9 @@ namespace Projeto1_LP2
             DistToSun = distSun;
 
             myPlanets = new HashSet<string>();
+          
             myPlanets.Add(namePL);
+
         }
 
         // Returns string with the Star's Values in format determined by User
