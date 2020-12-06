@@ -7,22 +7,25 @@ namespace Projeto1_LP2
 {
     class FileSearcher
     {
-        Dictionary<string, bool> boolArgs;
-        Dictionary<string, string> stringArgs;
-        Dictionary<string, float> floatArgs;
-        public HashSet<Planet> planetCollection {get; private set;}
-        public HashSet<Star> starCollection{get; private set;}
+        private Dictionary<string, bool> boolArgs;
+        private Dictionary<string, string> stringArgs;
+        private Dictionary<string, float> floatArgs;
+        private HashSet<Planet> planetHashSet;
+        private HashSet<Star> starHashSet;
+        public IEnumerable<Planet> PlanetCollection{get; private set;}
+        public IEnumerable<Star> StarCollection{get; private set;}
 
         public FileSearcher(Dictionary<string, bool> boolArgs,  
             Dictionary<string, string> stringArgs, 
             Dictionary<string, float> floatArgs, 
-            HashSet<Planet> planetCollection, HashSet<Star> starCollection)
+            HashSet<Planet> planetHashSet/*, HashSet<Star> starHashSet*/)
         {
             this.boolArgs = boolArgs ;
             this.stringArgs = stringArgs;
             this.floatArgs = floatArgs;
-            this.planetCollection = planetCollection;
-            this.starCollection = starCollection;
+            this.planetHashSet = planetHashSet;
+            //this.starHashSet = starHashSet;
+            CompareInfoWithBoolArgs();
         }
 
         // get the information chosen by the user on argument
@@ -53,7 +56,30 @@ namespace Projeto1_LP2
         
         private void PlanetInfo()
         {
-
+            IEnumerable<Planet> planetInfo = 
+                from planet in planetHashSet 
+                where planet.Name == stringArgs["-planet-name"] 
+                && planet.HostName == stringArgs["-host-name"] select planet;
+            
+            PlanetCollection = planetInfo;
         }
+
+        /*private void SearchPlanet()
+        {
+            IEnumerable<Planet> planetInfo = 
+                from planet in planetHashSet 
+                where planet. == stringArgs["-search-planet"] select planet;
+            
+            PlanetCollection = planetInfo;
+        }
+
+        private void StarInfo()
+        {
+            IEnumerable<Star> starInfo = 
+                from star in starHashSet 
+                where star. == stringArgs["-planet-name"] select star;
+            
+            StarCollection = starInfo;
+        }*/
     }
 }
