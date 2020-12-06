@@ -9,7 +9,7 @@ namespace Projeto1_LP2
     {
         // Properties ordered as displayed in CSV file 
 
-        public HashSet<string> myPlanetas;
+        public HashSet<string> myPlanets;
         // Method of Discovery
         public string DiscoveryMethod { get; }
         
@@ -52,8 +52,8 @@ namespace Projeto1_LP2
             RotationPeriod = rotPer;
             DistToSun = distSun;
 
-            myPlanetas = new HashSet<string>();
-            myPlanetas.Add(nomePL);
+            myPlanets = new HashSet<string>();
+            myPlanets.Add(nomePL);
         }
 
         // Returns string with the Star's Values in format determined by User
