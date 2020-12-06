@@ -25,6 +25,7 @@ namespace Projeto1_LP2
         {
             args = a;
         }
+
         private void Options()
         {
             AddToDictionary();
@@ -40,55 +41,70 @@ namespace Projeto1_LP2
                     floatArgs[args[i]] = Single.Parse(args[i + 1]);
             }
         }
+        
         private void AddToDictionary()
         {
             boolArgs = new Dictionary<string, bool>();
             stringArgs =new Dictionary<string, string>();
             floatArgs =new Dictionary<string, float>();
 
+            // Search Criteria
             boolArgs.Add("-search-planet", false);
             boolArgs.Add("-search-star", false);
             boolArgs.Add("-planet-info", false);
             boolArgs.Add("-star-info", false);
 
+            // Names
             stringArgs.Add("-file", "");
             stringArgs.Add("-planet-name", "");
             stringArgs.Add("-star-name", "");
             stringArgs.Add("-host-name", "");
 
+            // Temperature
             floatArgs.Add("-star-temp-min", 0);
             floatArgs.Add("-star-temp", 0);
             floatArgs.Add("-planet-temp-min", 0);
             floatArgs.Add("-planet-temp", 0);
 
+            // Radius
             floatArgs.Add("-star-rade-min", 0);
             floatArgs.Add("-star-rade", 0);
             floatArgs.Add("-planet-rade-min", 0);
             floatArgs.Add("-planet-rade", 0);
 
+            // Mass
             floatArgs.Add("-star-mass-min", 0);
             floatArgs.Add("-star-mass", 0);
             floatArgs.Add("-planet-mass-min", 0);
             floatArgs.Add("-planet-mass", 0);
             
+            // Rotation Velocity
             floatArgs.Add("-star-vsin-min", 0);
             floatArgs.Add("-star-vsin", 0);
 
+            // Rotation Period
             floatArgs.Add("-star-rotp-min", 0);
             floatArgs.Add("-star-rotp", 0);
 
+            // Star Age
             floatArgs.Add("-star-age-min", 0);
             floatArgs.Add("--star-age", 0);
 
+            // Planet Orbital Period
             floatArgs.Add("-planet-orbper-min", 0);
             floatArgs.Add("-planet-orbper", 0);
 
+            // Discovery Specs
             floatArgs.Add("-disc-year", 0);
             floatArgs.Add("-disc-method", 0);
 
+            // Star Distance to Sun
             floatArgs.Add("-sy-dist", 0);
         }
-        public void Show()
+
+        // PASSAR PARA CLASSE DE UI NOVA QUE FOR CRIADA
+        // Show collection of planets that fit the user's requests
+        public void ShowPlCollection()
         {
             Options();
             fm = new FileManager(stringArgs["-file"]);
@@ -97,10 +113,12 @@ namespace Projeto1_LP2
                 planetCollection);
             foreach (Planet p in fs.PlanetCollection)
             {
-                Console.WriteLine("{0} {1} {2} {3} {4} {5} {6} {7}", p.Name,
-                    p.HostName, p.DiscoveryMethod, p.DiscoveryYear,
-                    p.OrbitPeriod, p.RadiusRatio, p.MassRatio,
-                    p.EqTemperature);
+                // >> ISSUE <<
+                // DECIMALS ARE NOT BEING LIMITED TO FOUR(?)
+                Console.WriteLine(
+                    "{0} / {1} / {2} / {3} / {4:f4} / {5:f4} / {6:f4} / {7:f4}", 
+                    p.Name, p.HostName, p.DiscoveryMethod, p.DiscoveryYear,
+                    p.OrbitPeriod, p.RadiusRatio, p.MassRatio, p.EqTemperature);
             }               
         }
     }

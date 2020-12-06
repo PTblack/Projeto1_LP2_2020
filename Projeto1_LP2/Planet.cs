@@ -5,9 +5,11 @@ using System.Text;
 namespace Projeto1_LP2
 {
     public struct Planet
-    {
-        // Properties ordered as displayed in CSV file
+    {        
         //Star myStar;
+
+        // Properties ordered as displayed in the CSV file
+
         // Planet's Name
         public string Name { get; }
         
@@ -34,7 +36,8 @@ namespace Projeto1_LP2
 
         // Constructor Parameters ordered as displayed in CSV file
         public Planet(string name, string hostName, string disc_method,
-        string disc_year, string orbPer, string radiusRt, string massRT, string eqTemp)
+                      string disc_year, string orbPer, string radiusRt, 
+                      string massRT, string eqTemp)
         {   
             //myStar = star;
             Name = name;
@@ -46,6 +49,7 @@ namespace Projeto1_LP2
             MassRatio = massRT;
             EqTemperature = eqTemp;
 
+            // Adds planet instance to the collection of its host star
             //myStar.myPlanetas.Add(this);
         }
 
