@@ -76,43 +76,75 @@ namespace Projeto1_LP2
 
                         // Name
                         planetAttributes[0]= 
-                            attribs.ElementAt((int)valAttPos[0]) != "" ?
-                            attribs.ElementAt((int)valAttPos[0]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_name]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_name]) : 
+                            "N/A";
 
                         // Host Name
                         planetAttributes[1] = 
-                            attribs.ElementAt((int)valAttPos[1]) != "" ?
-                            attribs.ElementAt((int)valAttPos[1]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_hostName]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_hostName]) : 
+                            "N/A";
 
                         // Discovery Method
                         planetAttributes[2] = 
-                            attribs.ElementAt((int)valAttPos[2]) != "" ?
-                            attribs.ElementAt((int)valAttPos[2]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_discMethod]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_discMethod]) : 
+                            "N/A";
 
                         // Discovery Year
                         planetAttributes[3] = 
-                            attribs.ElementAt((int)valAttPos[3]) != "" ?
-                            attribs.ElementAt((int)valAttPos[3]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_discYear]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_discYear]) : 
+                            "N/A";
 
                         // Orbit Period
                         planetAttributes[4] = 
-                            attribs.ElementAt((int)valAttPos[4]) != "" ?
-                            attribs.ElementAt((int)valAttPos[4]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_orbPer]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_orbPer]) : 
+                            "N/A";
 
                         // Radius
                         planetAttributes[5] = 
-                            attribs.ElementAt((int)valAttPos[5]) != "" ?
-                            attribs.ElementAt((int)valAttPos[5]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_rade]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_rade]) : 
+                            "N/A";
 
                         // Mass
                         planetAttributes[6] = 
-                            attribs.ElementAt((int)valAttPos[6]) != "" ?
-                            attribs.ElementAt((int)valAttPos[6]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_mass]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_mass]) : 
+                            "N/A";
 
                         // Equilibrium Temperature
                         planetAttributes[7] = 
-                            attribs.ElementAt((int)valAttPos[7]) != "" ?
-                            attribs.ElementAt((int)valAttPos[7]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_eqt]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_eqt]) : 
+                            "N/A";
 
                         Planet p = new Planet(
                             planetAttributes[0], planetAttributes[1], 
@@ -157,48 +189,84 @@ namespace Projeto1_LP2
 
                         // Hosted Planet
                         starAttributes[0] = 
-                            attribs.ElementAt((int)valAttPos[0]) != "" ?
-                            attribs.ElementAt((int)valAttPos[0]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_name]) != "" ?
+                            
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_name]) : 
+                            "N/A";
 
-                        // Star Name
+                        // Star Name (Host)
                         starAttributes[1] = 
-                            attribs.ElementAt((int)valAttPos[1]) != "" ?
-                            attribs.ElementAt((int)valAttPos[1]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.pl_hostName]) != "" ?
+                            
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.pl_hostName]) : 
+                            "N/A";
 
                         // Effective Temperature
                         starAttributes[2] = 
-                            attribs.ElementAt((int)valAttPos[8]) != "" ?
-                            attribs.ElementAt((int)valAttPos[8]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.st_teff]) != "" ?
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.st_teff]) : 
+                            "N/A";
 
                         // Star Radius
                         starAttributes[3] = 
-                            attribs.ElementAt((int)valAttPos[9]) != "" ? 
-                            attribs.ElementAt((int)valAttPos[9]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.st_rad]) != "" ? 
+                            
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.st_rad]) : 
+                            "N/A";
 
                         // Star Mass
                         starAttributes[4] = 
-                            attribs.ElementAt((int)valAttPos[10]) != "" ? 
-                            attribs.ElementAt((int)valAttPos[10]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.st_mass]) != "" ? 
+                            
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.st_mass]) : 
+                            "N/A";
 
                         // Star Age
                         starAttributes[5] = 
-                            attribs.ElementAt((int)valAttPos[11]) != "" ? 
-                            attribs.ElementAt((int)valAttPos[11]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.st_age]) != "" ? 
+                            
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.st_age]) : 
+                            "N/A";
 
                         // Star Rotation Velocity
                         starAttributes[6] = 
-                            attribs.ElementAt((int)valAttPos[12]) != "" ? 
-                            attribs.ElementAt((int)valAttPos[12]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.st_vsin]) != "" ? 
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.st_vsin]) : 
+                            "N/A";
 
                         // Star Rotation Period
                         starAttributes[7] = 
-                            attribs.ElementAt((int)valAttPos[13]) != "" ? 
-                            attribs.ElementAt((int)valAttPos[13]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.st_rotp]) != "" ? 
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.st_rotp]) : 
+                            "N/A";
 
                         // Distance to Sun
                         starAttributes[8] = 
-                            attribs.ElementAt((int)valAttPos[14]) != "" ? 
-                            attribs.ElementAt((int)valAttPos[14]) : "N/A";
+                            attribs.ElementAt(valAttPos[
+                                (int)AttribPos.sy_dist]) != "" ? 
+
+                            attribs.ElementAt(
+                                valAttPos[(int)AttribPos.sy_dist]) : 
+                            "N/A";
 
                         Star s = new Star(
                                 starAttributes[0], starAttributes[1], 
@@ -244,49 +312,49 @@ namespace Projeto1_LP2
                         switch(attribs[i])
                         {
                             case "pl_name":
-                                valAttPos[0] = i;
+                                valAttPos[(int)AttribPos.pl_name] = i;
                                 break;
                             case "hostname":
-                                valAttPos[1] = i;
+                                valAttPos[(int)AttribPos.pl_hostName] = i;
                                 break;
                             case "discoverymethod":
-                                valAttPos[2] = i;
+                                valAttPos[(int)AttribPos.pl_discMethod] = i;
                                 break;
                             case "disc_year":
-                                valAttPos[3] = i;
+                                valAttPos[(int)AttribPos.pl_discYear] = i;
                                 break;
                             case "pl_orbper":
-                                valAttPos[4] = i;
+                                valAttPos[(int)AttribPos.pl_orbPer] = i;
                                 break;
                             case "pl_rade":
-                                valAttPos[5] = i;
+                                valAttPos[(int)AttribPos.pl_rade] = i;
                                 break;
                             case "pl_masse":
-                                valAttPos[6] = i;
+                                valAttPos[(int)AttribPos.pl_mass] = i;
                                 break;
                             case "pl_eqt":
-                                valAttPos[7] = i;
+                                valAttPos[(int)AttribPos.pl_eqt] = i;
                                 break;
                             case "st_teff":
-                                valAttPos[8] = i;
+                                valAttPos[(int)AttribPos.st_teff] = i;
                                 break;
                             case "st_rad":
-                                valAttPos[9] = i;
+                                valAttPos[(int)AttribPos.st_rad] = i;
                                 break;
                             case "st_mass":
-                                valAttPos[10] = i;
+                                valAttPos[(int)AttribPos.st_mass] = i;
                                 break;
                             case "st_age":
-                                valAttPos[11] = i;
+                                valAttPos[(int)AttribPos.st_age] = i;
                                 break;
                             case "st_vsin":
-                                valAttPos[12] = i;
+                                valAttPos[(int)AttribPos.st_vsin] = i;
                                 break;
                             case "st_rotp":
-                                valAttPos[13] = i;
+                                valAttPos[(int)AttribPos.st_rotp] = i;
                                 break;
                             case "sy_dist":
-                                valAttPos[14] = i;
+                                valAttPos[(int)AttribPos.sy_dist] = i;
                                 // This line makes it so that 'i' will not meet 
                                 // the criteria to continue
                                 i = attribs.Length;
