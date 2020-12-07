@@ -60,8 +60,9 @@ namespace Projeto1_LP2
         {
             IEnumerable<Planet> planetInfo = 
                 from planet in planetHashSet 
-                where planet.Name == stringArgs["-planet-name"] 
-                    && planet.HostName == stringArgs["-host-name"] select planet;
+                where planet.Name.ToLower() == stringArgs["-planet-name"].ToLower()
+                    && planet.HostName.ToLower() == stringArgs["-host-name"].ToLower()
+                select planet;
             
             FilteredPlanetCollection = planetInfo;
         }
@@ -80,31 +81,41 @@ namespace Projeto1_LP2
         {
             IEnumerable<Planet> planetInfo =
             from planet in planetHashSet
-            where planet.Name == stringArgs["-planet-name"]
-                && planet.HostName == stringArgs["-host-name"]
-                && planet.DiscoveryMethod == stringArgs["-disc-method"]
-                && Single.Parse(planet.EqTemperature) >= floatArgs["-planet-temp-min"]
-                && Single.Parse(planet.EqTemperature) <= floatArgs["-planet-temp-max"]
-                && Single.Parse(planet.MassRatio) >= floatArgs["-planet-mass-min"]
-                && Single.Parse(planet.MassRatio) <= floatArgs["-planet-mass-max"]
-                && Single.Parse(planet.RadiusRatio) >= floatArgs["-planet-rade-min"]
-                && Single.Parse(planet.RadiusRatio) <= floatArgs["-planet-rade-max"]
-                && Single.Parse(planet.OrbitPeriod) >= floatArgs["-planet-orbper-min"]
-                && Single.Parse(planet.OrbitPeriod) <= floatArgs["-planet-orbper-max"]
-                && Single.Parse(planet.DiscoveryYear) >= floatArgs["-disc-year-min"]
-                && Single.Parse(planet.DiscoveryYear) <= floatArgs["-disc-year-max"]
+                /*where planet.Name.ToLower() == stringArgs["-planet-name"].ToLower();
+            where planet.HostName.ToLower() == stringArgs["-host-name"].ToLower()
+                && planet.DiscoveryMethod.ToLower() == stringArgs["-disc-method"].ToLower()*/
+            where Single.Parse(planet.EqTemperature) >= floatArgs["-planet-temp-min"]
+            && Single.Parse(planet.EqTemperature) <= floatArgs["-planet-temp-max"]
+            && Single.Parse(planet.MassRatio) >= floatArgs["-planet-mass-min"]
+            && Single.Parse(planet.MassRatio) <= floatArgs["-planet-mass-max"]
+            && Single.Parse(planet.RadiusRatio) >= floatArgs["-planet-rade-min"]
+            && Single.Parse(planet.RadiusRatio) <= floatArgs["-planet-rade-max"]
+            && Single.Parse(planet.OrbitPeriod) >= floatArgs["-planet-orbper-min"]
+            && Single.Parse(planet.OrbitPeriod) <= floatArgs["-planet-orbper-max"]
+            && Single.Parse(planet.DiscoveryYear) >= floatArgs["-disc-year-min"]
+            && Single.Parse(planet.DiscoveryYear) <= floatArgs["-disc-year-max"]
             select planet;
 
-            /*IEnumerable<Planet> planetInfo = 
-                from planet in planetHashSet
-                where planet.Name == stringArgs["-planet-name"]
-               && planet.HostName == stringArgs["-host-name"]
-               && planet.HostName == floatArgs["-temp"]
-               && planet.HostName == stringArgs["-host-name"]
-               && planet.HostName == stringArgs["-host-name"]
-                select planet;
+            if (stringArgs["-planet-name"] != "[MISSING]")
+            {
+                planetInfo =from planet in planetHashSet
+                where planet.Name.ToLower() == stringArgs["-planet-name"].ToLower() 
+                            select planet;
+            }
+            if (stringArgs["-host-name"] != "[MISSING]")
+            {
+                planetInfo = from planet in planetHashSet
+                             where planet.HostName.ToLower() == stringArgs["-host-name"].ToLower()
+                             select planet;
+            }
+            if (stringArgs["-disc-method"] != "[MISSING]")
+            {
+                planetInfo = from planet in planetHashSet
+                             where planet.DiscoveryMethod.ToLower() == stringArgs["-disc-method"].ToLower()
+                             select planet;
+            }
 
-            PlanetCollection = planetInfo;*/
+            FilteredPlanetCollection = planetInfo;
         }
     }
 }
