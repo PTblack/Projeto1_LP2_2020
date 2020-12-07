@@ -35,6 +35,7 @@ namespace Projeto1_LP2
         public string EqTemperature { get; private set;}
 
         // Constructor Parameters ordered as displayed in CSV file
+
         public Planet(string name, string hostName, string disc_method,
                       string disc_year, string orbPer, string radiusRt, 
                       string massRT, string eqTemp)

@@ -56,11 +56,11 @@ namespace Projeto1_LP2
             boolArgs.Add("-planet-info", false);
             boolArgs.Add("-star-info", false);
             boolArgs.Add("-csv", false);
+            boolArgs.Add("-help", true);
 
             // Names
             stringArgs.Add("-file", "");
             stringArgs.Add("-planet-name", "");
-            stringArgs.Add("-star-name", "");
             stringArgs.Add("-host-name", "");
             stringArgs.Add("-disc-method", "");
 
@@ -121,6 +121,9 @@ namespace Projeto1_LP2
 
         public void ShowCollection()
         {
+            if (boolArgs["-help"] == true)
+                ShowHelp();
+
             if(boolArgs["-search-planet"] == true)
                 foreach (Planet p in fs.FilteredPlanetCollection)
                 {
@@ -146,6 +149,56 @@ namespace Projeto1_LP2
                 fs.FilteredStarCollection.ElementAt(0).ConvertFloatablesToDefault();
                 Console.WriteLine(fs.FilteredStarCollection.ElementAt(0).ToString(boolArgs["-csv"]));
             }
+        }
+
+        private void ShowHelp()
+        {
+            Console.WriteLine(
+                $"\nSEARCH OPTIONS\n\n" +
+
+                $"File: -file\n" +
+                $"Planet Information: -planet-info\n" +
+                $"Star Information: -star-info\n" +
+                $"Planet Search: -search-planet\n" +
+                $"Star Search: -search-star\n\n" +
+
+                $"PLANET OPTIONS \n\n" +
+
+                $"(min = minimum) \n" +
+                $"(max = maximum) \n\n" +
+
+                $"Name: -planet-name\n" +
+                $"Host Name (Star Name): -host-name\n" +
+                $"Discovery Method: -disc-method\n" +
+                $"Discovery Year: -disc-method-min or -disc-method-max\n" +
+                $"Discovery Year: -disc-year-min or -disc-year-max\n" +
+                $"Orbit Period: -planet-orbper-min or -planet-orbper-max\n" +
+                $"Radius (vs Earth): -planet-rade-min or -planet-rade-max\n" +
+                $"Mass (vs Earth): -planet-mass-min or -planet-mass-max\n" +
+                $"Equilibrium Temperature: -planet-temp-min or -planet-temp-max\n\n" +
+
+                $"STAR OPTIONS \n\n" +
+
+                $"(min = minimum) \n" +
+                $"(max = maximum) \n\n" +
+
+                $"Star Name: -host-name\n" +
+                $"Effective Temperature: -star-temp-min or -star-temp-max\n" + 
+                $"Radius (vs Earth): -star-rade-min or -star-rade-max\n" + 
+                $"Mass (vs Earth): -star-mass-min or -star-mass-max\n" + 
+                $"Age: -star-age-min or -star-age-max\n" +
+                $"Rotation Velocity: -star-vsin-min or -star-vsin-max\n" +
+                $"Rotation Period: -star-rotp-min or -star-rotp-max\n" +
+                $"Distance to Sun: -sy-dist-min or -sy-dist-max\n\n" +
+
+                $"HELP OPTIONS\n\n" +
+
+                $"Help: -help\n" +
+                $"Example: -file \"NasaExoplanetSearcher.csv\" -planet-search" +
+                $"|-planet-name \"XO-4 b\" -host-name \"XO-4\" -planet-mass-min " +
+                $"2500 -planet-mass 50000\n\n");
+
+
         }
     }
 }
