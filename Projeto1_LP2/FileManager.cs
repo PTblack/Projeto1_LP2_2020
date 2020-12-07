@@ -16,10 +16,11 @@ namespace Projeto1_LP2
         // Array that holds The positions of the valuable attributes
         private int[] valAttPos;
 
-        ExceptionManager exceptionM = new ExceptionManager();
-
         // Number of first valid line in file
         private int firstValLine;
+        
+        // Holds the number of columns named in the file header
+        private int totalAttColl;
 
         // Collections
         private HashSet<Planet> HashSetPL;
@@ -45,8 +46,8 @@ namespace Projeto1_LP2
             CreateStarCollection(); 
         }
 
+        // Public methods that return the Planet and Star collections
         public HashSet<Planet> ReturnPlanet() => HashSetPL;
-
         public HashSet<Star> ReturnStar() => HashSetST;
 
         // Searches File and creates Collection with 
@@ -65,13 +66,23 @@ namespace Projeto1_LP2
                 using (StreamReader sr = new StreamReader(file))
                 {
                     // Skip unwanted lines of the file
-                    for (int i = 0; i < firstValLine; i++) sr.ReadLine();
+                    for (int i = 0; i <= firstValLine; i++) sr.ReadLine();
 
                     // Read through every line until reaching empty line (end)
                     while ((line = sr.ReadLine()) != null)
                     {
                         // Turn line into string array (split csv line on ',')
                         string[] attribs = line.Split(',');
+
+                        // Stops program and sends error message that a 
+                        // line in the file didn't have the same number
+                        // of elements as header
+                        if (attribs.Length != totalAttColl)
+                        {
+                            Console.WriteLine(line);
+                            ExceptionManager.ExceptionControl(
+                                ErrorCodes.AttribNumFluct);
+                        }
 
                         /*
                          * Select attributes significant to Planet and
@@ -186,6 +197,13 @@ namespace Projeto1_LP2
                         // Turn line into string array (split csv line on ',')
                         string[] attribs = line.Split(',');
 
+                        // Stops program and sends error message that a 
+                        // line in the file didn't have the same number
+                        // of elements as header
+                        if (attribs.Length < totalAttColl)
+                            ExceptionManager.ExceptionControl(
+                                ErrorCodes.AttribNumFluct);
+
                         /*
                         * Select attributes significant to Star and
                         * add them to starAttributes
@@ -285,13 +303,12 @@ namespace Projeto1_LP2
             }
         }
 
-        // Find and save position of columns with wanted attributes
+        // Find file header
         // IN CONSTRUCTION
-         private void FindValAttributeIndex()
+        private void FindValAttributeIndex()
         {
             // String representing line of the file
             string attributeline;
-            int necessaryAts = 0;
 
             using (FileStream fileStream = new FileStream(
                 fileFolder, FileMode.Open, FileAccess.Read))
@@ -300,78 +317,111 @@ namespace Projeto1_LP2
                 using (StreamReader sr = new StreamReader(file))
                 {
                     // Saves document's first line
-                    attributeline = sr.ReadLine();
-
+                    do {attributeline = sr.ReadLine(); firstValLine++;}
                     // Skips lines that start with '#' or that are empty strings
                     // Ends with line holding column contents
-                    while(attributeline[0] == '#' || attributeline == "")
-                    {
-                        attributeline = sr.ReadLine(); firstValLine++;
-                    }
+                    while(attributeline[0] == '#' || attributeline == "");
+                    //Console.WriteLine(firstValLine);
 
                     // Create array from columns' line
                     string[] attribs = attributeline.Split(',');
+                    // Saves number of columns on file header in class variable
+                    totalAttColl = attribs.Length;
 
-                    for(int i = 0; i < attribs.Length; i++)
-                    {
-                        switch(attribs[i])
-                        {
-                            case "pl_name":
-                                valAttPos[(int)AttribPos.pl_name] = i;
-                                necessaryAts++;
-                                break;
-                            case "hostname":
-                                valAttPos[(int)AttribPos.pl_hostName] = i;
-                                necessaryAts++;
-                                break;
-                            case "discoverymethod":
-                                valAttPos[(int)AttribPos.pl_discMethod] = i;
-                                break;
-                            case "disc_year":
-                                valAttPos[(int)AttribPos.pl_discYear] = i;
-                                break;
-                            case "pl_orbper":
-                                valAttPos[(int)AttribPos.pl_orbPer] = i;
-                                break;
-                            case "pl_rade":
-                                valAttPos[(int)AttribPos.pl_rade] = i;
-                                break;
-                            case "pl_masse":
-                                valAttPos[(int)AttribPos.pl_mass] = i;
-                                break;
-                            case "pl_eqt":
-                                valAttPos[(int)AttribPos.pl_eqt] = i;
-                                break;
-                            case "st_teff":
-                                valAttPos[(int)AttribPos.st_teff] = i;
-                                break;
-                            case "st_rad":
-                                valAttPos[(int)AttribPos.st_rad] = i;
-                                break;
-                            case "st_mass":
-                                valAttPos[(int)AttribPos.st_mass] = i;
-                                break;
-                            case "st_age":
-                                valAttPos[(int)AttribPos.st_age] = i;
-                                break;
-                            case "st_vsin":
-                                valAttPos[(int)AttribPos.st_vsin] = i;
-                                break;
-                            case "st_rotp":
-                                valAttPos[(int)AttribPos.st_rotp] = i;
-                                break;
-                            case "sy_dist":
-                                valAttPos[(int)AttribPos.sy_dist] = i;
-                                break;
-                        }
-                    }
-
-                    if (necessaryAts < 2)
-                    { 
-                    exceptionM.ExceptionControl(
-                        (int)ErrorCodes.AttribsMissing);
-                    }
+                    FindValAttributes(attribs);
                 }
+            }
+        }
+
+        // Search file header line to find the positions of the 
+        // Valuable Attributes (also identifying if attributes are missing)
+        private void FindValAttributes(string[] atributeLine)
+        {
+            // Control variables to mark existence of wanted attributes
+            bool nameFound, hostNameFound, discMethodFound, discYearFound,
+                orbPerFound, plRadFound, plMassFound, eqTempFound, 
+                effTempFound, stRadFound, stMassFound, ageFound, rotVelFound, 
+                rotPerFound, distSunFound;
+            // All start as 'false'
+            nameFound=hostNameFound=discMethodFound=discYearFound=
+                orbPerFound=plRadFound=plMassFound=eqTempFound=
+                effTempFound=stRadFound=stMassFound=ageFound=rotVelFound= 
+                rotPerFound=distSunFound = false;
+
+            for(int i = 0; i < atributeLine.Length; i++)
+            {
+                switch(atributeLine[i])
+                {
+                    case "pl_name":
+                        valAttPos[(int)AttribPos.pl_name] = i;
+                        nameFound = true;
+                        break;
+                    case "hostname":
+                        valAttPos[(int)AttribPos.pl_hostName] = i;
+                        hostNameFound = true;
+                        break;
+                    case "discoverymethod":
+                        valAttPos[(int)AttribPos.pl_discMethod] = i;
+                        discMethodFound = true;
+                        break;
+                    case "disc_year":
+                        valAttPos[(int)AttribPos.pl_discYear] = i;
+                        discYearFound = true;
+                        break;
+                    case "pl_orbper":
+                        valAttPos[(int)AttribPos.pl_orbPer] = i;
+                        orbPerFound = true;
+                        break;
+                    case "pl_rade":
+                        valAttPos[(int)AttribPos.pl_rade] = i;
+                        plRadFound = true;
+                        break;
+                    case "pl_masse":
+                        valAttPos[(int)AttribPos.pl_mass] = i;
+                        plMassFound = true;
+                        break;
+                    case "pl_eqt":
+                        valAttPos[(int)AttribPos.pl_eqt] = i;
+                        eqTempFound = true;
+                        break;
+                    case "st_teff":
+                        valAttPos[(int)AttribPos.st_teff] = i;
+                        effTempFound = true;
+                        break;
+                    case "st_rad":
+                        valAttPos[(int)AttribPos.st_rad] = i;
+                        stRadFound = true;
+                        break;
+                    case "st_mass":
+                        valAttPos[(int)AttribPos.st_mass] = i;
+                        stMassFound = true;
+                        break;
+                    case "st_age":
+                        valAttPos[(int)AttribPos.st_age] = i;
+                        ageFound = true;
+                        break;
+                    case "st_vsin":
+                        valAttPos[(int)AttribPos.st_vsin] = i;
+                        rotVelFound = true;
+                        break;
+                    case "st_rotp":
+                        valAttPos[(int)AttribPos.st_rotp] = i;
+                        rotPerFound = true;
+                        break;
+                    case "sy_dist":
+                        valAttPos[(int)AttribPos.sy_dist] = i;
+                        distSunFound = true;
+                        break;
+                }
+            }
+            
+            // Stops program and sends error message that 
+            // the file is missing atleast one of the main attributes
+            // 'pl_name' or 'hostname'
+            if (!nameFound || !hostNameFound)
+            { 
+            ExceptionManager.ExceptionControl(
+                ErrorCodes.AttribsMissing);
             }
         }
     }
