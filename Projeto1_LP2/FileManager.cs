@@ -83,7 +83,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_name]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Host Name
                         planetAttributes[1] = 
@@ -92,7 +92,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_hostName]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Discovery Method
                         planetAttributes[2] = 
@@ -101,7 +101,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_discMethod]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Discovery Year
                         planetAttributes[3] = 
@@ -110,7 +110,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_discYear]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Orbit Period
                         planetAttributes[4] = 
@@ -119,7 +119,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_orbPer]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Radius
                         planetAttributes[5] = 
@@ -128,7 +128,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_rade]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Mass
                         planetAttributes[6] = 
@@ -137,7 +137,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_mass]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Equilibrium Temperature
                         planetAttributes[7] = 
@@ -146,7 +146,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_eqt]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         Planet p = new Planet(
                             planetAttributes[0], planetAttributes[1], 
@@ -196,7 +196,7 @@ namespace Projeto1_LP2
                             
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_name]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Star Name (Host)
                         starAttributes[1] = 
@@ -205,7 +205,7 @@ namespace Projeto1_LP2
                             
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_hostName]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Effective Temperature
                         starAttributes[2] = 
@@ -214,7 +214,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.st_teff]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Star Radius
                         starAttributes[3] = 
@@ -223,7 +223,7 @@ namespace Projeto1_LP2
                             
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.st_rad]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Star Mass
                         starAttributes[4] = 
@@ -232,7 +232,7 @@ namespace Projeto1_LP2
                             
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.st_mass]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Star Age
                         starAttributes[5] = 
@@ -241,7 +241,7 @@ namespace Projeto1_LP2
                             
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.st_age]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Star Rotation Velocity
                         starAttributes[6] = 
@@ -250,7 +250,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.st_vsin]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Star Rotation Period
                         starAttributes[7] = 
@@ -259,7 +259,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.st_rotp]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         // Distance to Sun
                         starAttributes[8] = 
@@ -268,7 +268,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.sy_dist]) : 
-                            "N/A";
+                            "[MISSING]";
 
                         Star s = new Star(
                                 starAttributes[0], starAttributes[1], 
