@@ -11,28 +11,28 @@ namespace Projeto1_LP2
         // Properties ordered as displayed in the CSV file
 
         // Planet's Name
-        public string Name { get; }
+        public string Name { get; private set;}
         
         // Host Star's name
-        public string HostName { get; } 
+        public string HostName { get; private set;} 
 
         // Method of Discovery
-        public string DiscoveryMethod { get; }
+        public string DiscoveryMethod { get; private set;}
         
         // Year of Discovery
-        public string DiscoveryYear { get; }
+        public string DiscoveryYear { get; private set;}
 
         // Orbit Period (days)
-        public string OrbitPeriod { get; }
+        public string OrbitPeriod { get; private set;}
 
         // Planet's Radius compared to the Earth's Radius
-        public string RadiusRatio { get; }
+        public string RadiusRatio { get; private set;}
 
         // Planet's Mass compared to the Earth's Mass
-        public string MassRatio { get; }
+        public string MassRatio { get; private set;}
 
         // Planet's Equilibrium Temperature (unit: Kelvins)
-        public string EqTemperature { get; }
+        public string EqTemperature { get; private set;}
 
         // Constructor Parameters ordered as displayed in CSV file
         public Planet(string name, string hostName, string disc_method,
@@ -48,6 +48,8 @@ namespace Projeto1_LP2
             RadiusRatio = radiusRt;
             MassRatio = massRT;
             EqTemperature = eqTemp;
+
+            ConvertDefaultToFloat();
 
             // Adds planet instance to the collection of its host star
             //myStar.myPlanetas.Add(this);
@@ -77,6 +79,46 @@ namespace Projeto1_LP2
                 $"Mass (vs Earth): {MassRatio}\n" +
                 $"Equilibrium Temperature: {EqTemperature} kelvin\n";
             }
+        }
+
+        private void ConvertDefaultToFloat()
+        {
+            if(DiscoveryYear == "[MISSING]") DiscoveryYear = "0";
+            if(OrbitPeriod == "[MISSING]") OrbitPeriod = "0";
+            if(RadiusRatio == "[MISSING]") RadiusRatio = "0";
+            if(MassRatio == "[MISSING]") MassRatio = "0";
+            if(EqTemperature == "[MISSING]") EqTemperature = "0";
+        }
+
+        public void ConvertFloatablesToDefault()
+        {
+            if(DiscoveryYear == "0") DiscoveryYear = "[MISSING]";
+            if(OrbitPeriod == "0") OrbitPeriod = "[MISSING]";
+            if(RadiusRatio == "0") RadiusRatio = "[MISSING]";
+            if(MassRatio == "0") MassRatio = "[MISSING]";
+            if(EqTemperature == "0") EqTemperature = "[MISSING]";
+        }
+
+        public static Planet operator +(Planet planet1, Planet planet2)
+        {
+            if(planet1.Name == "[MISSING]") 
+                planet1.Name = planet2.Name;
+            if(planet1.HostName == "[MISSING]") 
+                planet1.HostName = planet2.HostName;
+            if(planet1.DiscoveryMethod == "[MISSING]") 
+                planet1.DiscoveryMethod = planet2.DiscoveryMethod;
+            if(planet1.DiscoveryYear == "[MISSING]") 
+                planet1.DiscoveryYear = planet2.DiscoveryYear;
+            if(planet1.OrbitPeriod == "[MISSING]") 
+                planet1.OrbitPeriod = planet2.OrbitPeriod;
+            if(planet1.RadiusRatio == "[MISSING]") 
+                planet1.RadiusRatio = planet2.RadiusRatio;
+            if(planet1.MassRatio == "[MISSING]") 
+                planet1.MassRatio = planet2.MassRatio;
+            if(planet1.EqTemperature == "[MISSING]") 
+                planet1.EqTemperature = planet2.EqTemperature;
+
+            return planet1;
         }
     }   
 }

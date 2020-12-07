@@ -283,7 +283,7 @@ namespace Projeto1_LP2
                                 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.pl_name]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         // Star Name (Host)
@@ -297,7 +297,7 @@ namespace Projeto1_LP2
                                 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.pl_hostName]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         // Effective Temperature
@@ -311,7 +311,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_teff]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         // Star Radius
@@ -325,7 +325,7 @@ namespace Projeto1_LP2
                                 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_rad]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         // Star Mass
@@ -339,7 +339,7 @@ namespace Projeto1_LP2
                                 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_mass]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         // Star Age
@@ -353,7 +353,7 @@ namespace Projeto1_LP2
                                 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_age]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         // Star Rotation Velocity
@@ -367,7 +367,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_vsin]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         // Star Rotation Period
@@ -381,7 +381,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_rotp]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         // Distance to Sun
@@ -395,7 +395,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.sy_dist]) : 
-                                "MISSING";
+                                "[MISSING]";
                         }
 
                         Star s = new Star(

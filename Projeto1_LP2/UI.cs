@@ -74,7 +74,7 @@ namespace Projeto1_LP2
             floatArgs.Add("-star-rade-min", float.MinValue);
             floatArgs.Add("-star-rade-max", float.MaxValue);
             floatArgs.Add("-planet-rade-min", float.MinValue);
-            floatArgs.Add("-planet-rade-max", null);
+            floatArgs.Add("-planet-rade-max", float.MaxValue);
 
             // Mass
             floatArgs.Add("-star-mass-min", float.MinValue);
@@ -92,7 +92,7 @@ namespace Projeto1_LP2
 
             // Star Age
             floatArgs.Add("-star-age-min", float.MinValue);
-            floatArgs.Add("--star-age-max", float.MaxValue);
+            floatArgs.Add("-star-age-max", float.MaxValue);
 
             // Planet Orbital Period
             floatArgs.Add("-planet-orbper-min", float.MinValue);
@@ -117,20 +117,35 @@ namespace Projeto1_LP2
             starCollection = fm.ReturnStar();
             fs = new FileSearcher(boolArgs,  stringArgs, floatArgs, 
                 planetCollection, starCollection);
-
-            ShowCollection();
         }
 
         public void ShowCollection()
         {
-            if(boolArgs["-search-planet"] == true || boolArgs["-planet-info"] == true)
+            if(boolArgs["-search-planet"] == true)
                 foreach (Planet p in fs.FilteredPlanetCollection)
+                {
+                    p.ConvertFloatablesToDefault();
                     Console.WriteLine(p.ToString(boolArgs["-csv"]));
+                }
+                    
+            else if(boolArgs["-planet-info"] == true)
+            {
+                fs.FilteredPlanetCollection.ElementAt(0).ConvertFloatablesToDefault();
+                Console.WriteLine(fs.FilteredPlanetCollection.ElementAt(0).ToString(boolArgs["-csv"]));
+            }
 
-
-            if (boolArgs["-search-star"] == true || boolArgs["-star-info"] == true)
+            if (boolArgs["-search-star"] == true)
                 foreach (Star s in fs.FilteredStarCollection)
+                {
+                    s.ConvertFloatablesToDefault();
                     Console.WriteLine(s.ToString(boolArgs["-csv"]));
+                }
+                    
+            else if(boolArgs["-star-info"] == true)
+            {
+                fs.FilteredStarCollection.ElementAt(0).ConvertFloatablesToDefault();
+                Console.WriteLine(fs.FilteredStarCollection.ElementAt(0).ToString(boolArgs["-csv"]));
+            }
         }
     }
 }
