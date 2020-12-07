@@ -5,7 +5,11 @@ namespace Projeto1_LP2
     public static class ExceptionManager
     {
 
-        // Talvez se passe para um delegate Action que recebe um int?
+        /// <summary>
+        /// Handles exceptions. Stops the program and 
+        /// sends message identifying the exception that happened
+        /// </summary>
+        /// <param name="errorCodes"></param>
         public static void ExceptionControl(ErrorCodes errorCodes)
         {
             switch(errorCodes)
