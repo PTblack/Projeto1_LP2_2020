@@ -14,6 +14,7 @@ namespace Projeto1_LP2
 
         private HashSet<Planet> planetHashSet;
         private HashSet<Star> starHashSet;
+
         public IEnumerable<Planet> FilteredPlanetCollection{get; private set;}
         public IEnumerable<Star> FilteredStarCollection{get; private set;}
 
@@ -44,7 +45,7 @@ namespace Projeto1_LP2
             }
             else if(boolArgs["-search-star"] == true)
             {
-
+                SearchStar();
             }
             else if(boolArgs["-planet-info"] == true)
             {
@@ -60,29 +61,57 @@ namespace Projeto1_LP2
         {
             IEnumerable<Planet> planetInfo = 
                 from planet in planetHashSet 
-                where planet.Name == stringArgs["-planet-name"] 
-                    && planet.HostName == stringArgs["-host-name"] select planet;
-            
-            FilteredPlanetCollection = planetInfo;
+                where planet.Name.ToLower() == stringArgs["-planet-name"] .ToLower()
+                    && planet.HostName.ToLower() == stringArgs["-host-name"].ToLower() 
+                select planet;
+
+            HashSet<Planet> fixedPlanets = new HashSet<Planet>();
+            if(planetInfo.Count() >= 1)
+            {
+                fixedPlanets = new HashSet<Planet>();
+                for(int i = planetInfo.Count() - 1; i > 0; i--)
+                {
+                    Planet planet1 = 
+                        planetInfo.ElementAt(i) + planetInfo.ElementAt(i - 1);
+
+                    fixedPlanets.Add(planet1);
+                }
+                Console.WriteLine(fixedPlanets);
+            }
+
+            FilteredPlanetCollection = fixedPlanets;
         }
 
         private void StarInfo()
         {
             IEnumerable<Star> starInfo =
                 from star in starHashSet
-                where star.StarName == stringArgs["-host-name"]
+                where star.StarName.ToLower() == stringArgs["-host-name"].ToLower()
                 select star;
 
-            FilteredStarCollection = starInfo;
+            HashSet<Star> fixedStars = new HashSet<Star>();
+            if(starInfo.Count() >= 1)
+            {
+                fixedStars = new HashSet<Star>();
+                for(int i = starInfo.Count() - 1; i > 0; i--)
+                {
+                    Star star1 = 
+                        starInfo.ElementAt(i) + starInfo.ElementAt(i - 1);
+                    fixedStars.Add(star1);
+                }
+                Console.WriteLine(fixedStars);
+            }
+
+            FilteredStarCollection = fixedStars;
         }
 
         private void SearchPlanet()
         {
             IEnumerable<Planet> planetInfo =
             from planet in planetHashSet
-            where planet.Name == stringArgs["-planet-name"]
-                && planet.HostName == stringArgs["-host-name"]
-                && planet.DiscoveryMethod == stringArgs["-disc-method"]
+            where planet.Name.ToLower() == stringArgs["-planet-name"].ToLower()
+                && planet.HostName.ToLower() == stringArgs["-host-name"].ToLower()
+                && planet.DiscoveryMethod.ToLower() == stringArgs["-disc-method"].ToLower()
                 && Single.Parse(planet.EqTemperature) >= floatArgs["-planet-temp-min"]
                 && Single.Parse(planet.EqTemperature) <= floatArgs["-planet-temp-max"]
                 && Single.Parse(planet.MassRatio) >= floatArgs["-planet-mass-min"]
@@ -95,16 +124,27 @@ namespace Projeto1_LP2
                 && Single.Parse(planet.DiscoveryYear) <= floatArgs["-disc-year-max"]
             select planet;
 
-            /*IEnumerable<Planet> planetInfo = 
-                from planet in planetHashSet
-                where planet.Name == stringArgs["-planet-name"]
-               && planet.HostName == stringArgs["-host-name"]
-               && planet.HostName == floatArgs["-temp"]
-               && planet.HostName == stringArgs["-host-name"]
-               && planet.HostName == stringArgs["-host-name"]
-                select planet;
-
-            PlanetCollection = planetInfo;*/
+            FilteredPlanetCollection = planetInfo;
+        }
+        
+        public void SearchStar()
+        {
+            IEnumerable<Star> starInfo =
+            from star in starHashSet
+            where star.StarName.ToLower() == stringArgs["-star-name"].ToLower()
+                && Single.Parse(star.EffectiveTemp) >= floatArgs["-star-temp-min"]
+                && Single.Parse(star.EffectiveTemp) <= floatArgs["-star-temp-max"]
+                && Single.Parse(star.MassRatio) >= floatArgs["-star-mass-min"]
+                && Single.Parse(star.MassRatio) <= floatArgs["-star-mass-max"]
+                && Single.Parse(star.RadiusRatio) >= floatArgs["-star-rade-min"]
+                && Single.Parse(star.RadiusRatio) <= floatArgs["-star-rade-max"]
+                && Single.Parse(star.RotationPeriod) >= floatArgs["-star-rotp-min"]
+                && Single.Parse(star.RotationPeriod) <= floatArgs["-star-rotp-max"]
+                && Single.Parse(star.RotationVel) >= floatArgs["-star-vsin-min"]
+                && Single.Parse(star.RotationVel) <= floatArgs["-star-vsin-max"]
+                && Single.Parse(star.Age) >= floatArgs["-star-age-min"]
+                && Single.Parse(star.Age) <= floatArgs["-star-age-max"]
+            select star;
         }
     }
 }
