@@ -22,6 +22,13 @@ namespace Projeto1_LP2
         // Holds the number of columns named in the file header
         private int totalAttColl;
 
+        // Variables stating if a specific valuable attribute as been found 
+        // on the file
+        private bool nameFound, hostNameFound, discMethodFound, discYearFound,
+             orbPerFound, plRadFound, plMassFound, eqTempFound, effTempFound, 
+             stRadFound, stMassFound, ageFound, rotVelFound, rotPerFound, 
+             distSunFound;
+
         // Collections
         private HashSet<Planet> HashSetPL;
         private HashSet<Star> HashSetST;
@@ -31,6 +38,13 @@ namespace Projeto1_LP2
             this.file = file;
             valAttPos = new int[15];
             firstValLine = 0;
+
+            // Before reading the file, it is not certain if 
+            // all attributes exist
+            nameFound=hostNameFound=discMethodFound=discYearFound=
+            orbPerFound=plRadFound=plMassFound=eqTempFound=
+            effTempFound=stRadFound=stMassFound=ageFound=rotVelFound= 
+            rotPerFound=distSunFound = false;
             
             // Initialize the collections for planets and stars
             HashSetPL = new HashSet<Planet>();
@@ -90,76 +104,110 @@ namespace Projeto1_LP2
                          */
 
                         // Name
-                        planetAttributes[0]= 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_name]) != "" ?
+                        if (!nameFound)
+                        planetAttributes[0] = null;
+                        else 
+                        {
+                            planetAttributes[0]= 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_name]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_name]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_name]) : 
+                                "[MISSING]";
+                        }
 
                         // Host Name
-                        planetAttributes[1] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_hostName]) != "" ?
+                        if (!hostNameFound)
+                        planetAttributes[1] = null;
+                        else 
+                        {
+                            planetAttributes[1] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_hostName]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_hostName]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_hostName]) : 
+                                "[MISSING]";
+                        }
 
                         // Discovery Method
-                        planetAttributes[2] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_discMethod]) != "" ?
+                        if (!discMethodFound)
+                        planetAttributes[2] = null;
+                        {
+                            planetAttributes[2] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_discMethod]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_discMethod]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_discMethod]) : 
+                                "[MISSING]";
+                        }
 
                         // Discovery Year
-                        planetAttributes[3] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_discYear]) != "" ?
+                        if (!discYearFound)
+                        planetAttributes[3] = null;
+                        {
+                            planetAttributes[3] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_discYear]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_discYear]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_discYear]) : 
+                                "[MISSING]";
+                        }
 
                         // Orbit Period
-                        planetAttributes[4] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_orbPer]) != "" ?
+                        if (!orbPerFound)
+                        planetAttributes[4] = null;
+                        {
+                            planetAttributes[4] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_orbPer]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_orbPer]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_orbPer]) : 
+                                "[MISSING]";
+                        }
 
                         // Radius
-                        planetAttributes[5] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_rade]) != "" ?
+                        if (!plRadFound)
+                        planetAttributes[5] = null;
+                        {
+                            planetAttributes[5] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_rade]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_rade]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_rade]) : 
+                                "[MISSING]";
+                        }
 
                         // Mass
-                        planetAttributes[6] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_mass]) != "" ?
+                        if (!plMassFound)
+                        planetAttributes[6] = null;
+                        {
+                            planetAttributes[6] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_mass]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_mass]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_mass]) : 
+                                "[MISSING]";
+                        }
 
                         // Equilibrium Temperature
+                        if (!eqTempFound)
+                        planetAttributes[7] = null;
+                        {
                         planetAttributes[7] = 
                             attribs.ElementAt(valAttPos[
                                 (int)AttribPos.pl_eqt]) != "" ?
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_eqt]) : 
-                            "N/A";
+                            "[MISSING]";
+                        }
 
                         Planet p = new Planet(
                             planetAttributes[0], planetAttributes[1], 
@@ -210,85 +258,130 @@ namespace Projeto1_LP2
                         */
 
                         // Hosted Planet
-                        starAttributes[0] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_name]) != "" ?
-                            
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_name]) : 
-                            "N/A";
+                        if (!nameFound)
+                        starAttributes[0] = null;
+                        else 
+                        {
+                            starAttributes[0] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_name]) != "" ?
+                                
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_name]) : 
+                                "MISSING";
+                        }
 
                         // Star Name (Host)
-                        starAttributes[1] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_hostName]) != "" ?
-                            
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_hostName]) : 
-                            "N/A";
+                        if (!hostNameFound)
+                        starAttributes[1] = null;
+                        else 
+                        {
+                            starAttributes[1] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_hostName]) != "" ?
+                                
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_hostName]) : 
+                                "MISSING";
+                        }
 
                         // Effective Temperature
-                        starAttributes[2] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.st_teff]) != "" ?
+                        if (!effTempFound)
+                        starAttributes[2] = null;
+                        else 
+                        {
+                            starAttributes[2] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.st_teff]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.st_teff]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.st_teff]) : 
+                                "MISSING";
+                        }
 
                         // Star Radius
-                        starAttributes[3] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.st_rad]) != "" ? 
-                            
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.st_rad]) : 
-                            "N/A";
+                        if (!stRadFound)
+                        starAttributes[3] = null;
+                        else 
+                        {
+                            starAttributes[3] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.st_rad]) != "" ? 
+                                
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.st_rad]) : 
+                                "MISSING";
+                        }
 
                         // Star Mass
-                        starAttributes[4] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.st_mass]) != "" ? 
-                            
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.st_mass]) : 
-                            "N/A";
+                        if (!stMassFound)
+                        starAttributes[4] = null;
+                        else 
+                        {
+                            starAttributes[4] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.st_mass]) != "" ? 
+                                
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.st_mass]) : 
+                                "MISSING";
+                        }
 
                         // Star Age
-                        starAttributes[5] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.st_age]) != "" ? 
-                            
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.st_age]) : 
-                            "N/A";
+                        if (!ageFound)
+                        starAttributes[5] = null;
+                        else 
+                        {
+                            starAttributes[5] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.st_age]) != "" ? 
+                                
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.st_age]) : 
+                                "MISSING";
+                        }
 
                         // Star Rotation Velocity
-                        starAttributes[6] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.st_vsin]) != "" ? 
+                        if (!rotVelFound)
+                        starAttributes[6] = null;
+                        else 
+                        {
+                            starAttributes[6] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.st_vsin]) != "" ? 
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.st_vsin]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.st_vsin]) : 
+                                "MISSING";
+                        }
 
                         // Star Rotation Period
-                        starAttributes[7] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.st_rotp]) != "" ? 
+                        if (!rotPerFound)
+                        starAttributes[7] = null;
+                        else 
+                        {
+                            starAttributes[7] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.st_rotp]) != "" ? 
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.st_rotp]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.st_rotp]) : 
+                                "MISSING";
+                        }
 
                         // Distance to Sun
-                        starAttributes[8] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.sy_dist]) != "" ? 
+                        if (!distSunFound)
+                        starAttributes[8] = null;
+                        else 
+                        {
+                            starAttributes[8] = 
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.sy_dist]) != "" ? 
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.sy_dist]) : 
-                            "N/A";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.sy_dist]) : 
+                                "MISSING";
+                        }
 
                         Star s = new Star(
                                 starAttributes[0], starAttributes[1], 
@@ -304,7 +397,6 @@ namespace Projeto1_LP2
         }
 
         // Find file header
-        // IN CONSTRUCTION
         private void FindValAttributeIndex()
         {
             // String representing line of the file
@@ -328,26 +420,17 @@ namespace Projeto1_LP2
                     // Saves number of columns on file header in class variable
                     totalAttColl = attribs.Length;
 
+                    // Starts FindVallAttributes with the array containing the 
+                    // items of the header
                     FindValAttributes(attribs);
                 }
             }
         }
 
         // Search file header line to find the positions of the 
-        // Valuable Attributes (also identifying if attributes are missing)
+        // Valuable Attributes (identifies found valuable attributes)
         private void FindValAttributes(string[] atributeLine)
         {
-            // Control variables to mark existence of wanted attributes
-            bool nameFound, hostNameFound, discMethodFound, discYearFound,
-                orbPerFound, plRadFound, plMassFound, eqTempFound, 
-                effTempFound, stRadFound, stMassFound, ageFound, rotVelFound, 
-                rotPerFound, distSunFound;
-            // All start as 'false'
-            nameFound=hostNameFound=discMethodFound=discYearFound=
-                orbPerFound=plRadFound=plMassFound=eqTempFound=
-                effTempFound=stRadFound=stMassFound=ageFound=rotVelFound= 
-                rotPerFound=distSunFound = false;
-
             for(int i = 0; i < atributeLine.Length; i++)
             {
                 switch(atributeLine[i])
