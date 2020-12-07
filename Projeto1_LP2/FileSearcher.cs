@@ -98,19 +98,19 @@ namespace Projeto1_LP2
 
             if (stringArgs["-planet-name"] != "[MISSING]")
             {
-                planetInfo =from planet in planetHashSet
-                where planet.Name.ToLower() == stringArgs["-planet-name"].ToLower() 
-                            select planet;
+                planetInfo = from planet in planetInfo
+                             where planet.Name.ToLower() == stringArgs["-planet-name"].ToLower() 
+                             select planet;
             }
             if (stringArgs["-host-name"] != "[MISSING]")
             {
-                planetInfo = from planet in planetHashSet
+                planetInfo = from planet in planetInfo
                              where planet.HostName.ToLower() == stringArgs["-host-name"].ToLower()
                              select planet;
             }
             if (stringArgs["-disc-method"] != "[MISSING]")
             {
-                planetInfo = from planet in planetHashSet
+                planetInfo = from planet in planetInfo
                              where planet.DiscoveryMethod.ToLower() == stringArgs["-disc-method"].ToLower()
                              select planet;
             }
