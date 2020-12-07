@@ -22,7 +22,7 @@ namespace Projeto1_LP2
         // Holds the number of columns named in the file header
         private int totalAttColl;
 
-        // Variables stating if a specific valuable attribute as been found 
+        // Variables to control if a specific valuable attribute as been found 
         // on the file
         private bool nameFound, hostNameFound, discMethodFound, discYearFound,
              orbPerFound, plRadFound, plMassFound, eqTempFound, effTempFound, 
@@ -33,6 +33,12 @@ namespace Projeto1_LP2
         private HashSet<Planet> HashSetPL;
         private HashSet<Star> HashSetST;
 
+        /// <summary>
+        /// Gives class variables all their 'default' values and calls the 
+        /// wanted methods to find the header of the csv file and create the 
+        /// Planet and Star collections.
+        /// </summary>
+        /// <param name="file">the provided csv file</param>
         public FileManager(string file)
         {
             this.file = file;
@@ -60,12 +66,20 @@ namespace Projeto1_LP2
             CreateStarCollection(); 
         }
 
-        // Public methods that return the Planet and Star collections
+        /// <summary>
+        /// Returns the Planet collection
+        /// </summary>
+        /// <returns>collection of planets</returns>
         public HashSet<Planet> ReturnPlanet() => HashSetPL;
+        /// <summary>
+        /// Creates the Star collection
+        /// </summary>
+        /// <returns>collection of stars</returns>
         public HashSet<Star> ReturnStar() => HashSetST;
 
-        // Searches File and creates Collection with 
-        // planets and their wanted values
+        /// <summary>
+        /// Creates a collection of Planets from the given csv file
+        /// </summary>
         private void CreatePlanetCollection()
         {
             // Array that holds one line's important attributes as strings
@@ -221,8 +235,9 @@ namespace Projeto1_LP2
             }
         }
 
-        // Searches File and creates Collection with 
-        // stars and their wanted values
+        /// <summary>
+        /// Creates a collection of Stars from the given csv file
+        /// </summary>
         private void CreateStarCollection()
         {
             // Array that holds one line's important attributes as strings
@@ -396,7 +411,9 @@ namespace Projeto1_LP2
             }
         }
 
-        // Find file header
+        /// <summary>
+        /// Opens file and identifies its header
+        /// </summary>
         private void FindValAttributeIndex()
         {
             // String representing line of the file
@@ -427,8 +444,11 @@ namespace Projeto1_LP2
             }
         }
 
-        // Search file header line to find the positions of the 
-        // Valuable Attributes (identifies found valuable attributes)
+        /// <summary>
+        /// Searches the file header to find the positions of the Valuable 
+        /// Attributes, saving the positions of the ones that are found.
+        /// </summary>
+        /// <param name="atributeLine">csv file header</param>
         private void FindValAttributes(string[] atributeLine)
         {
             for(int i = 0; i < atributeLine.Length; i++)
