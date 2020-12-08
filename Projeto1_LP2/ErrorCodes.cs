@@ -8,5 +8,6 @@ namespace Projeto1_LP2
         AttribsMissing,
         InvalidArgs,
         AttribNumFluct,
+        NoSearchOption,
     }
 }
