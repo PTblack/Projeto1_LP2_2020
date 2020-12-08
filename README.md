@@ -78,6 +78,28 @@ até à sua entrega*
   estrela.
 
 * #### As principais querrys construidas
+  Na classe `FileSearcher.cs` foram feitas 4 _queries_ principais que têm como
+  objetivo filtrar a informação do ficheiro, de acordo com o que o utilizador 
+  passar como argumento.
+
+  Para os apresentar a informação do planeta ou da estrela duas queries separadas
+  uma para cada tipo, em que se o utilizador pedir a informação do planeta ou 
+  estrela, `-planet-info` ou `star-info`, deve de inserir o nome do planeta e o 
+  nome da estrela que ele orbita (_host name_), ou no caso da estrela apenas o 
+  nome dela, se forem encontrados mais de 1 planeta/estrela com o mesmo nome e 
+  _host name_, o programa deve apenas apresentar ao utilizador apenas um 
+  planeta/estrela que tenha, todas as informações preenchidas, ou seja, se por 
+  acaso houver alguma informação `[MISSING]`, esta deve ser preenchida, pela 
+  informação de um planeta/estrela, com o mesmo nome e host name (ou só nome no 
+  caso da estrela), que esteja abaixo. Isto é feito pegando na _query_ 
+  `planet-info` / `star-info` e se esta tiver mais de um elemento, percorre 
+  todos os elementos e preenche a informação que estiver vazia.
+
+  Para procurar os planetas/estrelas temos outras duas _queries_, que filtram a 
+  informação das coleções `PlanetHashSet` e `StarHashSet` de acordo com todas os 
+  parâmetros de pesquisa para planetas e estrelas, em que todos os estes
+  parâmetros da query são executados à parte dos obrigatórios, que têm de ser
+  diferentes de `[MISSING]`.
   
 * #### Otimizações específicas implementadas
   
@@ -134,7 +156,8 @@ planeamento feito)
 #### Sugestões de Otimização
 
 > O ficheiro de dados pode ser grande, pelo que pode ser útil fazer algumas
-> otimizações. Existem várias técnicas que podem e devem ser utilizadas para este fim, nomeadamente:
+> otimizações. Existem várias técnicas que podem e devem ser utilizadas para
+> este fim, nomeadamente:
 
 - [x] Os campos existentes em cada linha não necessários devem ser ignorados.
 
