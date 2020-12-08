@@ -36,9 +36,21 @@ namespace Projeto1_LP2
 
         // Constructor Parameters ordered as displayed in CSV file
 
+        /// <summary>
+        /// Planet struct constructor
+        /// </summary>
+        /// <param name="name">Planet's Name</param>
+        /// <param name="hostName">Planet's Star Name</param>
+        /// <param name="disc_method">Discovery Method</param>
+        /// <param name="disc_year">Discovery Year</param>
+        /// <param name="orbPer">Planet's Orbital Period</param>
+        /// <param name="radiusRt">Planet's Radius compared to the Earth</param>
+        /// <param name="massRt">Planet's Mass compared to the Earth</param>
+        /// <param name="eqTemp">Planet's Equilibrium Temperature</param>
+
         public Planet(string name, string hostName, string disc_method,
                       string disc_year, string orbPer, string radiusRt, 
-                      string massRT, string eqTemp)
+                      string massRt, string eqTemp)
         {   
             //myStar = star;
             Name = name;
@@ -47,7 +59,7 @@ namespace Projeto1_LP2
             DiscoveryYear = disc_year;
             OrbitPeriod = orbPer;
             RadiusRatio = radiusRt;
-            MassRatio = massRT;
+            MassRatio = massRt;
             EqTemperature = eqTemp;
 
             // Adds planet instance to the collection of its host star
@@ -55,6 +67,13 @@ namespace Projeto1_LP2
         }
 
         // Returns string with the Planet's Values in format determined by User
+        /// <summary>
+        /// Returns string with the Planet's values in the format determined by 
+        /// the user
+        /// </summary>
+        /// <param name="csv">bool to check if the user wants the information 
+        /// to be printed in a csv format</param>
+        /// <returns>string containing the Planet's attributes</returns>
         public string ToString(bool csv)
         {
             if (csv)
@@ -80,6 +99,9 @@ namespace Projeto1_LP2
             }
         }
 
+        /// <summary>
+        /// Converts any 'Missing' values into defaults for value comparisons
+        /// </summary>
         public void ConvertDefaultToFloat()
         {
             if(DiscoveryYear == "[MISSING]") DiscoveryYear = "0";
@@ -89,6 +111,9 @@ namespace Projeto1_LP2
             if(EqTemperature == "[MISSING]") EqTemperature = "0";
         }
 
+        /// <summary>
+        /// Converts default values back to their 'Missing' designation
+        /// </summary>
         public void ConvertFloatablesToDefault()
         {
             if(DiscoveryYear == "0") DiscoveryYear = "[MISSING]";
@@ -98,6 +123,14 @@ namespace Projeto1_LP2
             if(EqTemperature == "0") EqTemperature = "[MISSING]";
         }
 
+        /// <summary>
+        /// Definition of '+' operator for Planet additions, used to combine 
+        /// information from different entries of the same Planet to provide
+        /// the most information possible of said Planet
+        /// </summary>
+        /// <param name="planet1">"Current" Planet info</param>
+        /// <param name="planet2">Different entry of the same Planet</param>
+        /// <returns>Planet with updated values</returns>
         public static Planet operator +(Planet planet1, Planet planet2)
         {
             if(planet1.Name == "[MISSING]") 
