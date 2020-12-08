@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Globalization;
 
 namespace Projeto1_LP2
 {
@@ -28,6 +30,13 @@ namespace Projeto1_LP2
             this.floatArgs = floatArgs;
             this.planetHashSet = planetHashSet;
             this.starHashSet = starHashSet;
+
+            foreach (Planet p in planetHashSet)
+                p.ConvertDefaultToFloat();
+
+            foreach (Star s in starHashSet)
+                s.ConvertDefaultToFloat();
+
             CompareInfoWithBoolArgs();
         }
 
@@ -65,21 +74,24 @@ namespace Projeto1_LP2
                     && planet.HostName.ToLower() == stringArgs["-host-name"].ToLower()
                 select planet;
 
-            HashSet<Planet> fixedPlanets = new HashSet<Planet>();
-            if (planetInfo.Count() >= 1)
-            {
-                fixedPlanets = new HashSet<Planet>();
-                for (int i = planetInfo.Count() - 1; i > 0; i--)
-                {
-                    Planet planet1 =
-                        planetInfo.ElementAt(i) + planetInfo.ElementAt(i - 1);
+            /* HashSet<Planet> fixedPlanets = new HashSet<Planet>();
+             if (planetInfo.Count() >= 0)
+             {
+                 fixedPlanets = new HashSet<Planet>();
+                 for (int i = planetInfo.Count() - 1; i > 0; i--)
+                 {
+                     Planet planet1 =
+                         planetInfo.ElementAt(i) + planetInfo.ElementAt(i - 1);
 
-                    fixedPlanets.Add(planet1);
-                }
-                Console.WriteLine(fixedPlanets);
-            }
+                     fixedPlanets.Add(planet1);  
+                 }
+                 Console.WriteLine(fixedPlanets);
+             }*/
 
-            FilteredPlanetCollection = fixedPlanets;
+            foreach (Planet p in planetInfo)
+                p.ConvertFloatablesToDefault();
+
+            FilteredPlanetCollection = planetInfo;
         }
 
         private void StarInfo()
@@ -102,6 +114,9 @@ namespace Projeto1_LP2
                 Console.WriteLine(fixedStars);
             }
 
+            foreach (Star s in starInfo)
+                s.ConvertFloatablesToDefault();
+
             FilteredStarCollection = fixedStars;
         }
 
@@ -109,16 +124,26 @@ namespace Projeto1_LP2
         {
             IEnumerable<Planet> planetInfo =
             from planet in planetHashSet
-            where Single.Parse(planet.EqTemperature) >= floatArgs["-planet-temp-min"]
-                && Single.Parse(planet.EqTemperature) <= floatArgs["-planet-temp-max"]
-                && Single.Parse(planet.MassRatio) >= floatArgs["-planet-mass-min"]
-                && Single.Parse(planet.MassRatio) <= floatArgs["-planet-mass-max"]
-                && Single.Parse(planet.RadiusRatio) >= floatArgs["-planet-rade-min"]
-                && Single.Parse(planet.RadiusRatio) <= floatArgs["-planet-rade-max"]
-                && Single.Parse(planet.OrbitPeriod) >= floatArgs["-planet-orbper-min"]
-                && Single.Parse(planet.OrbitPeriod) <= floatArgs["-planet-orbper-max"]
-                && Single.Parse(planet.DiscoveryYear) >= floatArgs["-disc-year-min"]
-                && Single.Parse(planet.DiscoveryYear) <= floatArgs["-disc-year-max"]
+            where Single.Parse(planet.EqTemperature, NumberStyles.Any, 
+            CultureInfo.InvariantCulture) >= floatArgs["-planet-temp-min"]
+                && Single.Parse(planet.EqTemperature, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) <= floatArgs["-planet-temp-max"]
+                && Single.Parse(planet.MassRatio, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) >= floatArgs["-planet-mass-min"]
+                && Single.Parse(planet.MassRatio, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) <= floatArgs["-planet-mass-max"]
+                && Single.Parse(planet.RadiusRatio, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) >= floatArgs["-planet-rade-min"]
+                && Single.Parse(planet.RadiusRatio, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) <= floatArgs["-planet-rade-max"]
+                && Single.Parse(planet.OrbitPeriod, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) >= floatArgs["-planet-orbper-min"]
+                && Single.Parse(planet.OrbitPeriod, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) <= floatArgs["-planet-orbper-max"]
+                && Single.Parse(planet.DiscoveryYear, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) >= floatArgs["-disc-year-min"]
+                && Single.Parse(planet.DiscoveryYear, NumberStyles.Any, 
+                CultureInfo.InvariantCulture) <= floatArgs["-disc-year-max"]
             select planet;
 
             if (stringArgs["-planet-name"] != "[MISSING]")
@@ -140,6 +165,9 @@ namespace Projeto1_LP2
                              select planet;
             }
 
+            foreach (Planet p in planetInfo)
+                p.ConvertFloatablesToDefault();
+
             FilteredPlanetCollection = planetInfo;
         }
 
@@ -147,18 +175,30 @@ namespace Projeto1_LP2
         {
             IEnumerable<Star> starInfo =
             from star in starHashSet
-            where Single.Parse(star.EffectiveTemp) >= floatArgs["-star-temp-min"]
-                && Single.Parse(star.EffectiveTemp) <= floatArgs["-star-temp-max"]
-                && Single.Parse(star.MassRatio) >= floatArgs["-star-mass-min"]
-                && Single.Parse(star.MassRatio) <= floatArgs["-star-mass-max"]
-                && Single.Parse(star.RadiusRatio) >= floatArgs["-star-rade-min"]
-                && Single.Parse(star.RadiusRatio) <= floatArgs["-star-rade-max"]
-                && Single.Parse(star.RotationPeriod) >= floatArgs["-star-rotp-min"]
-                && Single.Parse(star.RotationPeriod) <= floatArgs["-star-rotp-max"]
-                && Single.Parse(star.RotationVel) >= floatArgs["-star-vsin-min"]
-                && Single.Parse(star.RotationVel) <= floatArgs["-star-vsin-max"]
-                && Single.Parse(star.Age) >= floatArgs["-star-age-min"]
-                && Single.Parse(star.Age) <= floatArgs["-star-age-max"]
+            where Single.Parse(star.EffectiveTemp, NumberStyles.Any,
+                CultureInfo.InvariantCulture) >= floatArgs["-star-temp-min"]
+                && Single.Parse(star.EffectiveTemp, NumberStyles.Any,
+                CultureInfo.InvariantCulture) <= floatArgs["-star-temp-max"]
+                && Single.Parse(star.MassRatio, NumberStyles.Any,
+                CultureInfo.InvariantCulture) >= floatArgs["-star-mass-min"]
+                && Single.Parse(star.MassRatio, NumberStyles.Any,
+                CultureInfo.InvariantCulture) <= floatArgs["-star-mass-max"]
+                && Single.Parse(star.RadiusRatio, NumberStyles.Any,
+                CultureInfo.InvariantCulture) >= floatArgs["-star-rade-min"]
+                && Single.Parse(star.RadiusRatio, NumberStyles.Any,
+                CultureInfo.InvariantCulture) <= floatArgs["-star-rade-max"]
+                && Single.Parse(star.RotationPeriod, NumberStyles.Any,
+                CultureInfo.InvariantCulture) >= floatArgs["-star-rotp-min"]
+                && Single.Parse(star.RotationPeriod, NumberStyles.Any,
+                CultureInfo.InvariantCulture) <= floatArgs["-star-rotp-max"]
+                && Single.Parse(star.RotationVel, NumberStyles.Any,
+                CultureInfo.InvariantCulture) >= floatArgs["-star-vsin-min"]
+                && Single.Parse(star.RotationVel, NumberStyles.Any,
+                CultureInfo.InvariantCulture) <= floatArgs["-star-vsin-max"]
+                && Single.Parse(star.Age, NumberStyles.Any,
+                CultureInfo.InvariantCulture) >= floatArgs["-star-age-min"]
+                && Single.Parse(star.Age, NumberStyles.Any,
+                CultureInfo.InvariantCulture) <= floatArgs["-star-age-max"]
             select star;
 
             if (stringArgs["-host-name"] != "[MISSING]")
@@ -167,6 +207,11 @@ namespace Projeto1_LP2
                              where star.StarName.ToLower() == stringArgs["-host-name"].ToLower()
                              select star;
             }
+
+            foreach (Star s in starInfo)
+                s.ConvertFloatablesToDefault();
+
+            FilteredStarCollection = starInfo;
         }
     }
 }
