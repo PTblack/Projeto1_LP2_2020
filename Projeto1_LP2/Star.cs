@@ -52,9 +52,6 @@ namespace Projeto1_LP2
             myPlanets = new HashSet<string>();
           
             myPlanets.Add(namePL);
-
-            ConvertDefaultToFloat();
-
         }
 
         // Returns string with the Star's Values in format determined by User
@@ -83,7 +80,7 @@ namespace Projeto1_LP2
             }
         }
 
-        private void ConvertDefaultToFloat()
+        public void ConvertDefaultToFloat()
         {
             if(EffectiveTemp == "[MISSING]") EffectiveTemp = "0";
             if(RadiusRatio == "[MISSING]") RadiusRatio = "0";

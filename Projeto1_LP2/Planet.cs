@@ -50,8 +50,6 @@ namespace Projeto1_LP2
             MassRatio = massRT;
             EqTemperature = eqTemp;
 
-            ConvertDefaultToFloat();
-
             // Adds planet instance to the collection of its host star
             //myStar.myPlanetas.Add(this);
         }
@@ -82,7 +80,7 @@ namespace Projeto1_LP2
             }
         }
 
-        private void ConvertDefaultToFloat()
+        public void ConvertDefaultToFloat()
         {
             if(DiscoveryYear == "[MISSING]") DiscoveryYear = "0";
             if(OrbitPeriod == "[MISSING]") OrbitPeriod = "0";

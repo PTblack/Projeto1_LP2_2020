@@ -42,6 +42,7 @@ namespace Projeto1_LP2
                 if (floatArgs.ContainsKey(args[i].ToLower()))
                     floatArgs[args[i]] = Single.Parse(args[i + 1]);
             }
+            CheckExeptions();
         }
         
         private void AddToDictionary()
@@ -133,7 +134,8 @@ namespace Projeto1_LP2
                     
             else if(boolArgs["-planet-info"] == true)
             {
-                fs.FilteredPlanetCollection.ElementAt(0).ConvertFloatablesToDefault();
+                foreach (Planet p in fs.FilteredPlanetCollection)
+                    p.ConvertFloatablesToDefault();
                 Console.WriteLine(fs.FilteredPlanetCollection.ElementAt(0).ToString(boolArgs["-csv"]));
             }
 
@@ -146,11 +148,22 @@ namespace Projeto1_LP2
                     
             else if(boolArgs["-star-info"] == true)
             {
-                fs.FilteredStarCollection.ElementAt(0).ConvertFloatablesToDefault();
+                foreach (Star s in fs.FilteredStarCollection)
+                    s.ConvertFloatablesToDefault();
                 Console.WriteLine(fs.FilteredStarCollection.ElementAt(0).ToString(boolArgs["-csv"]));
             }
         }
-
+        private void CheckExeptions()
+        {
+            if (boolArgs["-search-planet"] == false &&
+                boolArgs["-search-star"] == false &&
+                boolArgs["-star-info"] == false &&
+                boolArgs["-planet-info"] == false) 
+            {
+                ShowHelp();
+                ExceptionManager.ExceptionControl(ErrorCodes.NoSearchOption);
+            }
+        }
         private void ShowHelp()
         {
             Console.WriteLine(
@@ -170,7 +183,6 @@ namespace Projeto1_LP2
                 $"Name: -planet-name\n" +
                 $"Host Name (Star Name): -host-name\n" +
                 $"Discovery Method: -disc-method\n" +
-                $"Discovery Year: -disc-method-min or -disc-method-max\n" +
                 $"Discovery Year: -disc-year-min or -disc-year-max\n" +
                 $"Orbit Period: -planet-orbper-min or -planet-orbper-max\n" +
                 $"Radius (vs Earth): -planet-rade-min or -planet-rade-max\n" +
@@ -195,10 +207,8 @@ namespace Projeto1_LP2
 
                 $"Help: -help\n" +
                 $"Example: -file \"NasaExoplanetSearcher.csv\" -planet-search" +
-                $"|-planet-name \"XO-4 b\" -host-name \"XO-4\" -planet-mass-min " +
+                $"-planet-name \"XO-4 b\" -host-name \"XO-4\" -planet-mass-min " +
                 $"2500 -planet-mass 50000\n\n");
-
-
         }
     }
 }
