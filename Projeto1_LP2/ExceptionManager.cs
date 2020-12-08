@@ -9,7 +9,7 @@ namespace Projeto1_LP2
         /// Handles exceptions. Stops the program and 
         /// sends message identifying the exception that happened
         /// </summary>
-        /// <param name="errorCodes"></param>
+        /// <param name="errorCodes">Number identifying specific error</param>
         public static void ExceptionControl(ErrorCodes errorCodes)
         {
             switch(errorCodes)
