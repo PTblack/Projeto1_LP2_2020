@@ -66,8 +66,6 @@ namespace Projeto1_LP2
             myPlanets = new HashSet<string>();
           
             myPlanets.Add(namePL);
-
-            ConvertDefaultToFloat();
         }
 
         /// <summary>
@@ -101,11 +99,10 @@ namespace Projeto1_LP2
                 $"Distance to Sun: {DistToSun} parsecs\n";
             }
         }
-
         /// <summary>
         /// Converts any 'Missing' values into defaults for value comparisons
         /// </summary>
-        private void ConvertDefaultToFloat()
+        public void ConvertDefaultToFloat()
         {
             if(EffectiveTemp == "[MISSING]") EffectiveTemp = "0";
             if(RadiusRatio == "[MISSING]") RadiusRatio = "0";

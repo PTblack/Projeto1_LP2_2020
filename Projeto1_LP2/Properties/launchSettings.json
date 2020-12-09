@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Projeto1_LP2": {
+      "commandName": "Project",
+      "commandLineArgs": "-file NasaExoplanetSearcher.csv -star-info -host-name \"47 UMa\""
+    }
+  }
+}

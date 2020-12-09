@@ -36,6 +36,12 @@ namespace Projeto1_LP2
                         ("You cannot use \"-planet-info\"/\"-star-info\"" +
                         "and \"-search-planet\"/\"-search-star\" at the" + 
                         "same time");
+                        
+                case ErrorCodes.NoSearchOption:
+                    Console.WriteLine("Error: No Search Option Entered");
+
+                    Console.WriteLine(
+                        "User did not specify search option");
                     break;
             }
         }
