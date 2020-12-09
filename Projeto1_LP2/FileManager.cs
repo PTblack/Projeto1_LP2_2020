@@ -399,11 +399,11 @@ namespace Projeto1_LP2
                         }
 
                         Star s = new Star(
-                                starAttributes[0], starAttributes[1], 
-                                starAttributes[2], starAttributes[3],
-                                starAttributes[4], starAttributes[5], 
-                                starAttributes[6], starAttributes[7],
-                                starAttributes[8]);
+                                starAttributes[0].Trim(), starAttributes[1].Trim(), 
+                                starAttributes[2].Trim(), starAttributes[3].Trim(),
+                                starAttributes[4].Trim(), starAttributes[5].Trim(), 
+                                starAttributes[6].Trim(), starAttributes[7].Trim(),
+                                starAttributes[8].Trim());
 
                         HashSetST.Add(s);
                     }
@@ -453,7 +453,7 @@ namespace Projeto1_LP2
         {
             for(int i = 0; i < atributeLine.Length; i++)
             {
-                switch(atributeLine[i])
+                switch(atributeLine[i].Trim())
                 {
                     case "pl_name":
                         valAttPos[(int)AttribPos.pl_name] = i;
