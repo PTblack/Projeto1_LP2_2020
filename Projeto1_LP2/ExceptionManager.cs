@@ -43,6 +43,13 @@ namespace Projeto1_LP2
                     Console.WriteLine(
                         "User did not specify search option");
                     break;
+
+                case ErrorCodes.NoDataFound:
+                    Console.WriteLine("Error: No results found for criteria");
+
+                    Console.WriteLine(
+                        "No item in document matches the parameters given by user");
+                    break;
             }
         }
     }

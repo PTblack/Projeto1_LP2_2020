@@ -100,18 +100,6 @@ namespace Projeto1_LP2
         }
 
         /// <summary>
-        /// Converts any 'Missing' values into defaults for value comparisons
-        /// </summary>
-        public void ConvertDefaultToFloat()
-        {
-            if(DiscoveryYear == "[MISSING]") DiscoveryYear = "0";
-            if(OrbitPeriod == "[MISSING]") OrbitPeriod = "0";
-            if(RadiusRatio == "[MISSING]") RadiusRatio = "0";
-            if(MassRatio == "[MISSING]") MassRatio = "0";
-            if(EqTemperature == "[MISSING]") EqTemperature = "0";
-        }
-
-        /// <summary>
         /// Converts default values back to their 'Missing' designation
         /// </summary>
         public void ConvertFloatablesToDefault()

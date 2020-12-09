@@ -1,7 +1,9 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 
 namespace Projeto1_LP2
 {
@@ -15,6 +17,7 @@ namespace Projeto1_LP2
         private Dictionary<string, bool> boolArgs;      
         private Dictionary<string, string> stringArgs;  
         private Dictionary<string, float?> floatArgs;
+        private Dictionary<string, string> SortArgs;
 
         private HashSet<Planet> planetCollection;
         private HashSet<Star> starCollection;
@@ -40,7 +43,11 @@ namespace Projeto1_LP2
                     stringArgs[args[i]] = args[i + 1];
 
                 if (floatArgs.ContainsKey(args[i].ToLower()))
-                    floatArgs[args[i]] = Single.Parse(args[i + 1]);
+                    floatArgs[args[i]] = Single.Parse(args[i + 1], NumberStyles.Any,
+                CultureInfo.InvariantCulture);
+
+                if (SortArgs.ContainsKey(args[i].ToLower()))
+                    SortArgs[args[i]] = args[i + 1];
             }
             CheckForExceptions();
         }
@@ -50,6 +57,11 @@ namespace Projeto1_LP2
             boolArgs = new Dictionary<string, bool>();
             stringArgs = new Dictionary<string, string>();
             floatArgs = new Dictionary<string, float?>();
+            SortArgs = new Dictionary<string, string>();
+
+            //Sort Order
+            SortArgs.Add("-desc", "");
+            SortArgs.Add("-asc", "");
 
             // Search Criteria
             boolArgs.Add("-search-planet", false);
@@ -57,7 +69,7 @@ namespace Projeto1_LP2
             boolArgs.Add("-planet-info", false);
             boolArgs.Add("-star-info", false);
             boolArgs.Add("-csv", false);
-            boolArgs.Add("-help", true);
+            boolArgs.Add("-help", false);
 
             // Names
             stringArgs.Add("-file", "");
@@ -129,32 +141,85 @@ namespace Projeto1_LP2
                 ShowHelp();
 
             if(boolArgs["-search-planet"] == true)
+            {
+                if (fs.FilteredPlanetCollection.Count() == 0)
+                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
+
                 foreach (Planet p in fs.FilteredPlanetCollection)
                 {
                     p.ConvertFloatablesToDefault();
                     Console.WriteLine(p.ToString(boolArgs["-csv"]));
                 }
+            }
                     
             else if(boolArgs["-planet-info"] == true)
             {
+                if (fs.FilteredPlanetCollection.Count() == 0)
+                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
+
                 foreach (Planet p in fs.FilteredPlanetCollection)
                     p.ConvertFloatablesToDefault();
                 Console.WriteLine(fs.FilteredPlanetCollection.ElementAt(0).ToString(boolArgs["-csv"]));
             }
 
             if (boolArgs["-search-star"] == true)
+            {
+                if (fs.FilteredStarCollection.Count() == 0)
+                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
+
                 foreach (Star s in fs.FilteredStarCollection)
                 {
                     s.ConvertFloatablesToDefault();
                     Console.WriteLine(s.ToString(boolArgs["-csv"]));
                 }
+            }
+
                     
             else if(boolArgs["-star-info"] == true)
             {
+                if (fs.FilteredStarCollection.Count() == 0)
+                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
+
                 foreach (Star s in fs.FilteredStarCollection)
                     s.ConvertFloatablesToDefault();
                 Console.WriteLine(fs.FilteredStarCollection.ElementAt(0).ToString(boolArgs["-csv"]));
             }
+        }
+
+        private void SortCollection(HashSet<Star> collection)
+        {
+            if (SortArgs["-desc"].Contains("temp".ToLower()))
+            {
+            }
+            if (SortArgs["-desc"].Contains("rade".ToLower()))
+            {
+
+            }
+            if (SortArgs["-desc"].Contains("mass".ToLower()))
+            {
+                //HashSet<Star> d = collection.OrderBy(x => float.Parse(x.MassRatio));
+            }
+            if (SortArgs["-desc"].Contains("orbper".ToLower()))
+            {
+
+            }
+            if (SortArgs["-desc"].Contains("year".ToLower()))
+            {
+
+            }
+            if (SortArgs["-desc"].Contains("vsin".ToLower()))
+            {
+
+            }
+            if (SortArgs["-desc"].Contains("rotp".ToLower()))
+            {
+
+            }
+            if (SortArgs["-desc"].Contains("age".ToLower()))
+            {
+
+            }
+
         }
 
         public void CheckForExceptions()
@@ -231,7 +296,8 @@ namespace Projeto1_LP2
                 $"Help: -help\n" +
                 $"Example: -file \"NasaExoplanetSearcher.csv\" -planet-search" +
                 $"-planet-name \"XO-4 b\" -host-name \"XO-4\" -planet-mass-min " +
-                $"2500 -planet-mass 50000\n\n");
+                $"2500 -planet-mass 50000\n\n" +
+                $"(WARNING: IN REPEATED ARGUMENTS, ONLY THE LAST ONE IS READ)\n\n");
         }
     }
 }

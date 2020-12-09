@@ -11,5 +11,6 @@ namespace Projeto1_LP2
         AttribNumFluct,
         IncompatibleOptions,
         NoSearchOption,
+        NoDataFound,
     }
 }
