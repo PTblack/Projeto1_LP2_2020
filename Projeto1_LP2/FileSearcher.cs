@@ -48,12 +48,6 @@ namespace Projeto1_LP2
             this.planetHashSet = planetHashSet;
             this.starHashSet = starHashSet;
 
-            foreach (Planet p in planetHashSet)
-                p.ConvertDefaultToFloat();
-
-            foreach (Star s in starHashSet)
-                s.ConvertDefaultToFloat();
-
             CompareInfoWithBoolArgs();
         }
 
@@ -202,9 +196,6 @@ namespace Projeto1_LP2
                             select planet;
             }
 
-            foreach (Planet p in planetInfo)
-                p.ConvertFloatablesToDefault();
-
             FilteredPlanetCollection = planetInfo;
         }
         
@@ -246,7 +237,6 @@ namespace Projeto1_LP2
             // the query above will run regardless
             if (stringArgs["-host-name"] != "")
             {
-                Console.WriteLine(starInfo.Count() + "!!!");
                 starInfo = from star in starInfo
                             // the string given by the player is included in the host name
                             where star.StarName.ToLower().Contains(
@@ -254,10 +244,8 @@ namespace Projeto1_LP2
                             select star;
             }
 
-            foreach (Star s in starInfo)
-                s.ConvertFloatablesToDefault();
-
             FilteredStarCollection = starInfo;
         }
+
     }
 }

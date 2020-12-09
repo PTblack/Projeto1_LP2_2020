@@ -11,29 +11,32 @@ namespace Projeto1_LP2
 
         public HashSet<string> myPlanets;
 
+        // Planet Name
+        public string NamePL { get; set; }
+
         // Star Name
-        public string StarName { get; private set;}
+        public string StarName { get;  set;}
 
         // Effective Temperature (unit: Kelvins)
-        public string EffectiveTemp { get; private set;}
+        public string EffectiveTemp { get;  set;}
 
         // Star's radius compared to the Sun's radius
-        public string RadiusRatio { get; private set;}
+        public string RadiusRatio { get;  set;}
 
         // Star's mass compared to the Sun's mass
-        public string MassRatio { get; private set;}
+        public string MassRatio { get;  set;}
 
         // Age in Giga-years (unit: Gy)
-        public string Age { get; private set;}
+        public string Age { get;  set;}
             
         // Rotation Velocity (unit: km/s)
-        public string RotationVel { get; private set;}
+        public string RotationVel { get;  set;}
 
         // Rotation Period (days)
-        public string RotationPeriod { get; private set;}
+        public string RotationPeriod { get;  set;}
 
         // Distance bettween Star and Sun (unit: Parsecs)
-        public string DistToSun { get; private set;}
+        public string DistToSun { get;  set;}
 
         /// <summary>
         /// Star struct constructor
@@ -61,7 +64,7 @@ namespace Projeto1_LP2
             RotationVel = rotVel;
             RotationPeriod = rotPer;
             DistToSun = distSun;
-
+            NamePL = namePL;
             // Collection of Planets orbiting (hosted by) Star
             myPlanets = new HashSet<string>();
           
@@ -98,19 +101,6 @@ namespace Projeto1_LP2
                 $"Rotation Period: {RotationPeriod} days\n" +
                 $"Distance to Sun: {DistToSun} parsecs\n";
             }
-        }
-        /// <summary>
-        /// Converts any 'Missing' values into defaults for value comparisons
-        /// </summary>
-        public void ConvertDefaultToFloat()
-        {
-            if(EffectiveTemp == "[MISSING]") EffectiveTemp = "0";
-            if(RadiusRatio == "[MISSING]") RadiusRatio = "0";
-            if(MassRatio == "[MISSING]") MassRatio = "0";
-            if(Age == "[MISSING]") Age = "0";
-            if(RotationVel == "[MISSING]") RotationVel = "0";
-            if(RotationPeriod == "[MISSING]") RotationPeriod = "0";
-            if(DistToSun == "[MISSING]") DistToSun = "0";
         }
 
         /// <summary>
