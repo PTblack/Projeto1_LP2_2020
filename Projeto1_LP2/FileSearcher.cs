@@ -177,23 +177,29 @@ namespace Projeto1_LP2
 
             // Checks if the planet name, the host name and the discovery method
             // are missing, and if they, the query above will run regardless
-            if (stringArgs["-planet-name"] != "[MISSING]")
+            if (stringArgs["-planet-name"] != "")
             {
                 planetInfo = from planet in planetInfo
-                             where planet.Name.ToLower() == stringArgs["-planet-name"].ToLower() 
-                             select planet;
+                            // the string given by the player is included in the planet name
+                            where planet.Name.ToLower().Contains(
+                                stringArgs["-planet-name"].ToLower())
+                            select planet;
             }
-            if (stringArgs["-host-name"] != "[MISSING]")
+            if (stringArgs["-host-name"] != "")
             {
                 planetInfo = from planet in planetInfo
-                             where planet.HostName.ToLower() == stringArgs["-host-name"].ToLower()
-                             select planet;
+                            // the string given by the player is included in the host name
+                            where planet.HostName.ToLower().Contains(
+                                stringArgs["-host-name"].ToLower())
+                            select planet;
             }
-            if (stringArgs["-disc-method"] != "[MISSING]")
+            if (stringArgs["-disc-method"] != "")
             {
                 planetInfo = from planet in planetInfo
-                             where planet.DiscoveryMethod.ToLower() == stringArgs["-disc-method"].ToLower()
-                             select planet;
+                            // the string given by the player is included in the discovery method
+                            where planet.DiscoveryMethod.ToLower().Contains(
+                                stringArgs["-disc-method"].ToLower())
+                            select planet;
             }
 
             foreach (Planet p in planetInfo)
@@ -238,11 +244,14 @@ namespace Projeto1_LP2
 
             // Checks if the star name, is missing, and if it is, 
             // the query above will run regardless
-            if (stringArgs["-host-name"] != "[MISSING]")
+            if (stringArgs["-host-name"] != "")
             {
+                Console.WriteLine(starInfo.Count() + "!!!");
                 starInfo = from star in starInfo
-                             where star.StarName.ToLower() == stringArgs["-host-name"].ToLower()
-                             select star;
+                            // the string given by the player is included in the host name
+                            where star.StarName.ToLower().Contains(
+                                stringArgs["-host-name"].ToLower())
+                            select star;
             }
 
             foreach (Star s in starInfo)

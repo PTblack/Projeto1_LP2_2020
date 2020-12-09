@@ -164,6 +164,7 @@ namespace Projeto1_LP2
             int searchPlanetValue = boolArgs["-search-planet"] ? 1 : 0;
             int searchStarValue = boolArgs["-search-star"] ? 1 : 0; 
 
+            // IncompatibleOptions
             if(planetInfoValue + starInfoValue 
                 + searchPlanetValue + searchStarValue > 1)
             {
@@ -171,6 +172,7 @@ namespace Projeto1_LP2
                         ErrorCodes.IncompatibleOptions);
             }
 
+            // No Search Exception
             if (boolArgs["-search-planet"] == false &&
                 boolArgs["-search-star"] == false &&
                 boolArgs["-star-info"] == false &&
