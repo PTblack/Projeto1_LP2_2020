@@ -33,9 +33,9 @@ namespace Projeto1_LP2
                     Console.WriteLine("Error: Incompatible Search Arguments");
                     
                     Console.WriteLine
-                        ("You cannot use \"-planet-info\"/\"-star-info\"" +
-                        "and \"-search-planet\"/\"-search-star\" at the" + 
-                        "same time");
+                        ("You cannot use \"-search-planet\" and" +
+                        "\"-search-star\" at the same time");
+                        break;
                         
                 case ErrorCodes.NoSearchOption:
                     Console.WriteLine("Error: No Search Option Entered");
