@@ -4,7 +4,6 @@ namespace Projeto1_LP2
 {
     public static class ExceptionManager
     {
-
         /// <summary>
         /// Handles exceptions. Stops the program and 
         /// sends message identifying the exception that happened
@@ -15,7 +14,7 @@ namespace Projeto1_LP2
             switch(errorCodes)
             {
                 case ErrorCodes.AttribsMissing:
-                    Console.WriteLine("Error: Attributes Missing");
+                    Console.WriteLine("Error: Attribute(s) Missing");
                     
                     Console.WriteLine(
                         "Attributes \"pl_name\" and/or \"hostname\"" + 
@@ -30,6 +29,14 @@ namespace Projeto1_LP2
                         "number of attributes stated in the file header");
                     break;
 
+                case ErrorCodes.IncompatibleOptions:
+                    Console.WriteLine("Error: Incompatible Search Arguments");
+                    
+                    Console.WriteLine
+                        ("You cannot use \"-planet-info\"/\"-star-info\"" +
+                        "and \"-search-planet\"/\"-search-star\" at the" + 
+                        "same time");
+                        
                 case ErrorCodes.NoSearchOption:
                     Console.WriteLine("Error: No Search Option Entered");
 

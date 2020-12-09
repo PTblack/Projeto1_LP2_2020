@@ -10,16 +10,33 @@ namespace Projeto1_LP2
 {
     class FileSearcher
     {
+        // Collection that stores arguments of type boolean
         private Dictionary<string, bool> boolArgs;
+
+        // Collection that stores arguments of type string
         private Dictionary<string, string> stringArgs;
+
+        // Collection that stores arguments of type float
         private Dictionary<string, float?> floatArgs;
 
+        // Collection where is stores all planets
         private HashSet<Planet> planetHashSet;
+
+        // Collection where is stored all stars
         private HashSet<Star> starHashSet;
 
+        // Properties with filtered planets and stars 
         public IEnumerable<Planet> FilteredPlanetCollection { get; private set; }
         public IEnumerable<Star> FilteredStarCollection { get; private set; }
 
+        /// <summary>
+        /// Constructor Method. Initializes all variables and collections
+        /// </summary>
+        /// <param name="boolArgs">Bools Collection</param>
+        /// <param name="stringArgs">String Collection</param>
+        /// <param name="floatArgs">Float Collection</param>
+        /// <param name="planetHashSet">Collection with all Planets</param>
+        /// <param name="starHashSet">Collection with all Stars</param>
         public FileSearcher(Dictionary<string, bool> boolArgs,
             Dictionary<string, string> stringArgs,
             Dictionary<string, float?> floatArgs,
@@ -40,12 +57,9 @@ namespace Projeto1_LP2
             CompareInfoWithBoolArgs();
         }
 
-        // get the information chosen by the user on argument
-
-        // Create a collection with the args inputed by the user
-
-        // Check what the user chose and compare it with the file on filemanager
-        // print
+        /// <summary>
+        /// Checks which arguments where selected by the user
+        /// </summary>
         private void CompareInfoWithBoolArgs()
         {
             if (boolArgs["-search-planet"] == true)
@@ -66,6 +80,10 @@ namespace Projeto1_LP2
             }
         }
 
+        /// <summary>
+        /// Includes a query that filters the information of the plannets,
+        /// according with the name and host name
+        /// </summary>
         private void PlanetInfo()
         {
             IEnumerable<Planet> planetInfo =
@@ -94,6 +112,10 @@ namespace Projeto1_LP2
             FilteredPlanetCollection = planetInfo;
         }
 
+        /// <summary>
+        /// Includes a query that filters the information of the stars,
+        /// according with the host name 
+        /// </summary>
         private void StarInfo()
         {
             IEnumerable<Star> starInfo =
@@ -101,6 +123,9 @@ namespace Projeto1_LP2
                 where star.StarName.ToLower() == stringArgs["-host-name"].ToLower()
                 select star;
 
+            // If there is more than one star filtered into starInfo
+            // checks if there is information missing on one star and fills it
+            // another star info
             HashSet<Star> fixedStars = new HashSet<Star>();
             if (starInfo.Count() >= 1)
             {
@@ -119,7 +144,11 @@ namespace Projeto1_LP2
 
             FilteredStarCollection = fixedStars;
         }
-
+        
+        /// <summary>
+        /// Includes the query for all the information that can be searched
+        /// for a planet
+        /// </summary>
         private void SearchPlanet()
         {
             IEnumerable<Planet> planetInfo =
@@ -146,6 +175,8 @@ namespace Projeto1_LP2
                 CultureInfo.InvariantCulture) <= floatArgs["-disc-year-max"]
             select planet;
 
+            // Checks if the planet name, the host name and the discovery method
+            // are missing, and if they, the query above will run regardless
             if (stringArgs["-planet-name"] != "[MISSING]")
             {
                 planetInfo = from planet in planetInfo
@@ -170,7 +201,11 @@ namespace Projeto1_LP2
 
             FilteredPlanetCollection = planetInfo;
         }
-
+        
+        /// <summary>
+        /// Includes the query for all the information that can be searched
+        /// for a star
+        /// </summary>
         public void SearchStar()
         {
             IEnumerable<Star> starInfo =
@@ -201,6 +236,8 @@ namespace Projeto1_LP2
                 CultureInfo.InvariantCulture) <= floatArgs["-star-age-max"]
             select star;
 
+            // Checks if the star name, is missing, and if it is, 
+            // the query above will run regardless
             if (stringArgs["-host-name"] != "[MISSING]")
             {
                 starInfo = from star in starInfo
@@ -215,4 +252,3 @@ namespace Projeto1_LP2
         }
     }
 }
-

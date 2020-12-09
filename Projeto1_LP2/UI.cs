@@ -42,14 +42,14 @@ namespace Projeto1_LP2
                 if (floatArgs.ContainsKey(args[i].ToLower()))
                     floatArgs[args[i]] = Single.Parse(args[i + 1]);
             }
-            CheckExeptions();
+            CheckForExceptions();
         }
         
         private void AddToDictionary()
         {
             boolArgs = new Dictionary<string, bool>();
-            stringArgs =new Dictionary<string, string>();
-            floatArgs =new Dictionary<string, float?>();
+            stringArgs = new Dictionary<string, string>();
+            floatArgs = new Dictionary<string, float?>();
 
             // Search Criteria
             boolArgs.Add("-search-planet", false);
@@ -120,6 +120,9 @@ namespace Projeto1_LP2
                 planetCollection, starCollection);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void ShowCollection()
         {
             if (boolArgs["-help"] == true)
@@ -153,8 +156,21 @@ namespace Projeto1_LP2
                 Console.WriteLine(fs.FilteredStarCollection.ElementAt(0).ToString(boolArgs["-csv"]));
             }
         }
-        private void CheckExeptions()
+
+        public void CheckForExceptions()
         {
+            int planetInfoValue = boolArgs["-planet-info"] ? 1 : 0;
+            int starInfoValue = boolArgs["-star-info"] ? 1 : 0;
+            int searchPlanetValue = boolArgs["-search-planet"] ? 1 : 0;
+            int searchStarValue = boolArgs["-search-star"] ? 1 : 0; 
+
+            if(planetInfoValue + starInfoValue 
+                + searchPlanetValue + searchStarValue > 1)
+            {
+                ExceptionManager.ExceptionControl(
+                        ErrorCodes.IncompatibleOptions);
+            }
+
             if (boolArgs["-search-planet"] == false &&
                 boolArgs["-search-star"] == false &&
                 boolArgs["-star-info"] == false &&
@@ -164,6 +180,11 @@ namespace Projeto1_LP2
                 ExceptionManager.ExceptionControl(ErrorCodes.NoSearchOption);
             }
         }
+
+        /// <summary>
+        /// Method that prints on the screen all the information needed to 
+        /// use the program flawlessly
+        /// </summary>
         private void ShowHelp()
         {
             Console.WriteLine(
