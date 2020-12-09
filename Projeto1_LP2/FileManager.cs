@@ -60,10 +60,10 @@ namespace Projeto1_LP2
             fileFolder = Path.Combine(
                 Environment.GetFolderPath(
                 Environment.SpecialFolder.Desktop), file);
-
+            
             FindValAttributeIndex();
             CreatePlanetCollection();
-            CreateStarCollection(); 
+            CreateStarCollection();
         }
 
         /// <summary>
@@ -107,7 +107,6 @@ namespace Projeto1_LP2
                         // of elements as header
                         if (attribs.Length != totalAttColl)
                         {
-                            Console.WriteLine(line);
                             ExceptionManager.ExceptionControl(
                                 ErrorCodes.AttribNumFluct);
                         }
@@ -289,7 +288,7 @@ namespace Projeto1_LP2
                         // Star Name (Host)
                         if (!hostNameFound)
                         starAttributes[1] = null;
-                        else 
+                        else
                         {
                             starAttributes[1] = 
                                 attribs.ElementAt(valAttPos[
@@ -430,7 +429,6 @@ namespace Projeto1_LP2
                     // Skips lines that start with '#' or that are empty strings
                     // Ends with line holding column contents
                     while(attributeline[0] == '#' || attributeline == "");
-                    //Console.WriteLine(firstValLine);
 
                     // Create array from columns' line
                     string[] attribs = attributeline.Split(',');
@@ -453,7 +451,7 @@ namespace Projeto1_LP2
         {
             for(int i = 0; i < atributeLine.Length; i++)
             {
-                switch(atributeLine[i])
+                switch(atributeLine[i].Trim())
                 {
                     case "pl_name":
                         valAttPos[(int)AttribPos.pl_name] = i;
@@ -514,6 +512,8 @@ namespace Projeto1_LP2
                     case "sy_dist":
                         valAttPos[(int)AttribPos.sy_dist] = i;
                         distSunFound = true;
+                        break;
+                    default:
                         break;
                 }
             }

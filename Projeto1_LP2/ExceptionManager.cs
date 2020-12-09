@@ -15,26 +15,26 @@ namespace Projeto1_LP2
             switch(errorCodes)
             {
                 case ErrorCodes.AttribsMissing:
-                    Console.WriteLine("Error: Attributes Missing");
+                    Console.WriteLine("\nERROR: Attributes Missing");
                     
                     Console.WriteLine(
                         "Attributes \"pl_name\" and/or \"hostname\"" + 
-                        "are missing in given file");
+                        " are missing in given file\n");
                     break;
                 
                 case ErrorCodes.AttribNumFluct:
-                    Console.WriteLine("Error: Attribute Number Fluctuation");
+                    Console.WriteLine("\nERROR: Attribute Number Fluctuation");
                     
                     Console.WriteLine(
                         "The given file has line(s) that don't match the " + 
-                        "number of attributes stated in the file header");
+                        "number of attributes stated in the file header\n");
                     break;
 
                 case ErrorCodes.NoSearchOption:
-                    Console.WriteLine("Error: No Search Option Entered");
+                    Console.WriteLine("\nERROR: No Search Option Entered");
 
                     Console.WriteLine(
-                        "User did not specify search option");
+                        "User did not specify search option\n");
                     break;
             }
         }

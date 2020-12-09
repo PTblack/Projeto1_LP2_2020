@@ -136,10 +136,11 @@ namespace Projeto1_LP2
             {
                 foreach (Planet p in fs.FilteredPlanetCollection)
                     p.ConvertFloatablesToDefault();
-                Console.WriteLine(fs.FilteredPlanetCollection.ElementAt(0).ToString(boolArgs["-csv"]));
+                Console.WriteLine(fs.FilteredPlanetCollection.
+                    ElementAt(0).ToString(boolArgs["-csv"]));
             }
 
-            if (boolArgs["-search-star"] == true)
+            else if (boolArgs["-search-star"] == true)
                 foreach (Star s in fs.FilteredStarCollection)
                 {
                     s.ConvertFloatablesToDefault();
@@ -148,9 +149,16 @@ namespace Projeto1_LP2
                     
             else if(boolArgs["-star-info"] == true)
             {
+                // Saves finalStar
+                Star finalStar = fs.ReturnFinalStar();
+                // Prints finalStar in wanted format
+                Console.WriteLine(finalStar.ToString(boolArgs["-csv"]));
+                /*
                 foreach (Star s in fs.FilteredStarCollection)
                     s.ConvertFloatablesToDefault();
-                Console.WriteLine(fs.FilteredStarCollection.ElementAt(0).ToString(boolArgs["-csv"]));
+                Console.WriteLine(fs.FilteredStarCollection.
+                                ElementAt(0).ToString(boolArgs["-csv"]));
+                */
             }
         }
         private void CheckExeptions()

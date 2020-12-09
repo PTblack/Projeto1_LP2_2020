@@ -75,13 +75,13 @@ namespace Projeto1_LP2
         /// <param name="csv">bool to check if the user wants the information 
         /// to be printed in a csv format</param>
         /// <returns>string containing the Star's attributes</returns>
-        public string ToString(bool csv)
+        public string ToString(bool csv = true)
         {
             if (csv)
             {
                 // Return values in CSV format
-                return myPlanets.Count + "," + StarName + "," + EffectiveTemp + "," + 
-                RadiusRatio + "," + MassRatio + "," + Age + "," + 
+                return myPlanets.Count + "," + StarName + "," + EffectiveTemp + 
+                "," + RadiusRatio + "," + MassRatio + "," + Age + "," + 
                 RotationVel + "," + RotationPeriod + "," + DistToSun;
             }
             else
