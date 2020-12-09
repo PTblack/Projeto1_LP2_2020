@@ -10,22 +10,33 @@ namespace Projeto1_LP2
 {
     class FileSearcher
     {
+        // Collection that stores arguments of type boolean
         private Dictionary<string, bool> boolArgs;
+
+        // Collection that stores arguments of type string
         private Dictionary<string, string> stringArgs;
+
+        // Collection that stores arguments of type float
         private Dictionary<string, float?> floatArgs;
 
+        // Collection where is stores all planets
         private HashSet<Planet> planetHashSet;
+
+        // Collection where is stored all stars
         private HashSet<Star> starHashSet;
 
-        // Star that holds the final values for a star-info action
-        private Star finalStar = new Star();
-
+        // Properties with filtered planets and stars 
         public IEnumerable<Planet> FilteredPlanetCollection { get; private set; }
         public IEnumerable<Star> FilteredStarCollection { get; private set; }
-        
-        // Gives value of private finalStar variable
-        public Star ReturnFinalStar(){return finalStar;}
 
+        /// <summary>
+        /// Constructor Method. Initializes all variables and collections
+        /// </summary>
+        /// <param name="boolArgs">Bools Collection</param>
+        /// <param name="stringArgs">String Collection</param>
+        /// <param name="floatArgs">Float Collection</param>
+        /// <param name="planetHashSet">Collection with all Planets</param>
+        /// <param name="starHashSet">Collection with all Stars</param>
         public FileSearcher(Dictionary<string, bool> boolArgs,
             Dictionary<string, string> stringArgs,
             Dictionary<string, float?> floatArgs,
@@ -37,21 +48,12 @@ namespace Projeto1_LP2
             this.planetHashSet = planetHashSet;
             this.starHashSet = starHashSet;
 
-            foreach (Planet p in planetHashSet)
-                p.ConvertDefaultToFloat();
-
-            foreach (Star s in starHashSet)
-                s.ConvertDefaultToFloat();
-
             CompareInfoWithBoolArgs();
         }
 
-        // get the information chosen by the user on argument
-
-        // Create a collection with the args inputted by the user
-
-        // Check what the user chose and compare it with the file on filemanager
-        // print
+        /// <summary>
+        /// Checks which arguments where selected by the user
+        /// </summary>
         private void CompareInfoWithBoolArgs()
         {
             if (boolArgs["-search-planet"] == true)
@@ -62,74 +64,12 @@ namespace Projeto1_LP2
             {
                 SearchStar();
             }
-            else if (boolArgs["-planet-info"] == true)
-            {
-                PlanetInfo();
-            }
-            else if (boolArgs["-star-info"] == true)
-            {
-                StarInfo();
-            }
         }
 
-        private void PlanetInfo()
-        {
-            IEnumerable<Planet> planetInfo =
-                from planet in planetHashSet
-                where planet.Name.ToLower() == 
-                    stringArgs["-planet-name"].ToLower()
-                    && planet.HostName.ToLower() == 
-                    stringArgs["-host-name"].ToLower()
-                select planet;
-
-            /* HashSet<Planet> fixedPlanets = new HashSet<Planet>();
-             if (planetInfo.Count() >= 0)
-             {
-                 fixedPlanets = new HashSet<Planet>();
-                 for (int i = planetInfo.Count() - 1; i > 0; i--)
-                 {
-                     Planet planet1 =
-                         planetInfo.ElementAt(i) + planetInfo.ElementAt(i - 1);
-
-                     fixedPlanets.Add(planet1);  
-                 }
-                 Console.WriteLine(fixedPlanets);
-             }*/
-
-            foreach (Planet p in planetInfo)
-                p.ConvertFloatablesToDefault();
-
-            FilteredPlanetCollection = planetInfo;
-        }
-
+        
         /// <summary>
-        /// Finds Star that matches the arguments given by the user
-        /// </summary>
-        private void StarInfo()
-        {
-            // Create collection with Stars that have the same name as the one 
-            // given by the user
-            IEnumerable<Star> starInfo =
-                from star in starHashSet
-                where star.StarName.ToLower().Trim() == 
-                        stringArgs["-host-name"].ToLower()
-                select star;
-
-            // Star that will hold the Final values for the searched Star
-            // Star finalStar = new Star();
-
-            // For every Star with the same name as the one given by the user...
-            for (int i = 0; i < starInfo.Count(); i++)
-            {
-                // For first time, make finalStar have same values as a Star 
-                // in the starInfo collection
-                if (i == 0) finalStar = starInfo.ElementAt(i);
-                else finalStar = finalStar + starInfo.ElementAt(i);
-            }
-        }
-
-        /// <summary>
-        /// Search for Planets that fit the criteria chosen by the user
+        /// Includes the query for all the information that can be searched
+        /// for a planet
         /// </summary>
         private void SearchPlanet()
         {
@@ -169,49 +109,39 @@ namespace Projeto1_LP2
                 CultureInfo.InvariantCulture) <= floatArgs["-disc-year-max"]
             select planet;
 
-            /*
-            POR ISTO DE MODO A CONFIRMAR QUE TUDO ESTA COM [MISSING]]?
-            foreach (Planet p in planetInfo)
-                p.ConvertFloatablesToDefault();
-            */
-            // In planetInfo, keep Planets with the name given by the user
-            // ESTA CONDIÇÃO É - EM TEORIA - DESNECESSÁRIA
-            if (stringArgs["-planet-name"] != "[MISSING]")
+            // Checks if the planet name, the host name and the discovery method
+            // are missing, and if they, the query above will run regardless
+            if (stringArgs["-planet-name"] != "")
             {
                 planetInfo = from planet in planetInfo
-                             where planet.Name.ToLower() == 
-                                    stringArgs["-planet-name"].ToLower() 
-                             select planet;
+                            // the string given by the player is included in the planet name
+                            where planet.Name.ToLower().Contains(
+                                stringArgs["-planet-name"].ToLower())
+                            select planet;
             }
-            // In planetInfo, keep Planets with Stars that have the name given 
-            // by the user in the arguments
-            // ESTA CONDIÇÃO É - EM TEORIA - DESNECESSÁRIA
-            if (stringArgs["-host-name"] != "[MISSING]")
+            if (stringArgs["-host-name"] != "")
             {
                 planetInfo = from planet in planetInfo
-                             where planet.HostName.ToLower() == 
-                                    stringArgs["-host-name"].ToLower()
-                             select planet;
+                            // the string given by the player is included in the host name
+                            where planet.HostName.ToLower().Contains(
+                                stringArgs["-host-name"].ToLower())
+                            select planet;
             }
-            // In planetInfo, keep Planets with the Discovery Method given 
-            // by the user
-            if (stringArgs["-disc-method"] != "[MISSING]")
+            if (stringArgs["-disc-method"] != "")
             {
                 planetInfo = from planet in planetInfo
-                             where planet.DiscoveryMethod.ToLower() == 
-                                    stringArgs["-disc-method"].ToLower()
-                             select planet;
+                            // the string given by the player is included in the discovery method
+                            where planet.DiscoveryMethod.ToLower().Contains(
+                                stringArgs["-disc-method"].ToLower())
+                            select planet;
             }
-
-            // ISTO NÃO DEVERIA ESTAR ATRÁS DESTAS TRÊS CONDIÇÕES?
-            foreach (Planet p in planetInfo)
-                p.ConvertFloatablesToDefault();
 
             FilteredPlanetCollection = planetInfo;
         }
-
+        
         /// <summary>
-        /// Search for Stars that fit the criteria chosen by the user
+        /// Includes the query for all the information that can be searched
+        /// for a star
         /// </summary>
         public void SearchStar()
         {
@@ -248,19 +178,19 @@ namespace Projeto1_LP2
                 CultureInfo.InvariantCulture) <= floatArgs["-star-age-max"]
             select star;
 
-            if (stringArgs["-host-name"] != "[MISSING]")
+            // Checks if the star name, is missing, and if it is, 
+            // the query above will run regardless
+            if (stringArgs["-host-name"] != "")
             {
                 starInfo = from star in starInfo
-                             where star.StarName.ToLower() == 
-                                    stringArgs["-host-name"].ToLower()
-                             select star;
+                            // the string given by the player is included in the host name
+                            where star.StarName.ToLower().Contains(
+                                stringArgs["-host-name"].ToLower())
+                            select star;
             }
-
-            foreach (Star s in starInfo)
-                s.ConvertFloatablesToDefault();
 
             FilteredStarCollection = starInfo;
         }
+
     }
 }
-

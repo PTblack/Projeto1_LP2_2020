@@ -167,7 +167,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.pl_discYear]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Orbit Period
@@ -180,7 +180,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.pl_orbPer]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Radius
@@ -193,7 +193,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.pl_rade]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Mass
@@ -206,7 +206,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.pl_mass]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Equilibrium Temperature
@@ -219,7 +219,7 @@ namespace Projeto1_LP2
 
                             attribs.ElementAt(
                                 valAttPos[(int)AttribPos.pl_eqt]) : 
-                            "[MISSING]";
+                            "0";
                         }
 
                         Planet p = new Planet(
@@ -310,7 +310,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_teff]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Star Radius
@@ -324,7 +324,7 @@ namespace Projeto1_LP2
                                 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_rad]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Star Mass
@@ -338,7 +338,7 @@ namespace Projeto1_LP2
                                 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_mass]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Star Age
@@ -352,7 +352,7 @@ namespace Projeto1_LP2
                                 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_age]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Star Rotation Velocity
@@ -366,7 +366,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_vsin]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Star Rotation Period
@@ -380,7 +380,7 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.st_rotp]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         // Distance to Sun
@@ -394,15 +394,15 @@ namespace Projeto1_LP2
 
                                 attribs.ElementAt(
                                     valAttPos[(int)AttribPos.sy_dist]) : 
-                                "[MISSING]";
+                                "0";
                         }
 
                         Star s = new Star(
-                                starAttributes[0], starAttributes[1], 
-                                starAttributes[2], starAttributes[3],
-                                starAttributes[4], starAttributes[5], 
-                                starAttributes[6], starAttributes[7],
-                                starAttributes[8]);
+                                starAttributes[0].Trim(), starAttributes[1].Trim(), 
+                                starAttributes[2].Trim(), starAttributes[3].Trim(),
+                                starAttributes[4].Trim(), starAttributes[5].Trim(), 
+                                starAttributes[6].Trim(), starAttributes[7].Trim(),
+                                starAttributes[8].Trim());
 
                         HashSetST.Add(s);
                     }

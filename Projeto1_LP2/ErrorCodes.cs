@@ -9,6 +9,8 @@ namespace Projeto1_LP2
         AttribsMissing,
         // Line(s) in the csv file don't share the same size as header
         AttribNumFluct,
+        IncompatibleOptions,
         NoSearchOption,
+        NoDataFound,
     }
 }

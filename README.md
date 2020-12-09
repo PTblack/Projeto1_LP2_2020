@@ -56,7 +56,7 @@ até à sua entrega*
   
   #### FileSearcher
 
-  Na class `FileSearcher.cs`, realizou-se o processo de abrir o ficheiro `csv`, 
+  Na classe `FileSearcher`, realizou-se o processo de abrir o ficheiro `csv`, 
   determinar que atributos - dos pretendidos - este tem, e guardar as suas
   posições nas linhas do ficheiro para depois criar as coleções de planetas 
   e estrelas através dos atributos identificados.
@@ -80,7 +80,7 @@ até à sua entrega*
 
   #### ExceptionManager
 
-  A _class_ `static` `ExceptionManager.cs` serve de central de controlo para 
+  A classe `static` `ExceptionManager` serve de central de controlo para 
   responder a quaisquer exceções que sejam identificadas na utilização do 
   programa. Esta, com o _método_ `ExceptionControl`, tem o propósito de 
   interromper o programa e transmitir uma mensagem de erro compreensível, 
@@ -98,7 +98,7 @@ até à sua entrega*
 
 * #### As principais querrys construidas
   
-  Na classe `FileSearcher.cs` foram feitas quatro _queries_ principais que têm 
+  Na classe `FileSearcher` foram feitas quatro _queries_ principais que têm 
   como objetivo filtrar as coleções de planetas e estrelas criadas a partir da 
   informação do ficheiro, sendo o _filtro_ configurado de acordo com os 
   argumentos passados para o programa pelo jogador.
