@@ -5,9 +5,14 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using Microsoft.VisualBasic;
+using System.Globalization;
 
 namespace Projeto1_LP2
 {
+    /// <summary>
+    /// This class reads the file and creates the planet
+    /// and star collections
+    /// </summary>
     class FileManager
     {
         private string file;
@@ -271,26 +276,17 @@ namespace Projeto1_LP2
                         * add them to starAttributes
                         */
 
-                        // Hosted Planet
-                        if (!nameFound)
-                        starAttributes[0] = null;
-                        else 
-                        {
-                            starAttributes[0] = 
-                                attribs.ElementAt(valAttPos[
-                                    (int)AttribPos.pl_name]) != "" ?
-                                
-                                attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_name]) : 
-                                "[MISSING]";
-                        }
-
                         // Star Name (Host)
                         if (!hostNameFound)
+<<<<<<< HEAD
                         starAttributes[1] = null;
                         else
+=======
+                        starAttributes[0] = null;
+                        else 
+>>>>>>> 94a530344ed92901b56ed71db7aa79f86af3691c
                         {
-                            starAttributes[1] = 
+                            starAttributes[0] = 
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_hostName]) != "" ?
                                 
@@ -301,10 +297,10 @@ namespace Projeto1_LP2
 
                         // Effective Temperature
                         if (!effTempFound)
-                        starAttributes[2] = null;
+                        starAttributes[1] = null;
                         else 
                         {
-                            starAttributes[2] = 
+                            starAttributes[1] = 
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.st_teff]) != "" ?
 
@@ -315,10 +311,10 @@ namespace Projeto1_LP2
 
                         // Star Radius
                         if (!stRadFound)
-                        starAttributes[3] = null;
+                        starAttributes[2] = null;
                         else 
                         {
-                            starAttributes[3] = 
+                            starAttributes[2] = 
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.st_rad]) != "" ? 
                                 
@@ -329,10 +325,10 @@ namespace Projeto1_LP2
 
                         // Star Mass
                         if (!stMassFound)
-                        starAttributes[4] = null;
+                        starAttributes[3] = null;
                         else 
                         {
-                            starAttributes[4] = 
+                            starAttributes[3] = 
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.st_mass]) != "" ? 
                                 
@@ -343,10 +339,10 @@ namespace Projeto1_LP2
 
                         // Star Age
                         if (!ageFound)
-                        starAttributes[5] = null;
+                        starAttributes[4] = null;
                         else 
                         {
-                            starAttributes[5] = 
+                            starAttributes[4] = 
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.st_age]) != "" ? 
                                 
@@ -357,10 +353,10 @@ namespace Projeto1_LP2
 
                         // Star Rotation Velocity
                         if (!rotVelFound)
-                        starAttributes[6] = null;
+                        starAttributes[5] = null;
                         else 
                         {
-                            starAttributes[6] = 
+                            starAttributes[5] = 
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.st_vsin]) != "" ? 
 
@@ -371,10 +367,10 @@ namespace Projeto1_LP2
 
                         // Star Rotation Period
                         if (!rotPerFound)
-                        starAttributes[7] = null;
+                        starAttributes[6] = null;
                         else 
                         {
-                            starAttributes[7] = 
+                            starAttributes[6] = 
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.st_rotp]) != "" ? 
 
@@ -385,10 +381,10 @@ namespace Projeto1_LP2
 
                         // Distance to Sun
                         if (!distSunFound)
-                        starAttributes[8] = null;
+                        starAttributes[7] = null;
                         else 
                         {
-                            starAttributes[8] = 
+                            starAttributes[7] = 
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.sy_dist]) != "" ? 
 
@@ -398,11 +394,11 @@ namespace Projeto1_LP2
                         }
 
                         Star s = new Star(
-                                starAttributes[0].Trim(), starAttributes[1].Trim(), 
+                                starAttributes[0].Trim(), starAttributes[1].Trim(),
                                 starAttributes[2].Trim(), starAttributes[3].Trim(),
                                 starAttributes[4].Trim(), starAttributes[5].Trim(), 
-                                starAttributes[6].Trim(), starAttributes[7].Trim(),
-                                starAttributes[8].Trim());
+                                starAttributes[6].Trim(), starAttributes[7].Trim());
+                                
 
                         HashSetST.Add(s);
                     }

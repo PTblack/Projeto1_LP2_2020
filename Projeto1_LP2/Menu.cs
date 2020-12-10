@@ -8,16 +8,16 @@ using System.Globalization;
 namespace Projeto1_LP2
 {
     /// <summary>
-    /// TROCAR DE NOME!!!!!!!!!!!!!!!!!!!!
+    /// This class receives the arguments from the user 
+    /// and gives them to the other classes
     /// </summary>
-    class UI
+    class Menu
     {
         private readonly string[] args;
 
         private Dictionary<string, bool> boolArgs;      
         private Dictionary<string, string> stringArgs;  
         private Dictionary<string, float?> floatArgs;
-        private Dictionary<string, string> SortArgs;
 
         private HashSet<Planet> planetCollection;
         private HashSet<Star> starCollection;
@@ -25,14 +25,17 @@ namespace Projeto1_LP2
         private FileManager fm;
         private FileSearcher fs;
 
-        public UI(string[] a)
+        public Menu(string[] a)
         {
             args = a;
             AddToDictionary();
             Options();
             GetCollections();
         }
-
+        /// <summary>
+        /// Method that verifies the arguments from the user and adds them
+        /// to their respective dictionary
+        /// </summary>
         private void Options()
         {
             for (int i = 0; i < args.Length; i++)
@@ -46,29 +49,21 @@ namespace Projeto1_LP2
                 if (floatArgs.ContainsKey(args[i].ToLower()))
                     floatArgs[args[i]] = Single.Parse(args[i + 1], NumberStyles.Any,
                 CultureInfo.InvariantCulture);
-
-                if (SortArgs.ContainsKey(args[i].ToLower()))
-                    SortArgs[args[i]] = args[i + 1];
             }
-            CheckForArgumentExceptions();
         }
         
+        /// <summary>
+        /// Method that creates the dictionarys
+        /// </summary>
         private void AddToDictionary()
         {
             boolArgs = new Dictionary<string, bool>();
             stringArgs = new Dictionary<string, string>();
             floatArgs = new Dictionary<string, float?>();
-            SortArgs = new Dictionary<string, string>();
-
-            //Sort Order
-            SortArgs.Add("-desc", "");
-            SortArgs.Add("-asc", "");
 
             // Search Criteria
             boolArgs.Add("-search-planet", false);
             boolArgs.Add("-search-star", false);
-            boolArgs.Add("-planet-info", false);
-            boolArgs.Add("-star-info", false);
             boolArgs.Add("-csv", false);
             boolArgs.Add("-help", false);
 
@@ -121,11 +116,15 @@ namespace Projeto1_LP2
             floatArgs.Add("-sy-dist-max", float.MaxValue);
         }
 
-        // PASSAR PARA CLASSE DE UI NOVA QUE FOR CRIADA
-        // Show collection of planets that fit the user's requests
+        /// <summary>
+        /// Method that gives the user arguments to the FileManager 
+        /// and FileSearcher classes 
+        /// </summary>
         private void GetCollections()
         {
             fm = new FileManager(stringArgs["-file"]);
+            CheckForArgumentExceptions();
+
             planetCollection = fm.ReturnPlanet();
             starCollection = fm.ReturnStar();
             fs = new FileSearcher(boolArgs,  stringArgs, floatArgs, 
@@ -133,12 +132,12 @@ namespace Projeto1_LP2
         }
 
         /// <summary>
-        /// 
+        /// Method that shows the final filtered collection, to the user 
         /// </summary>
         public void ShowCollection()
         {
             if (boolArgs["-help"] == true)
-                ShowHelp();
+                ExceptionManager.ShowHelp();
 
             if(boolArgs["-search-planet"] == true)
             {
@@ -180,6 +179,12 @@ namespace Projeto1_LP2
 
             if (boolArgs["-search-star"] == true)
             {
+                string starName = fs.FilteredStarCollection.Last().StarName.ToLower();
+                if (starName.ToLower().Equals(stringArgs["-host-name"].ToLower()))
+                    {
+                        Console.WriteLine(fs.FilteredStarCollection.Last().ToString());
+                    }
+
                 // Select from Stars in the filtered collection who's name is 
                 // equal to the argument given by the user
                 IEnumerable<Star> starEqualInfo = 
@@ -220,75 +225,29 @@ namespace Projeto1_LP2
                     }
                 }
             }
-        }
 
+                   
+        }
+        /// <summary>
+        /// Method that verifies exceptions in the user arguments
+        /// </summary>
         public void CheckForArgumentExceptions()
         {
-            // 'IncompatibleOptions' Exception
-            if(boolArgs["-search-planet"] && boolArgs["-search-star"])
+            // IncompatibleOptions
+            if (boolArgs["-search-planet"] &&
+                boolArgs["-search-star"])
             {
                 ExceptionManager.ExceptionControl(
                         ErrorCodes.IncompatibleOptions);
             }
 
-            // 'NoSearchOption' Exception
-            if (!boolArgs["-search-planet"] && !boolArgs["-search-star"])
+            // No Search Exception
+            if (!boolArgs["-search-planet"] &&
+                !boolArgs["-search-star"] &&
+                !boolArgs["-help"])
             {
-                ShowHelp();
                 ExceptionManager.ExceptionControl(ErrorCodes.NoSearchOption);
             }
-        }
-
-        /// <summary>
-        /// Method that prints on the screen all the information needed to 
-        /// use the program flawlessly
-        /// </summary>
-        private void ShowHelp()
-        {
-            Console.WriteLine(
-                $"\nSEARCH OPTIONS\n\n" +
-
-                $"File: -file\n" +
-                $"Planet Information: -planet-info\n" +
-                $"Star Information: -star-info\n" +
-                $"Planet Search: -search-planet\n" +
-                $"Star Search: -search-star\n\n" +
-
-                $"PLANET OPTIONS \n\n" +
-
-                $"(min = minimum) \n" +
-                $"(max = maximum) \n\n" +
-
-                $"Name: -planet-name\n" +
-                $"Host Name (Star Name): -host-name\n" +
-                $"Discovery Method: -disc-method\n" +
-                $"Discovery Year: -disc-year-min or -disc-year-max\n" +
-                $"Orbit Period: -planet-orbper-min or -planet-orbper-max\n" +
-                $"Radius (vs Earth): -planet-rade-min or -planet-rade-max\n" +
-                $"Mass (vs Earth): -planet-mass-min or -planet-mass-max\n" +
-                $"Equilibrium Temperature: -planet-temp-min or -planet-temp-max\n\n" +
-
-                $"STAR OPTIONS \n\n" +
-
-                $"(min = minimum) \n" +
-                $"(max = maximum) \n\n" +
-
-                $"Star Name: -host-name\n" +
-                $"Effective Temperature: -star-temp-min or -star-temp-max\n" + 
-                $"Radius (vs Earth): -star-rade-min or -star-rade-max\n" + 
-                $"Mass (vs Earth): -star-mass-min or -star-mass-max\n" + 
-                $"Age: -star-age-min or -star-age-max\n" +
-                $"Rotation Velocity: -star-vsin-min or -star-vsin-max\n" +
-                $"Rotation Period: -star-rotp-min or -star-rotp-max\n" +
-                $"Distance to Sun: -sy-dist-min or -sy-dist-max\n\n" +
-
-                $"HELP OPTIONS\n\n" +
-
-                $"Help: -help\n" +
-                $"Example:\n-file \"NasaExoplanetSearcher.csv\" -planet-search" +
-                $"-planet-name \"XO-4 b\" -host-name \"XO-4\" -planet-mass-min " +
-                $"2500 -planet-mass 50000\n\n" +
-                $"(WARNING: IN REPEATED ARGUMENTS, ONLY THE LAST ONE IS READ)\n\n");
         }
     }
 }

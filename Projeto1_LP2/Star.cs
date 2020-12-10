@@ -5,15 +5,12 @@ using System.Text;
 
 namespace Projeto1_LP2
 {
+    /// <summary>
+    /// This struct saves the Star's properties
+    /// </summary>
     public struct Star
     {
         // Properties ordered as displayed in CSV file 
-
-        public HashSet<string> myPlanets;
-
-        // Planet Name
-        public string NamePL { get; set; }
-
         // Star Name
         public string StarName { get;  set;}
 
@@ -51,7 +48,7 @@ namespace Projeto1_LP2
         /// <param name="rotVel">Star's Rotation Velocity</param>
         /// <param name="rotPer">Star's Rotation Period</param>
         /// <param name="distSun">Star's distance to the Sun</param>
-        public Star(string namePL, string starName, string effTemp, 
+        public Star(string starName, string effTemp, 
                     string radius, string mass, string age, string rotVel, 
                     string rotPer, string distSun)
         {
@@ -64,11 +61,6 @@ namespace Projeto1_LP2
             RotationVel = rotVel;
             RotationPeriod = rotPer;
             DistToSun = distSun;
-            NamePL = namePL;
-            // Collection of Planets orbiting (hosted by) Star
-            myPlanets = new HashSet<string>();
-          
-            myPlanets.Add(namePL);
         }
 
         /// <summary>
@@ -83,15 +75,19 @@ namespace Projeto1_LP2
             if (csv)
             {
                 // Return values in CSV format
+<<<<<<< HEAD
                 return myPlanets.Count + "," + StarName + "," + EffectiveTemp + 
                 "," + RadiusRatio + "," + MassRatio + "," + Age + "," + 
+=======
+                return StarName + "," + EffectiveTemp + "," + 
+                RadiusRatio + "," + MassRatio + "," + Age + "," + 
+>>>>>>> 94a530344ed92901b56ed71db7aa79f86af3691c
                 RotationVel + "," + RotationPeriod + "," + DistToSun;
             }
             else
             {
                 return
                 "STAR VALUES\n\n" +
-                $"Planets: {myPlanets.Count}\n" +
                 $"Name: {StarName}\n" +
                 $"Effective Temperature: {EffectiveTemp} kelvin\n" + 
                 $"Radius (vs Earth): {RadiusRatio}\n" + 

@@ -8,6 +8,10 @@ using System.Globalization;
 
 namespace Projeto1_LP2
 {
+    /// <summary>
+    /// This class filters the file's collections 
+    /// to match the user criteria
+    /// </summary>
     class FileSearcher
     {
         // Collection that stores arguments of type boolean
@@ -53,6 +57,7 @@ namespace Projeto1_LP2
 
         /// <summary>
         /// Checks which arguments where selected by the user
+        /// for search
         /// </summary>
         private void CompareInfoWithBoolArgs()
         {
@@ -65,7 +70,7 @@ namespace Projeto1_LP2
                 SearchStar();
             }
         }
-
+        
         /// <summary>
         /// Includes the query for all the information that can be searched
         /// for a planet
@@ -195,6 +200,28 @@ namespace Projeto1_LP2
                                 stringArgs["-host-name"].ToLower())
                             select star;
             }
+
+            IEnumerable<Star> starEqualInfo =
+            from star in starInfo
+            where star.StarName.ToLower().Equals(
+                    stringArgs["-host-name"].ToLower())
+            select star;
+
+            Star finalStar;
+
+            if(starEqualInfo.Count() >= 1)
+            {
+                finalStar = starEqualInfo.First();
+                for (int i = 0; i < starEqualInfo.Count(); i++)
+                {
+                    finalStar = 
+                        finalStar + starEqualInfo.ElementAt(i);
+                }
+
+                FilteredStarCollection = starEqualInfo.Append(finalStar);
+            }
+
+            else FilteredStarCollection = starInfo;
             
             // Give the collection with names that Contain the
             // string inputted by the user
