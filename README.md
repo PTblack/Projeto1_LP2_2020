@@ -36,6 +36,7 @@ partes do mesmo*
             Escreveu a maioria do Markdown.
             
 [Repositório Git](https://github.com/PTblack/Projeto1_LP2_2020)
+
 ---
 
 ## Arquitetura da Solução
