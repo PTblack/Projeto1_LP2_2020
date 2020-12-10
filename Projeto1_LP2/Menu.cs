@@ -144,11 +144,38 @@ namespace Projeto1_LP2
                 if (fs.FilteredPlanetCollection.Count() == 0)
                     ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
 
-                foreach (Planet p in fs.FilteredPlanetCollection)
+                IEnumerable<Planet> planetEqualInfo =
+                            from planet in fs.FilteredPlanetCollection
+                                // the string given by the player is the star name
+                            where planet.Name.ToLower().Equals(
+                                stringArgs["-planet-name"].ToLower().Trim())
+                            select planet;
+
+                if (planetEqualInfo.Count() >= 1)
+                {
+                    Planet finalPlanet = planetEqualInfo.ElementAt(0);
+
+                    foreach (Planet p in planetEqualInfo)
+                    {
+                        finalPlanet += p;
+                    }
+                    finalPlanet.ConvertFloatablesToDefault();
+                    Console.WriteLine(finalPlanet.ToString(boolArgs["-csv"]));
+                }
+                else
+                {
+                    foreach (Planet p in fs.FilteredPlanetCollection)
+                    {
+                        p.ConvertFloatablesToDefault();
+                        Console.WriteLine(p.ToString(boolArgs["-csv"]));
+                    }
+                }
+
+                /*foreach (Planet p in fs.FilteredPlanetCollection)
                 {
                     p.ConvertFloatablesToDefault();
                     Console.WriteLine(p.ToString(boolArgs["-csv"]));
-                }
+                }*/
             }
                    
             else if (boolArgs["-search-star"] == true)
@@ -156,11 +183,41 @@ namespace Projeto1_LP2
                 if (fs.FilteredStarCollection.Count() == 0)
                     ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
 
-                foreach (Star s in fs.FilteredStarCollection)
+                IEnumerable<Star> starEqualInfo =
+                            from star in fs.FilteredStarCollection
+                                // the string given by the player is the star name
+                            where star.StarName.ToLower().Equals(
+                                stringArgs["-host-name"].ToLower().Trim())
+                            select star;
+
+                if (starEqualInfo.Count() >= 1)
                 {
-                    s.ConvertFloatablesToDefault();
-                    Console.WriteLine(s.ToString(boolArgs["-csv"]));
+                    Star finalStar = starEqualInfo.ElementAt(0);
+
+                    for (int i = 0; i < starEqualInfo.Count(); i++)
+                    {
+                        finalStar += starEqualInfo.ElementAt(i);
+                    }
+
+                    finalStar.ConvertFloatablesToDefault();
+                    Console.WriteLine(finalStar.ToString(boolArgs["-csv"]));
+                    Console.WriteLine("Number of Planets: " + starEqualInfo.Count());
                 }
+
+                else
+                {
+                    foreach (Star s in fs.FilteredStarCollection)
+                    {
+                        s.ConvertFloatablesToDefault();
+                        Console.WriteLine(s.ToString(boolArgs["-csv"]));
+                    }
+                }
+
+                /*foreach (Star s in fs.FilteredStarCollection)
+                 {
+                     s.ConvertFloatablesToDefault();
+                     Console.WriteLine(s.ToString(boolArgs["-csv"]));
+                 }*/
             }
 
                    

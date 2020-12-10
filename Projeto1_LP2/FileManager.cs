@@ -124,7 +124,7 @@ namespace Projeto1_LP2
 
                         // Name
                         if (!nameFound)
-                        planetAttributes[0] = null;
+                            planetAttributes[0] = null;
                         else 
                         {
                             planetAttributes[0]= 
@@ -138,7 +138,7 @@ namespace Projeto1_LP2
 
                         // Host Name
                         if (!hostNameFound)
-                        planetAttributes[1] = null;
+                            planetAttributes[1] = null;
                         else 
                         {
                             planetAttributes[1] = 
@@ -152,7 +152,8 @@ namespace Projeto1_LP2
 
                         // Discovery Method
                         if (!discMethodFound)
-                        planetAttributes[2] = null;
+                            planetAttributes[2] = null;
+                        else
                         {
                             planetAttributes[2] = 
                                 attribs.ElementAt(valAttPos[
@@ -165,7 +166,8 @@ namespace Projeto1_LP2
 
                         // Discovery Year
                         if (!discYearFound)
-                        planetAttributes[3] = null;
+                            planetAttributes[3] = null;
+                        else
                         {
                             planetAttributes[3] = 
                                 attribs.ElementAt(valAttPos[
@@ -178,7 +180,8 @@ namespace Projeto1_LP2
 
                         // Orbit Period
                         if (!orbPerFound)
-                        planetAttributes[4] = null;
+                            planetAttributes[4] = null;
+                        else
                         {
                             planetAttributes[4] = 
                                 attribs.ElementAt(valAttPos[
@@ -191,7 +194,8 @@ namespace Projeto1_LP2
 
                         // Radius
                         if (!plRadFound)
-                        planetAttributes[5] = null;
+                            planetAttributes[5] = null;
+                        else
                         {
                             planetAttributes[5] = 
                                 attribs.ElementAt(valAttPos[
@@ -204,7 +208,8 @@ namespace Projeto1_LP2
 
                         // Mass
                         if (!plMassFound)
-                        planetAttributes[6] = null;
+                            planetAttributes[6] = null;
+                        else
                         {
                             planetAttributes[6] = 
                                 attribs.ElementAt(valAttPos[
@@ -217,7 +222,8 @@ namespace Projeto1_LP2
 
                         // Equilibrium Temperature
                         if (!eqTempFound)
-                        planetAttributes[7] = null;
+                            planetAttributes[7] = null;
+                        else
                         {
                         planetAttributes[7] = 
                             attribs.ElementAt(valAttPos[
