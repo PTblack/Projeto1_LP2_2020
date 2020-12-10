@@ -14,11 +14,7 @@ namespace Projeto1_LP2
             switch(errorCodes)
             {
                 case ErrorCodes.AttribsMissing:
-<<<<<<< HEAD
-                    Console.WriteLine("\nERROR: Attributes Missing");
-=======
-                    Console.WriteLine("Error: Attribute(s) Missing");
->>>>>>> ac6ef4c25563aee75bf215f32830b9900b486789
+                    Console.WriteLine("\nERROR: Attribute(s) Missing");
                     
                     Console.WriteLine(
                         "Attributes \"pl_name\" and/or \"hostname\"" + 
@@ -34,11 +30,11 @@ namespace Projeto1_LP2
                     break;
 
                 case ErrorCodes.IncompatibleOptions:
-                    Console.WriteLine("Error: Incompatible Search Arguments");
+                    Console.WriteLine("\nERROR: Incompatible Search Arguments");
                     
                     Console.WriteLine
                         ("You cannot use \"-search-planet\" and" +
-                        "\"-search-star\" at the same time");
+                        "\"-search-star\" at the same time\n");
                         break;
                         
                 case ErrorCodes.NoSearchOption:
@@ -49,10 +45,11 @@ namespace Projeto1_LP2
                     break;
 
                 case ErrorCodes.NoDataFound:
-                    Console.WriteLine("Error: No results found for criteria");
+                    Console.WriteLine("\nERROR: No results found for criteria");
 
                     Console.WriteLine(
-                        "No item in document matches the parameters given by user");
+                        "No item in document matches the parameters given" +
+                        " by user\n");
                     break;
             }
         }
