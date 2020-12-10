@@ -403,7 +403,6 @@ namespace Projeto1_LP2
                                 
 
                         HashSetST.Add(s);
-                        Console.WriteLine(s.ToString(true));
                     }
                 }
             }

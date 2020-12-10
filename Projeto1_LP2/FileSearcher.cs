@@ -137,11 +137,6 @@ namespace Projeto1_LP2
         /// </summary>
         public void SearchStar()
         {
-            foreach(Star star in starHashSet)
-            {
-                Console.WriteLine(star.ToString(false));
-            }
-
             IEnumerable<Star> starInfo =
             from star in starHashSet
             where Single.Parse(star.EffectiveTemp, NumberStyles.Any,
