@@ -136,7 +136,6 @@ até à sua entrega*
 ### Diagrama UML
 
 ![Diagrama UML](/images/uml.png) 
-< Terá de se por o caminho para a imagem 'uml' no markdown
 
 ---
 
