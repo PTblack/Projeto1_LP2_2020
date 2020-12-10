@@ -57,12 +57,14 @@ até à sua entrega*
       Foram utilizados Dictionarys para guardar os argumentos passados
       pelo utilizador
    * #### IEnumerable
+      Foram utilizados IEnumerables para manter o maior nivel de generalidade
+      possivel
   
 * #### Algoritmos utilizados e porquê
   
-  #### FileSearcher
+  #### FileManager
 
-  Na classe `FileSearcher`, realizou-se o processo de abrir o ficheiro `csv`, 
+  Na classe `FileManager`, realizou-se o processo de abrir o ficheiro `csv`, 
   determinar que atributos - dos pretendidos - este tem, e guardar as suas
   posições nas linhas do ficheiro para depois criar as coleções de planetas 
   e estrelas através dos atributos identificados.
@@ -104,24 +106,16 @@ até à sua entrega*
 
 * #### As principais querrys construidas
   
-  Na classe `FileSearcher` foram feitas quatro _queries_ principais que têm 
+  Na classe `FileSearcher` foram feitas duas _queries que têm 
   como objetivo filtrar as coleções de planetas e estrelas criadas a partir da 
   informação do ficheiro, sendo o _filtro_ configurado de acordo com os 
   argumentos passados para o programa pelo jogador.
 
-  Para os apresentar a informação do planeta ou da estrela duas queries separadas
-  uma para cada tipo, em que se o utilizador pedir a informação do planeta ou 
-  estrela, `-planet-info` ou `star-info`, deve de inserir o nome do planeta e o 
-  nome da estrela que ele orbita (_hostname_), ou no caso da estrela apenas o 
-  nome dela, se forem encontrados mais de 1 planeta/estrela com o mesmo nome e 
-  _hostname_, o programa deve apenas apresentar ao utilizador apenas um 
-  planeta/estrela que tenha, todas as informações preenchidas, ou seja, se por 
-  acaso houver alguma informação `[MISSING]`, esta deve ser preenchida, pela 
-  informação de um planeta/estrela, com o mesmo nome e host name (ou só nome no 
-  caso da estrela), que esteja abaixo. Isto é feito pegando na _query_ 
-  `planet-info` / `star-info` e se esta tiver mais de um elemento, percorre 
-  todos os elementos e preenche a informação que estiver vazia.
-
+  Para os apresentar a informação do planeta ou da estrela usamos duas queries separadas
+  uma para cada tipo, que filtram a informação das coleções `PlanetHashSet` e 
+  `StarHashSet` de acordo com todas os parâmetros de pesquisa para planetas e 
+  estrelas, em que todos os estes parâmetros da query são executados à parte 
+  dos obrigatórios, que têm de ser diferentes de `[MISSING]`.
   Para procurar os planetas/estrelas temos outras duas _queries_, que filtram a 
   informação das coleções `PlanetHashSet` e `StarHashSet` de acordo com todas os 
   parâmetros de pesquisa para planetas e estrelas, em que todos os estes
