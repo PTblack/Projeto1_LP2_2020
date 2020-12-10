@@ -37,7 +37,8 @@ partes do mesmo*
 
 ### Repositório Git Utilizado (Opcional)
 
-> Referencia a repositório utilizado
+
+[Repositório Git](https://github.com/PTblack/Projeto1_LP2_2020)
 
 ---
 
