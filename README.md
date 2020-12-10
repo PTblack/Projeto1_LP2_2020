@@ -34,12 +34,7 @@ partes do mesmo*
             desenvolvimento das structs Planet, Star, nas classes FileSearcher 
             e Menu e no UML. 
             Escreveu a maioria do Markdown.
-
-### Repositório Git Utilizado (Opcional)
-
-
-[Repositório Git](https://github.com/PTblack/Projeto1_LP2_2020)
-
+            
 ---
 
 ## Arquitetura da Solução
