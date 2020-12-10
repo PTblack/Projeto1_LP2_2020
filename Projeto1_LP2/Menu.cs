@@ -44,10 +44,10 @@ namespace Projeto1_LP2
                    boolArgs[args[i]] = true;
 
                 if (stringArgs.ContainsKey(args[i].ToLower()))
-                    stringArgs[args[i]] = args[i + 1];
+                    stringArgs[args[i]] = args[i + 1].Trim();
 
                 if (floatArgs.ContainsKey(args[i].ToLower()))
-                    floatArgs[args[i]] = Single.Parse(args[i + 1], NumberStyles.Any,
+                    floatArgs[args[i]] = Single.Parse(args[i + 1].Trim(), NumberStyles.Any,
                 CultureInfo.InvariantCulture);
             }
         }
@@ -236,8 +236,9 @@ namespace Projeto1_LP2
             }
 
             // No Search Exception
-            if (boolArgs["-search-planet"] == false &&
-                boolArgs["-search-star"] == false)
+            if (!boolArgs["-search-planet"] &&
+                !boolArgs["-search-star"] &&
+                !boolArgs["-help"])
             {
                 ExceptionManager.ExceptionControl(ErrorCodes.NoSearchOption);
             }

@@ -65,7 +65,7 @@ namespace Projeto1_LP2
             fileFolder = Path.Combine(
                 Environment.GetFolderPath(
                 Environment.SpecialFolder.Desktop), file);
-
+            
             FindValAttributeIndex();
             CreatePlanetCollection();
             CreateStarCollection(); 
@@ -235,10 +235,10 @@ namespace Projeto1_LP2
                         }
 
                         Planet p = new Planet(
-                            planetAttributes[0], planetAttributes[1], 
-                            planetAttributes[2], planetAttributes[3],
-                            planetAttributes[4], planetAttributes[5], 
-                            planetAttributes[6], planetAttributes[7]);
+                            planetAttributes[0].Trim(), planetAttributes[1].Trim(), 
+                            planetAttributes[2].Trim(), planetAttributes[3].Trim(),
+                            planetAttributes[4].Trim(), planetAttributes[5].Trim(), 
+                            planetAttributes[6].Trim(), planetAttributes[7].Trim());
 
                         HashSetPL.Add(p);
                     }
@@ -260,7 +260,7 @@ namespace Projeto1_LP2
                 fileFolder, FileMode.Open, FileAccess.Read))
             {
                 // READS CSV FILE
-                using (StreamReader sr = new StreamReader(file))
+                using (StreamReader sr = new StreamReader(fileFolder))
                 {
                     // Skip unwanted lines of the file
                     for (int i = 0; i < firstValLine; i++) sr.ReadLine();
@@ -285,7 +285,7 @@ namespace Projeto1_LP2
 
                         // Star Name (Host)
                         if (!hostNameFound)
-                        starAttributes[0] = null;
+                          starAttributes[0] = null;
                         else 
                         {
                             starAttributes[0] = 
@@ -299,7 +299,7 @@ namespace Projeto1_LP2
 
                         // Effective Temperature
                         if (!effTempFound)
-                        starAttributes[1] = null;
+                          starAttributes[1] = null;
                         else 
                         {
                             starAttributes[1] = 
@@ -313,7 +313,7 @@ namespace Projeto1_LP2
 
                         // Star Radius
                         if (!stRadFound)
-                        starAttributes[2] = null;
+                          starAttributes[2] = null;
                         else 
                         {
                             starAttributes[2] = 
@@ -327,7 +327,7 @@ namespace Projeto1_LP2
 
                         // Star Mass
                         if (!stMassFound)
-                        starAttributes[3] = null;
+                          starAttributes[3] = null;
                         else 
                         {
                             starAttributes[3] = 
@@ -341,7 +341,7 @@ namespace Projeto1_LP2
 
                         // Star Age
                         if (!ageFound)
-                        starAttributes[4] = null;
+                          starAttributes[4] = null;
                         else 
                         {
                             starAttributes[4] = 
@@ -355,7 +355,7 @@ namespace Projeto1_LP2
 
                         // Star Rotation Velocity
                         if (!rotVelFound)
-                        starAttributes[5] = null;
+                          starAttributes[5] = null;
                         else 
                         {
                             starAttributes[5] = 
@@ -369,7 +369,7 @@ namespace Projeto1_LP2
 
                         // Star Rotation Period
                         if (!rotPerFound)
-                        starAttributes[6] = null;
+                          starAttributes[6] = null;
                         else 
                         {
                             starAttributes[6] = 
@@ -383,7 +383,7 @@ namespace Projeto1_LP2
 
                         // Distance to Sun
                         if (!distSunFound)
-                        starAttributes[7] = null;
+                          starAttributes[7] = null;
                         else 
                         {
                             starAttributes[7] = 
@@ -415,7 +415,7 @@ namespace Projeto1_LP2
         {
             // String representing line of the file
             string attributeline;
-
+        
             using (FileStream fileStream = new FileStream(
                 fileFolder, FileMode.Open, FileAccess.Read))
             {
@@ -520,8 +520,8 @@ namespace Projeto1_LP2
             // 'pl_name' or 'hostname'
             if (!nameFound || !hostNameFound)
             { 
-            ExceptionManager.ExceptionControl(
-                ErrorCodes.AttribsMissing);
+                ExceptionManager.ExceptionControl(
+                    ErrorCodes.AttribsMissing);
             }
         }
     }
