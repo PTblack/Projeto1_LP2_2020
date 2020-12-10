@@ -35,6 +35,7 @@ partes do mesmo*
             e Menu e no UML. 
             Escreveu a maioria do Markdown.
             
+[Repositório Git](https://github.com/PTblack/Projeto1_LP2_2020)
 ---
 
 ## Arquitetura da Solução
