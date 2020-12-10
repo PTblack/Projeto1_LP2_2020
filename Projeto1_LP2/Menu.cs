@@ -179,8 +179,9 @@ namespace Projeto1_LP2
             }
 
             // No Search Exception
-            if (boolArgs["-search-planet"] == false &&
-                boolArgs["-search-star"] == false)
+            if (!boolArgs["-search-planet"] &&
+                !boolArgs["-search-star"] &&
+                !boolArgs["-help"])
             {
                 ExceptionManager.ExceptionControl(ErrorCodes.NoSearchOption);
             }
