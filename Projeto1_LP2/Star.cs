@@ -11,6 +11,7 @@ namespace Projeto1_LP2
     public struct Star
     {
         // Properties ordered as displayed in CSV file 
+
         // Star Name
         public string StarName { get;  set;}
 

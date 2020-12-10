@@ -152,7 +152,7 @@ namespace Projeto1_LP2
 
                 IEnumerable<Planet> planetEqualInfo =
                             from planet in fs.FilteredPlanetCollection
-                                // the string given by the player is the star name
+                                // the string given by the player is the planet name
                             where planet.Name.ToLower().Equals(
                                 stringArgs["-planet-name"].ToLower().Trim())
                             select planet;
@@ -176,12 +176,6 @@ namespace Projeto1_LP2
                         Console.WriteLine(p.ToString(boolArgs["-csv"]));
                     }
                 }
-
-                /*foreach (Planet p in fs.FilteredPlanetCollection)
-                {
-                    p.ConvertFloatablesToDefault();
-                    Console.WriteLine(p.ToString(boolArgs["-csv"]));
-                }*/
             }
                    
             else if (boolArgs["-search-star"] == true)
@@ -209,7 +203,6 @@ namespace Projeto1_LP2
                     Console.WriteLine(finalStar.ToString(boolArgs["-csv"]));
                     Console.WriteLine("Number of Planets: " + starEqualInfo.Count());
                 }
-
                 else
                 {
                     foreach (Star s in fs.FilteredStarCollection)
@@ -218,15 +211,7 @@ namespace Projeto1_LP2
                         Console.WriteLine(s.ToString(boolArgs["-csv"]));
                     }
                 }
-
-                /*foreach (Star s in fs.FilteredStarCollection)
-                 {
-                     s.ConvertFloatablesToDefault();
-                     Console.WriteLine(s.ToString(boolArgs["-csv"]));
-                 }*/
-            }
-
-                   
+            }                  
         }
         /// <summary>
         /// Method that verifies exceptions in the user arguments

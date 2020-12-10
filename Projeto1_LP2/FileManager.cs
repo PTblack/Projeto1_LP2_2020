@@ -70,6 +70,7 @@ namespace Projeto1_LP2
         /// </summary>
         /// <returns>collection of planets</returns>
         public HashSet<Planet> ReturnPlanet() => HashSetPL;
+
         /// <summary>
         /// Creates the Star collection
         /// </summary>
@@ -241,7 +242,6 @@ namespace Projeto1_LP2
             catch (Exception)
             {
                 ExceptionManager.ExceptionControl(ErrorCodes.NoFileFound);
-
             }
         }
 
@@ -427,7 +427,6 @@ namespace Projeto1_LP2
                     // Skips lines that start with '#' or that are empty strings
                     // Ends with line holding column contents
                     while (attributeline[0] == '#' || attributeline == "");
-                    //Console.WriteLine(firstValLine);
 
                     // Create array from columns' line
                     string[] attribs = attributeline.Split(',');
@@ -442,7 +441,6 @@ namespace Projeto1_LP2
             catch (Exception)
             {
                 ExceptionManager.ExceptionControl(ErrorCodes.NoFileFound);
-
             }
         }
 

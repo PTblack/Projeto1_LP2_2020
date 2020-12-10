@@ -82,8 +82,6 @@ namespace Projeto1_LP2
                 $"\nSEARCH OPTIONS\n\n" +
 
                 $"File: -file\n" +
-                $"Planet Information: -planet-info\n" +
-                $"Star Information: -star-info\n" +
                 $"Planet Search: -search-planet\n" +
                 $"Star Search: -search-star\n\n" +
 
@@ -121,6 +119,7 @@ namespace Projeto1_LP2
                 $"Example: -file \"NasaExoplanetSearcher.csv\" -planet-search" +
                 $"-planet-name \"XO-4 b\" -host-name \"XO-4\" -planet-mass-min " +
                 $"2500 -planet-mass 50000\n\n" +
+                $"THE FILE MUST BE IN THE PROJECT FOLDER\n" +
                 $"(WARNING: IN REPEATED ARGUMENTS, ONLY THE LAST ONE IS READ)\n\n");
 
             System.Environment.Exit(0);
