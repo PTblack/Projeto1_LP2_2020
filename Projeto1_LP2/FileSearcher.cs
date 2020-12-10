@@ -127,7 +127,6 @@ namespace Projeto1_LP2
                                 stringArgs["-disc-method"].ToLower().Trim())
                             select planet;
             }
-
             FilteredPlanetCollection = planetInfo;
         }
         
@@ -175,7 +174,6 @@ namespace Projeto1_LP2
                                 stringArgs["-host-name"].ToLower().Trim())
                             select star;
             }
-
             FilteredStarCollection = starInfo;
         }
 

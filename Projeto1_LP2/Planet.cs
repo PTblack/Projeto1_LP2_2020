@@ -48,7 +48,6 @@ namespace Projeto1_LP2
         /// <param name="radiusRt">Planet's Radius compared to the Earth</param>
         /// <param name="massRt">Planet's Mass compared to the Earth</param>
         /// <param name="eqTemp">Planet's Equilibrium Temperature</param>
-
         public Planet(string name, string hostName, string disc_method,
                       string disc_year, string orbPer, string radiusRt, 
                       string massRt, string eqTemp)
