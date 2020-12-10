@@ -66,25 +66,19 @@ namespace Projeto1_LP2
             }
         }
 
-        
         /// <summary>
         /// Includes the query for all the information that can be searched
         /// for a planet
         /// </summary>
         private void SearchPlanet()
         {
-            /*
-            POR ISTO DE MODO A CONFIRMAR QUE TUDO ESTA COM NUMEROS?
-            foreach (Planet p in planetHashSet)
-                p.ConvertDefaultToFloat();
-            */
-
             // Collection planetInfo is given the Planets that fit the value 
-            // intervals given by the user
+            // intervals given by the user (that have attributes inside the 
+            // numerical intervals set by the user)
             IEnumerable<Planet> planetInfo =
             from planet in planetHashSet
             where Single.Parse(planet.EqTemperature, NumberStyles.Any, 
-            CultureInfo.InvariantCulture) >= floatArgs["-planet-temp-min"]
+                CultureInfo.InvariantCulture) >= floatArgs["-planet-temp-min"]
                 && Single.Parse(planet.EqTemperature, NumberStyles.Any, 
                 CultureInfo.InvariantCulture) <= floatArgs["-planet-temp-max"]
 
@@ -109,39 +103,51 @@ namespace Projeto1_LP2
                 CultureInfo.InvariantCulture) <= floatArgs["-disc-year-max"]
             select planet;
 
-            // Checks if the planet name, the host name and the discovery method
-            // are missing, and if they, the query above will run regardless
+            // Keeps only planets that contain in their "planet-name"
+            // category a substring equal to the one given by the user
             if (stringArgs["-planet-name"] != "")
             {
                 planetInfo = from planet in planetInfo
-                            // the string given by the player is included in the planet name
+                            // the string given by the user is included in 
+                            // the planet name
                             where planet.Name.ToLower().Contains(
                                 stringArgs["-planet-name"].ToLower())
                             select planet;
             }
+            // Keeps only planets that contain in their "host-name"
+            // category a substring equal to the one given by the user
             if (stringArgs["-host-name"] != "")
             {
                 planetInfo = from planet in planetInfo
-                            // the string given by the player is included in the host name
+                            // the string given by the user is included in 
+                            // the host name
                             where planet.HostName.ToLower().Contains(
                                 stringArgs["-host-name"].ToLower())
                             select planet;
             }
+            // Keeps only Planets that contain in their "disc-method"
+            // category a substring equal to the one given by the user
             if (stringArgs["-disc-method"] != "")
             {
                 planetInfo = from planet in planetInfo
-                            // the string given by the player is included in the discovery method
+                            // the string given by the user is included in 
+                            // the discovery method
                             where planet.DiscoveryMethod.ToLower().Contains(
                                 stringArgs["-disc-method"].ToLower())
                             select planet;
             }
 
             FilteredPlanetCollection = planetInfo;
+
+            // If no Planet matches the criteria given by the user, 
+            // give exception
+            if (FilteredPlanetCollection.Count() == 0)
+                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
         }
         
         /// <summary>
         /// Includes the query for all the information that can be searched
-        /// for a star
+        /// for a Star
         /// </summary>
         public void SearchStar()
         {
@@ -178,18 +184,26 @@ namespace Projeto1_LP2
                 CultureInfo.InvariantCulture) <= floatArgs["-star-age-max"]
             select star;
 
-            // Checks if the star name, is missing, and if it is, 
-            // the query above will run regardless
+            // Keeps only Stars that contain in their "host-name"
+            // category a substring equal to the one given by the user
             if (stringArgs["-host-name"] != "")
             {
                 starInfo = from star in starInfo
-                            // the string given by the player is included in the host name
+                            // The string given by the user is included 
+                            // in the Star's host name
                             where star.StarName.ToLower().Contains(
                                 stringArgs["-host-name"].ToLower())
                             select star;
             }
-
+            
+            // Give the collection with names that Contain the
+            // string inputted by the user
             FilteredStarCollection = starInfo;
+
+            // If no Star matches the criteria given by the user, 
+            // give exception
+            if (FilteredStarCollection.Count() == 0)
+                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
         }
 
     }

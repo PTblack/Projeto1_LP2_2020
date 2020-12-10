@@ -28,12 +28,13 @@ namespace Projeto1_LP2
         public UI(string[] a)
         {
             args = a;
+            AddToDictionary();
+            Options();
             GetCollections();
         }
 
         private void Options()
         {
-            AddToDictionary();
             for (int i = 0; i < args.Length; i++)
             {
                 if(boolArgs.ContainsKey(args[i].ToLower()))
@@ -49,7 +50,7 @@ namespace Projeto1_LP2
                 if (SortArgs.ContainsKey(args[i].ToLower()))
                     SortArgs[args[i]] = args[i + 1];
             }
-            CheckForExceptions();
+            CheckForArgumentExceptions();
         }
         
         private void AddToDictionary()
@@ -124,7 +125,6 @@ namespace Projeto1_LP2
         // Show collection of planets that fit the user's requests
         private void GetCollections()
         {
-            Options();
             fm = new FileManager(stringArgs["-file"]);
             planetCollection = fm.ReturnPlanet();
             starCollection = fm.ReturnStar();
@@ -142,108 +142,97 @@ namespace Projeto1_LP2
 
             if(boolArgs["-search-planet"] == true)
             {
-                if (fs.FilteredPlanetCollection.Count() == 0)
-                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
+                // Select from Planets in the filtered collection who's name is 
+                // equal to the argument given by the user
+                IEnumerable<Planet> planetEqualInfo = 
+                    from planet in fs.FilteredPlanetCollection
+                    where planet.Name.ToLower().Equals(
+                        stringArgs["-planet-name"].ToLower())
+                    select planet;
 
-                foreach (Planet p in fs.FilteredPlanetCollection)
+                // Check if there are any Planets with a name equal to the one 
+                // given by the user
+                if (planetEqualInfo.Count() >= 1)
                 {
-                    p.ConvertFloatablesToDefault();
-                    Console.WriteLine(p.ToString(boolArgs["-csv"]));
-                }
-            }
-                    
-            else if(boolArgs["-planet-info"] == true)
-            {
-                if (fs.FilteredPlanetCollection.Count() == 0)
-                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
+                    Planet finalPlanet = new Planet();
+                    for (int i = 0; i < planetEqualInfo.Count(); i++)
+                    {
+                        finalPlanet = 
+                            planetEqualInfo.ElementAt(0) + 
+                            planetEqualInfo.ElementAt(i);
+                    }
 
-                foreach (Planet p in fs.FilteredPlanetCollection)
-                    p.ConvertFloatablesToDefault();
-                Console.WriteLine(fs.FilteredPlanetCollection.
-                    ElementAt(0).ToString(boolArgs["-csv"]));
+                    finalPlanet.ConvertFloatablesToDefault();
+
+                    Console.WriteLine(finalPlanet.ToString(boolArgs["-csv"]));
+                }
+                else
+                {
+                    // Give the collection only with names that contain the 
+                    // user's argument
+                    foreach (Planet p in fs.FilteredPlanetCollection)
+                    {
+                        p.ConvertFloatablesToDefault();
+                        Console.WriteLine(p.ToString(boolArgs["-csv"]));
+                    }
+                }
             }
 
             if (boolArgs["-search-star"] == true)
             {
-                if (fs.FilteredStarCollection.Count() == 0)
-                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
+                // Select from Stars in the filtered collection who's name is 
+                // equal to the argument given by the user
+                IEnumerable<Star> starEqualInfo = 
+                    from star in fs.FilteredStarCollection
+                    where star.StarName.ToLower().Equals(
+                        stringArgs["-host-name"].ToLower())
+                    select star;
 
-                foreach (Star s in fs.FilteredStarCollection)
+                // Check if there are any Stars with a name equal to the one 
+                // given by the user
+                if (starEqualInfo.Count() >= 1)
                 {
-                    s.ConvertFloatablesToDefault();
-                    Console.WriteLine(s.ToString(boolArgs["-csv"]));
+                    Star finalStar = new Star();
+                    for (int i = 0; i < starEqualInfo.Count(); i++)
+                    {
+                        finalStar = 
+                            starEqualInfo.ElementAt(0) + 
+                            starEqualInfo.ElementAt(i);
+                    }
+
+                    finalStar.ConvertFloatablesToDefault();
+
+                    Console.WriteLine(finalStar.ToString(boolArgs["-csv"]));
+
+                    // Show number of Planets hosted by the Star named by 
+                    // the user
+                    Console.WriteLine("Number of Orbiting Planets: " +
+                        starEqualInfo.Count());
+                }
+                else
+                {
+                    // Give the collection only with names that contain the 
+                    // user's argument
+                    foreach (Star s in fs.FilteredStarCollection)
+                    {
+                        s.ConvertFloatablesToDefault();
+                        Console.WriteLine(s.ToString(boolArgs["-csv"]));
+                    }
                 }
             }
-
-                    
-            else if(boolArgs["-star-info"] == true)
-            {
-                if (fs.FilteredStarCollection.Count() == 0)
-                    ExceptionManager.ExceptionControl(ErrorCodes.NoDataFound);
-
-                foreach (Star s in fs.FilteredStarCollection)
-                    s.ConvertFloatablesToDefault();
-                Console.WriteLine(fs.FilteredStarCollection.
-                                ElementAt(0).ToString(boolArgs["-csv"]));
-            }
         }
 
-        private void SortCollection(HashSet<Star> collection)
+        public void CheckForArgumentExceptions()
         {
-            if (SortArgs["-desc"].Contains("temp".ToLower()))
-            {
-            }
-            if (SortArgs["-desc"].Contains("rade".ToLower()))
-            {
-
-            }
-            if (SortArgs["-desc"].Contains("mass".ToLower()))
-            {
-                //HashSet<Star> d = collection.OrderBy(x => float.Parse(x.MassRatio));
-            }
-            if (SortArgs["-desc"].Contains("orbper".ToLower()))
-            {
-
-            }
-            if (SortArgs["-desc"].Contains("year".ToLower()))
-            {
-
-            }
-            if (SortArgs["-desc"].Contains("vsin".ToLower()))
-            {
-
-            }
-            if (SortArgs["-desc"].Contains("rotp".ToLower()))
-            {
-
-            }
-            if (SortArgs["-desc"].Contains("age".ToLower()))
-            {
-
-            }
-
-        }
-
-        public void CheckForExceptions()
-        {
-            int planetInfoValue = boolArgs["-planet-info"] ? 1 : 0;
-            int starInfoValue = boolArgs["-star-info"] ? 1 : 0;
-            int searchPlanetValue = boolArgs["-search-planet"] ? 1 : 0;
-            int searchStarValue = boolArgs["-search-star"] ? 1 : 0; 
-
-            // IncompatibleOptions
-            if(planetInfoValue + starInfoValue 
-                + searchPlanetValue + searchStarValue > 1)
+            // 'IncompatibleOptions' Exception
+            if(boolArgs["-search-planet"] && boolArgs["-search-star"])
             {
                 ExceptionManager.ExceptionControl(
                         ErrorCodes.IncompatibleOptions);
             }
 
-            // No Search Exception
-            if (boolArgs["-search-planet"] == false &&
-                boolArgs["-search-star"] == false &&
-                boolArgs["-star-info"] == false &&
-                boolArgs["-planet-info"] == false) 
+            // 'NoSearchOption' Exception
+            if (!boolArgs["-search-planet"] && !boolArgs["-search-star"])
             {
                 ShowHelp();
                 ExceptionManager.ExceptionControl(ErrorCodes.NoSearchOption);
@@ -296,7 +285,7 @@ namespace Projeto1_LP2
                 $"HELP OPTIONS\n\n" +
 
                 $"Help: -help\n" +
-                $"Example: -file \"NasaExoplanetSearcher.csv\" -planet-search" +
+                $"Example:\n-file \"NasaExoplanetSearcher.csv\" -planet-search" +
                 $"-planet-name \"XO-4 b\" -host-name \"XO-4\" -planet-mass-min " +
                 $"2500 -planet-mass 50000\n\n" +
                 $"(WARNING: IN REPEATED ARGUMENTS, ONLY THE LAST ONE IS READ)\n\n");
