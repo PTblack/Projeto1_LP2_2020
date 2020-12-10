@@ -107,7 +107,7 @@ namespace Projeto1_LP2
             {
                 planetInfo = from planet in planetInfo
                             // the string given by the player is included in the planet name
-                            where planet.Name.ToLower().Contains(
+                            where planet.Name.ToLower().Trim().Contains(
                                 stringArgs["-planet-name"].ToLower().Trim())
                             select planet;
             }
@@ -115,7 +115,7 @@ namespace Projeto1_LP2
             {
                 planetInfo = from planet in planetInfo
                             // the string given by the player is included in the host name
-                            where planet.HostName.ToLower().Contains(
+                            where planet.HostName.ToLower().Trim().Contains(
                                 stringArgs["-host-name"].ToLower().Trim())
                             select planet;
             }
@@ -123,7 +123,7 @@ namespace Projeto1_LP2
             {
                 planetInfo = from planet in planetInfo
                             // the string given by the player is included in the discovery method
-                            where planet.DiscoveryMethod.ToLower().Contains(
+                            where planet.DiscoveryMethod.ToLower().Trim().Contains(
                                 stringArgs["-disc-method"].ToLower().Trim())
                             select planet;
             }
@@ -171,7 +171,7 @@ namespace Projeto1_LP2
             {
                 starInfo = from star in starInfo
                             // the string given by the player is included in the host name
-                            where star.StarName.ToLower().Contains(
+                            where star.StarName.ToLower().Trim().Contains(
                                 stringArgs["-host-name"].ToLower().Trim())
                             select star;
             }

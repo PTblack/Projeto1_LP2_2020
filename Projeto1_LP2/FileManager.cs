@@ -124,7 +124,7 @@ namespace Projeto1_LP2
 
                         // Name
                         if (!nameFound)
-                        planetAttributes[0] = null;
+                            planetAttributes[0] = null;
                         else 
                         {
                             planetAttributes[0]= 
@@ -138,7 +138,7 @@ namespace Projeto1_LP2
 
                         // Host Name
                         if (!hostNameFound)
-                        planetAttributes[1] = null;
+                            planetAttributes[1] = null;
                         else 
                         {
                             planetAttributes[1] = 
@@ -152,7 +152,7 @@ namespace Projeto1_LP2
 
                         // Discovery Method
                         if (!discMethodFound)
-                        planetAttributes[2] = null;
+                            planetAttributes[2] = null;
                         else
                         {
                             planetAttributes[2] = 
@@ -166,7 +166,7 @@ namespace Projeto1_LP2
 
                         // Discovery Year
                         if (!discYearFound)
-                        planetAttributes[3] = null;
+                            planetAttributes[3] = null;
                         else
                         {
                             planetAttributes[3] = 
@@ -180,7 +180,7 @@ namespace Projeto1_LP2
 
                         // Orbit Period
                         if (!orbPerFound)
-                        planetAttributes[4] = null;
+                            planetAttributes[4] = null;
                         else
                         {
                             planetAttributes[4] = 
@@ -194,7 +194,7 @@ namespace Projeto1_LP2
 
                         // Radius
                         if (!plRadFound)
-                        planetAttributes[5] = null;
+                            planetAttributes[5] = null;
                         else
                         {
                             planetAttributes[5] = 
@@ -208,7 +208,7 @@ namespace Projeto1_LP2
 
                         // Mass
                         if (!plMassFound)
-                        planetAttributes[6] = null;
+                            planetAttributes[6] = null;
                         else
                         {
                             planetAttributes[6] = 
@@ -222,7 +222,7 @@ namespace Projeto1_LP2
 
                         // Equilibrium Temperature
                         if (!eqTempFound)
-                        planetAttributes[7] = null;
+                            planetAttributes[7] = null;
                         else
                         {
                         planetAttributes[7] = 
@@ -285,7 +285,7 @@ namespace Projeto1_LP2
 
                         // Star Name (Host)
                         if (!hostNameFound)
-                        starAttributes[0] = null;
+                          starAttributes[0] = null;
                         else 
                         {
                             starAttributes[0] = 
@@ -299,7 +299,7 @@ namespace Projeto1_LP2
 
                         // Effective Temperature
                         if (!effTempFound)
-                        starAttributes[1] = null;
+                          starAttributes[1] = null;
                         else 
                         {
                             starAttributes[1] = 
@@ -313,7 +313,7 @@ namespace Projeto1_LP2
 
                         // Star Radius
                         if (!stRadFound)
-                        starAttributes[2] = null;
+                          starAttributes[2] = null;
                         else 
                         {
                             starAttributes[2] = 
@@ -327,7 +327,7 @@ namespace Projeto1_LP2
 
                         // Star Mass
                         if (!stMassFound)
-                        starAttributes[3] = null;
+                          starAttributes[3] = null;
                         else 
                         {
                             starAttributes[3] = 
@@ -341,7 +341,7 @@ namespace Projeto1_LP2
 
                         // Star Age
                         if (!ageFound)
-                        starAttributes[4] = null;
+                          starAttributes[4] = null;
                         else 
                         {
                             starAttributes[4] = 
@@ -355,7 +355,7 @@ namespace Projeto1_LP2
 
                         // Star Rotation Velocity
                         if (!rotVelFound)
-                        starAttributes[5] = null;
+                          starAttributes[5] = null;
                         else 
                         {
                             starAttributes[5] = 
@@ -369,7 +369,7 @@ namespace Projeto1_LP2
 
                         // Star Rotation Period
                         if (!rotPerFound)
-                        starAttributes[6] = null;
+                          starAttributes[6] = null;
                         else 
                         {
                             starAttributes[6] = 
@@ -383,7 +383,7 @@ namespace Projeto1_LP2
 
                         // Distance to Sun
                         if (!distSunFound)
-                        starAttributes[7] = null;
+                          starAttributes[7] = null;
                         else 
                         {
                             starAttributes[7] = 
