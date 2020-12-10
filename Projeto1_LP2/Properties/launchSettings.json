@@ -2,7 +2,7 @@
   "profiles": {
     "Projeto1_LP2": {
       "commandName": "Project",
-      "commandLineArgs": "-file NasaExoplanetSearcher.csv -search-star -star-mass-min 9"
+      "commandLineArgs": "-file \"NasaExoplanetSearcher.csv\" -search-star -host-name \"c\""
     }
   }
 }

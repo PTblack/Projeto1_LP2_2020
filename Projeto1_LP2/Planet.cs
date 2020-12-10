@@ -4,10 +4,11 @@ using System.Text;
 
 namespace Projeto1_LP2
 {
+    /// <summary>
+    /// This struct saves the Planet's properties
+    /// </summary>
     public struct Planet
     {        
-        //Star myStar;
-
         // Properties ordered as displayed in the CSV file
 
         // Planet's Name
@@ -52,7 +53,6 @@ namespace Projeto1_LP2
                       string disc_year, string orbPer, string radiusRt, 
                       string massRt, string eqTemp)
         {   
-            //myStar = star;
             Name = name;
             HostName = hostName;
             DiscoveryMethod = disc_method;
@@ -61,12 +61,8 @@ namespace Projeto1_LP2
             RadiusRatio = radiusRt;
             MassRatio = massRt;
             EqTemperature = eqTemp;
-
-            // Adds planet instance to the collection of its host star
-            //myStar.myPlanetas.Add(this);
         }
 
-        // Returns string with the Planet's Values in format determined by User
         /// <summary>
         /// Returns string with the Planet's values in the format determined by 
         /// the user
