@@ -75,13 +75,8 @@ namespace Projeto1_LP2
             if (csv)
             {
                 // Return values in CSV format
-<<<<<<< HEAD
-                return myPlanets.Count + "," + StarName + "," + EffectiveTemp + 
-                "," + RadiusRatio + "," + MassRatio + "," + Age + "," + 
-=======
                 return StarName + "," + EffectiveTemp + "," + 
                 RadiusRatio + "," + MassRatio + "," + Age + "," + 
->>>>>>> 94a530344ed92901b56ed71db7aa79f86af3691c
                 RotationVel + "," + RotationPeriod + "," + DistToSun;
             }
             else

@@ -278,13 +278,8 @@ namespace Projeto1_LP2
 
                         // Star Name (Host)
                         if (!hostNameFound)
-<<<<<<< HEAD
-                        starAttributes[1] = null;
-                        else
-=======
                         starAttributes[0] = null;
                         else 
->>>>>>> 94a530344ed92901b56ed71db7aa79f86af3691c
                         {
                             starAttributes[0] = 
                                 attribs.ElementAt(valAttPos[
