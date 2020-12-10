@@ -17,41 +17,56 @@ namespace Projeto1_LP2
             switch(errorCodes)
             {
                 case ErrorCodes.AttribsMissing:
-                    Console.WriteLine("Error: Attribute(s) Missing");
+                    Console.WriteLine("\nERROR: Attribute(s) Missing");
                     
                     Console.WriteLine(
-                        "Attributes \"pl_name\" and/or \"hostname\"" + 
-                        "are missing in given file");
+                        "Attributes \"pl_name\" and/or \"hostname\"" +
+                        "are missing in given file\n");
                     break;
                 
                 case ErrorCodes.AttribNumFluct:
-                    Console.WriteLine("Error: Attribute Number Fluctuation");
+                    Console.WriteLine("\nERROR: Attribute Number Fluctuation");
                     
                     Console.WriteLine(
-                        "The given file has line(s) that don't match the " + 
-                        "number of attributes stated in the file header");
+                        "The given file has line(s) that don't match the " +
+                        "number of attributes stated in the file header\n");
                     break;
 
                 case ErrorCodes.IncompatibleOptions:
-                    Console.WriteLine("Error: Incompatible Search Arguments");
+                    Console.WriteLine("\nERROR: Incompatible Search Arguments");
                     
                     Console.WriteLine
                         ("You cannot use \"-search-planet\" and" +
-                        "\"-search-star\" at the same time");
+                        "\"-search-star\" at the same time\n");
                         break;
                         
                 case ErrorCodes.NoSearchOption:
-                    Console.WriteLine("Error: No Search Option Entered");
+                    Console.WriteLine("\nERROR: No Search Option Entered");
 
                     Console.WriteLine(
-                        "User did not specify search option");
+                        "User did not specify search option\n");
                     break;
 
                 case ErrorCodes.NoDataFound:
-                    Console.WriteLine("Error: No results found for criteria");
+                    Console.WriteLine("\nERROR: No Results Found For Criteria");
 
                     Console.WriteLine(
-                        "No item in document matches the parameters given by user");
+                        "No item in document matches the parameters given by user\n");
+                    break;
+
+                case ErrorCodes.NoFileFound:
+                    Console.WriteLine("\nERROR: No File Found");
+
+                    Console.WriteLine(
+                        "No file was found in the expected location or name given " +
+                        "does not match any file there\n");
+                    break;
+
+                case ErrorCodes.NoArgGivenToString:
+                    Console.WriteLine("\nERROR: No Content In Argument");
+
+                    Console.WriteLine(
+                        "An argument was declared but no value was given\n");
                     break;
             }
             ShowHelp();

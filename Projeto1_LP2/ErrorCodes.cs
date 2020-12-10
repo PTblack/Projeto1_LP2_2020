@@ -12,5 +12,7 @@ namespace Projeto1_LP2
         IncompatibleOptions,
         NoSearchOption,
         NoDataFound,
+        NoFileFound,
+        NoArgGivenToString,
     }
 }
