@@ -176,6 +176,5 @@ namespace Projeto1_LP2
             }
             FilteredStarCollection = starInfo;
         }
-
     }
 }
