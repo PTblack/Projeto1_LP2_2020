@@ -65,7 +65,7 @@ namespace Projeto1_LP2
             fileFolder = Path.Combine(
                 Environment.GetFolderPath(
                 Environment.SpecialFolder.Desktop), file);
-
+            
             FindValAttributeIndex();
             CreatePlanetCollection();
             CreateStarCollection(); 
@@ -153,6 +153,7 @@ namespace Projeto1_LP2
                         // Discovery Method
                         if (!discMethodFound)
                         planetAttributes[2] = null;
+                        else
                         {
                             planetAttributes[2] = 
                                 attribs.ElementAt(valAttPos[
@@ -166,6 +167,7 @@ namespace Projeto1_LP2
                         // Discovery Year
                         if (!discYearFound)
                         planetAttributes[3] = null;
+                        else
                         {
                             planetAttributes[3] = 
                                 attribs.ElementAt(valAttPos[
@@ -179,6 +181,7 @@ namespace Projeto1_LP2
                         // Orbit Period
                         if (!orbPerFound)
                         planetAttributes[4] = null;
+                        else
                         {
                             planetAttributes[4] = 
                                 attribs.ElementAt(valAttPos[
@@ -192,6 +195,7 @@ namespace Projeto1_LP2
                         // Radius
                         if (!plRadFound)
                         planetAttributes[5] = null;
+                        else
                         {
                             planetAttributes[5] = 
                                 attribs.ElementAt(valAttPos[
@@ -205,6 +209,7 @@ namespace Projeto1_LP2
                         // Mass
                         if (!plMassFound)
                         planetAttributes[6] = null;
+                        else
                         {
                             planetAttributes[6] = 
                                 attribs.ElementAt(valAttPos[
@@ -218,6 +223,7 @@ namespace Projeto1_LP2
                         // Equilibrium Temperature
                         if (!eqTempFound)
                         planetAttributes[7] = null;
+                        else
                         {
                         planetAttributes[7] = 
                             attribs.ElementAt(valAttPos[
@@ -229,10 +235,10 @@ namespace Projeto1_LP2
                         }
 
                         Planet p = new Planet(
-                            planetAttributes[0], planetAttributes[1], 
-                            planetAttributes[2], planetAttributes[3],
-                            planetAttributes[4], planetAttributes[5], 
-                            planetAttributes[6], planetAttributes[7]);
+                            planetAttributes[0].Trim(), planetAttributes[1].Trim(), 
+                            planetAttributes[2].Trim(), planetAttributes[3].Trim(),
+                            planetAttributes[4].Trim(), planetAttributes[5].Trim(), 
+                            planetAttributes[6].Trim(), planetAttributes[7].Trim());
 
                         HashSetPL.Add(p);
                     }
@@ -254,7 +260,7 @@ namespace Projeto1_LP2
                 fileFolder, FileMode.Open, FileAccess.Read))
             {
                 // READS CSV FILE
-                using (StreamReader sr = new StreamReader(file))
+                using (StreamReader sr = new StreamReader(fileFolder))
                 {
                     // Skip unwanted lines of the file
                     for (int i = 0; i < firstValLine; i++) sr.ReadLine();
@@ -409,7 +415,7 @@ namespace Projeto1_LP2
         {
             // String representing line of the file
             string attributeline;
-
+        
             using (FileStream fileStream = new FileStream(
                 fileFolder, FileMode.Open, FileAccess.Read))
             {
@@ -514,8 +520,8 @@ namespace Projeto1_LP2
             // 'pl_name' or 'hostname'
             if (!nameFound || !hostNameFound)
             { 
-            ExceptionManager.ExceptionControl(
-                ErrorCodes.AttribsMissing);
+                ExceptionManager.ExceptionControl(
+                    ErrorCodes.AttribsMissing);
             }
         }
     }
