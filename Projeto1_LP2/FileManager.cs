@@ -16,7 +16,6 @@ namespace Projeto1_LP2
     class FileManager
     {
         private string file;
-        private string fileFolder;
 
         // Array that holds The positions of the valuable attributes
         private int[] valAttPos;
@@ -61,11 +60,6 @@ namespace Projeto1_LP2
             HashSetPL = new HashSet<Planet>();
             HashSetST = new HashSet<Star>();
 
-            // Location of the folder that is going to be read (Desktop)
-            fileFolder = Path.Combine(
-                Environment.GetFolderPath(
-                Environment.SpecialFolder.Desktop), file);
-            
             FindValAttributeIndex();
             CreatePlanetCollection();
             CreateStarCollection(); 
@@ -92,8 +86,7 @@ namespace Projeto1_LP2
             // String representing line of the file
             string line;
 
-            using (FileStream fileStream = new FileStream(
-                fileFolder, FileMode.Open, FileAccess.Read))
+            try
             {
                 // READS CSV FILE
                 using (StreamReader sr = new StreamReader(file))
@@ -125,28 +118,28 @@ namespace Projeto1_LP2
                         // Name
                         if (!nameFound)
                             planetAttributes[0] = null;
-                        else 
+                        else
                         {
-                            planetAttributes[0]= 
+                            planetAttributes[0] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_name]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_name]) : 
+                                    valAttPos[(int)AttribPos.pl_name]) :
                                 "[MISSING]";
                         }
 
                         // Host Name
                         if (!hostNameFound)
                             planetAttributes[1] = null;
-                        else 
+                        else
                         {
-                            planetAttributes[1] = 
+                            planetAttributes[1] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_hostName]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_hostName]) : 
+                                    valAttPos[(int)AttribPos.pl_hostName]) :
                                 "[MISSING]";
                         }
 
@@ -155,12 +148,12 @@ namespace Projeto1_LP2
                             planetAttributes[2] = null;
                         else
                         {
-                            planetAttributes[2] = 
+                            planetAttributes[2] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_discMethod]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_discMethod]) : 
+                                    valAttPos[(int)AttribPos.pl_discMethod]) :
                                 "[MISSING]";
                         }
 
@@ -169,12 +162,12 @@ namespace Projeto1_LP2
                             planetAttributes[3] = null;
                         else
                         {
-                            planetAttributes[3] = 
+                            planetAttributes[3] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_discYear]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_discYear]) : 
+                                    valAttPos[(int)AttribPos.pl_discYear]) :
                                 "0";
                         }
 
@@ -183,12 +176,12 @@ namespace Projeto1_LP2
                             planetAttributes[4] = null;
                         else
                         {
-                            planetAttributes[4] = 
+                            planetAttributes[4] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_orbPer]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_orbPer]) : 
+                                    valAttPos[(int)AttribPos.pl_orbPer]) :
                                 "0";
                         }
 
@@ -197,12 +190,12 @@ namespace Projeto1_LP2
                             planetAttributes[5] = null;
                         else
                         {
-                            planetAttributes[5] = 
+                            planetAttributes[5] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_rade]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_rade]) : 
+                                    valAttPos[(int)AttribPos.pl_rade]) :
                                 "0";
                         }
 
@@ -211,12 +204,12 @@ namespace Projeto1_LP2
                             planetAttributes[6] = null;
                         else
                         {
-                            planetAttributes[6] = 
+                            planetAttributes[6] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_mass]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_mass]) : 
+                                    valAttPos[(int)AttribPos.pl_mass]) :
                                 "0";
                         }
 
@@ -225,16 +218,17 @@ namespace Projeto1_LP2
                             planetAttributes[7] = null;
                         else
                         {
-                        planetAttributes[7] = 
-                            attribs.ElementAt(valAttPos[
-                                (int)AttribPos.pl_eqt]) != "" ?
+                            planetAttributes[7] =
+                                attribs.ElementAt(valAttPos[
+                                    (int)AttribPos.pl_eqt]) != "" ?
 
-                            attribs.ElementAt(
-                                valAttPos[(int)AttribPos.pl_eqt]) : 
-                            "0";
+                                attribs.ElementAt(
+                                    valAttPos[(int)AttribPos.pl_eqt]) :
+                                "0";
                         }
 
                         Planet p = new Planet(
+
                             planetAttributes[0].Trim(), planetAttributes[1].Trim(), 
                             planetAttributes[2].Trim(), planetAttributes[3].Trim(),
                             planetAttributes[4].Trim(), planetAttributes[5].Trim(), 
@@ -243,6 +237,11 @@ namespace Projeto1_LP2
                         HashSetPL.Add(p);
                     }
                 }
+            }
+            catch (Exception)
+            {
+                ExceptionManager.ExceptionControl(ErrorCodes.NoFileFound);
+
             }
         }
 
@@ -255,18 +254,16 @@ namespace Projeto1_LP2
             string[] starAttributes = new string[9];
             // String representing line of the file
             string line;
-
-            using (FileStream fileStream = new FileStream(
-                fileFolder, FileMode.Open, FileAccess.Read))
+            try
             {
                 // READS CSV FILE
-                using (StreamReader sr = new StreamReader(fileFolder))
+                using (StreamReader sr = new StreamReader(file))
                 {
                     // Skip unwanted lines of the file
                     for (int i = 0; i < firstValLine; i++) sr.ReadLine();
 
                     // Read through every line until reaching end of file
-                    while((line = sr.ReadLine()) != null)
+                    while ((line = sr.ReadLine()) != null)
                     {
                         // Turn line into string array (split csv line on ',')
                         string[] attribs = line.Split(',');
@@ -285,126 +282,130 @@ namespace Projeto1_LP2
 
                         // Star Name (Host)
                         if (!hostNameFound)
-                          starAttributes[0] = null;
-                        else 
+                            starAttributes[0] = null;
+                        else
                         {
-                            starAttributes[0] = 
+                            starAttributes[0] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.pl_hostName]) != "" ?
-                                
+
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.pl_hostName]) : 
+                                    valAttPos[(int)AttribPos.pl_hostName]) :
                                 "[MISSING]";
                         }
 
                         // Effective Temperature
                         if (!effTempFound)
-                          starAttributes[1] = null;
-                        else 
+                            starAttributes[1] = null;
+                        else
                         {
-                            starAttributes[1] = 
+                            starAttributes[1] =
                                 attribs.ElementAt(valAttPos[
                                     (int)AttribPos.st_teff]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.st_teff]) : 
+                                    valAttPos[(int)AttribPos.st_teff]) :
                                 "0";
                         }
 
                         // Star Radius
                         if (!stRadFound)
-                          starAttributes[2] = null;
-                        else 
+                            starAttributes[2] = null;
+                        else
                         {
-                            starAttributes[2] = 
+                            starAttributes[2] =
                                 attribs.ElementAt(valAttPos[
-                                    (int)AttribPos.st_rad]) != "" ? 
-                                
+                                    (int)AttribPos.st_rad]) != "" ?
+
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.st_rad]) : 
+                                    valAttPos[(int)AttribPos.st_rad]) :
                                 "0";
                         }
 
                         // Star Mass
                         if (!stMassFound)
-                          starAttributes[3] = null;
-                        else 
+                            starAttributes[3] = null;
+                        else
                         {
-                            starAttributes[3] = 
+                            starAttributes[3] =
                                 attribs.ElementAt(valAttPos[
-                                    (int)AttribPos.st_mass]) != "" ? 
-                                
+                                    (int)AttribPos.st_mass]) != "" ?
+
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.st_mass]) : 
+                                    valAttPos[(int)AttribPos.st_mass]) :
                                 "0";
                         }
 
                         // Star Age
                         if (!ageFound)
-                          starAttributes[4] = null;
-                        else 
+                            starAttributes[4] = null;
+                        else
                         {
-                            starAttributes[4] = 
+                            starAttributes[4] =
                                 attribs.ElementAt(valAttPos[
-                                    (int)AttribPos.st_age]) != "" ? 
-                                
+                                    (int)AttribPos.st_age]) != "" ?
+
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.st_age]) : 
+                                    valAttPos[(int)AttribPos.st_age]) :
                                 "0";
                         }
 
                         // Star Rotation Velocity
                         if (!rotVelFound)
-                          starAttributes[5] = null;
-                        else 
+                            starAttributes[5] = null;
+                        else
                         {
-                            starAttributes[5] = 
+                            starAttributes[5] =
                                 attribs.ElementAt(valAttPos[
-                                    (int)AttribPos.st_vsin]) != "" ? 
+                                    (int)AttribPos.st_vsin]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.st_vsin]) : 
+                                    valAttPos[(int)AttribPos.st_vsin]) :
                                 "0";
                         }
 
                         // Star Rotation Period
                         if (!rotPerFound)
-                          starAttributes[6] = null;
-                        else 
+                            starAttributes[6] = null;
+                        else
                         {
-                            starAttributes[6] = 
+                            starAttributes[6] =
                                 attribs.ElementAt(valAttPos[
-                                    (int)AttribPos.st_rotp]) != "" ? 
+                                    (int)AttribPos.st_rotp]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.st_rotp]) : 
+                                    valAttPos[(int)AttribPos.st_rotp]) :
                                 "0";
                         }
 
                         // Distance to Sun
                         if (!distSunFound)
-                          starAttributes[7] = null;
-                        else 
+                            starAttributes[7] = null;
+                        else
                         {
-                            starAttributes[7] = 
+                            starAttributes[7] =
                                 attribs.ElementAt(valAttPos[
-                                    (int)AttribPos.sy_dist]) != "" ? 
+                                    (int)AttribPos.sy_dist]) != "" ?
 
                                 attribs.ElementAt(
-                                    valAttPos[(int)AttribPos.sy_dist]) : 
+                                    valAttPos[(int)AttribPos.sy_dist]) :
                                 "0";
                         }
 
                         Star s = new Star(
                                 starAttributes[0].Trim(), starAttributes[1].Trim(),
                                 starAttributes[2].Trim(), starAttributes[3].Trim(),
-                                starAttributes[4].Trim(), starAttributes[5].Trim(), 
+                                starAttributes[4].Trim(), starAttributes[5].Trim(),
                                 starAttributes[6].Trim(), starAttributes[7].Trim());
-                                
+
 
                         HashSetST.Add(s);
                     }
                 }
+            }
+            catch (Exception)
+            {
+                ExceptionManager.ExceptionControl(ErrorCodes.NoFileFound);
             }
         }
 
@@ -415,18 +416,17 @@ namespace Projeto1_LP2
         {
             // String representing line of the file
             string attributeline;
-        
-            using (FileStream fileStream = new FileStream(
-                fileFolder, FileMode.Open, FileAccess.Read))
+
+            try
             {
                 // READS CSV FILE
                 using (StreamReader sr = new StreamReader(file))
                 {
                     // Saves document's first line
-                    do {attributeline = sr.ReadLine(); firstValLine++;}
+                    do { attributeline = sr.ReadLine(); firstValLine++; }
                     // Skips lines that start with '#' or that are empty strings
                     // Ends with line holding column contents
-                    while(attributeline[0] == '#' || attributeline == "");
+                    while (attributeline[0] == '#' || attributeline == "");
                     //Console.WriteLine(firstValLine);
 
                     // Create array from columns' line
@@ -438,6 +438,11 @@ namespace Projeto1_LP2
                     // items of the header
                     FindValAttributes(attribs);
                 }
+            }
+            catch (Exception)
+            {
+                ExceptionManager.ExceptionControl(ErrorCodes.NoFileFound);
+
             }
         }
 
