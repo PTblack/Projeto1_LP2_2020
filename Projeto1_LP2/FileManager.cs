@@ -153,6 +153,7 @@ namespace Projeto1_LP2
                         // Discovery Method
                         if (!discMethodFound)
                         planetAttributes[2] = null;
+                        else
                         {
                             planetAttributes[2] = 
                                 attribs.ElementAt(valAttPos[
@@ -166,6 +167,7 @@ namespace Projeto1_LP2
                         // Discovery Year
                         if (!discYearFound)
                         planetAttributes[3] = null;
+                        else
                         {
                             planetAttributes[3] = 
                                 attribs.ElementAt(valAttPos[
@@ -179,6 +181,7 @@ namespace Projeto1_LP2
                         // Orbit Period
                         if (!orbPerFound)
                         planetAttributes[4] = null;
+                        else
                         {
                             planetAttributes[4] = 
                                 attribs.ElementAt(valAttPos[
@@ -192,6 +195,7 @@ namespace Projeto1_LP2
                         // Radius
                         if (!plRadFound)
                         planetAttributes[5] = null;
+                        else
                         {
                             planetAttributes[5] = 
                                 attribs.ElementAt(valAttPos[
@@ -205,6 +209,7 @@ namespace Projeto1_LP2
                         // Mass
                         if (!plMassFound)
                         planetAttributes[6] = null;
+                        else
                         {
                             planetAttributes[6] = 
                                 attribs.ElementAt(valAttPos[
@@ -218,6 +223,7 @@ namespace Projeto1_LP2
                         // Equilibrium Temperature
                         if (!eqTempFound)
                         planetAttributes[7] = null;
+                        else
                         {
                         planetAttributes[7] = 
                             attribs.ElementAt(valAttPos[
@@ -229,10 +235,10 @@ namespace Projeto1_LP2
                         }
 
                         Planet p = new Planet(
-                            planetAttributes[0], planetAttributes[1], 
-                            planetAttributes[2], planetAttributes[3],
-                            planetAttributes[4], planetAttributes[5], 
-                            planetAttributes[6], planetAttributes[7]);
+                            planetAttributes[0].Trim(), planetAttributes[1].Trim(), 
+                            planetAttributes[2].Trim(), planetAttributes[3].Trim(),
+                            planetAttributes[4].Trim(), planetAttributes[5].Trim(), 
+                            planetAttributes[6].Trim(), planetAttributes[7].Trim());
 
                         HashSetPL.Add(p);
                     }
@@ -279,7 +285,7 @@ namespace Projeto1_LP2
 
                         // Star Name (Host)
                         if (!hostNameFound)
-                        starAttributes[0] = null;
+                            starAttributes[0] = null;
                         else 
                         {
                             starAttributes[0] = 
@@ -293,7 +299,7 @@ namespace Projeto1_LP2
 
                         // Effective Temperature
                         if (!effTempFound)
-                        starAttributes[1] = null;
+                            starAttributes[1] = null;
                         else 
                         {
                             starAttributes[1] = 
@@ -307,7 +313,7 @@ namespace Projeto1_LP2
 
                         // Star Radius
                         if (!stRadFound)
-                        starAttributes[2] = null;
+                            starAttributes[2] = null;
                         else 
                         {
                             starAttributes[2] = 
@@ -321,7 +327,7 @@ namespace Projeto1_LP2
 
                         // Star Mass
                         if (!stMassFound)
-                        starAttributes[3] = null;
+                            starAttributes[3] = null;
                         else 
                         {
                             starAttributes[3] = 
@@ -335,7 +341,7 @@ namespace Projeto1_LP2
 
                         // Star Age
                         if (!ageFound)
-                        starAttributes[4] = null;
+                            starAttributes[4] = null;
                         else 
                         {
                             starAttributes[4] = 
@@ -349,7 +355,7 @@ namespace Projeto1_LP2
 
                         // Star Rotation Velocity
                         if (!rotVelFound)
-                        starAttributes[5] = null;
+                            starAttributes[5] = null;
                         else 
                         {
                             starAttributes[5] = 
@@ -363,7 +369,7 @@ namespace Projeto1_LP2
 
                         // Star Rotation Period
                         if (!rotPerFound)
-                        starAttributes[6] = null;
+                            starAttributes[6] = null;
                         else 
                         {
                             starAttributes[6] = 
@@ -377,7 +383,7 @@ namespace Projeto1_LP2
 
                         // Distance to Sun
                         if (!distSunFound)
-                        starAttributes[7] = null;
+                            starAttributes[7] = null;
                         else 
                         {
                             starAttributes[7] = 
@@ -397,6 +403,7 @@ namespace Projeto1_LP2
                                 
 
                         HashSetST.Add(s);
+                        Console.WriteLine(s.ToString(true));
                     }
                 }
             }
@@ -508,7 +515,7 @@ namespace Projeto1_LP2
                         break;
                 }
             }
-            
+
             // Stops program and sends error message that 
             // the file is missing atleast one of the main attributes
             // 'pl_name' or 'hostname'

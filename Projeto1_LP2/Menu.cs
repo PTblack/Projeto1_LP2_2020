@@ -44,11 +44,11 @@ namespace Projeto1_LP2
                    boolArgs[args[i]] = true;
 
                 if (stringArgs.ContainsKey(args[i].ToLower()))
-                    stringArgs[args[i]] = args[i + 1];
+                    stringArgs[args[i]] = args[i + 1].Trim();
 
                 if (floatArgs.ContainsKey(args[i].ToLower()))
-                    floatArgs[args[i]] = Single.Parse(args[i + 1], NumberStyles.Any,
-                CultureInfo.InvariantCulture);
+                    floatArgs[args[i]] = Single.Parse(args[i + 1].Trim(), 
+                    NumberStyles.Any, CultureInfo.InvariantCulture);
             }
         }
         
