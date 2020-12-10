@@ -40,16 +40,22 @@ namespace Projeto1_LP2
         {
             for (int i = 0; i < args.Length; i++)
             {
-                if(boolArgs.ContainsKey(args[i].ToLower()))
-                   boolArgs[args[i]] = true;
+                if (boolArgs.ContainsKey(args[i].ToLower()))
+                    boolArgs[args[i]] = true;
+                try
+                {
+                    if (stringArgs.ContainsKey(args[i].ToLower()))
+                        stringArgs[args[i]] = args[i + 1];
 
-                if (stringArgs.ContainsKey(args[i].ToLower()))
-                    stringArgs[args[i]] = args[i + 1];
-
-                if (floatArgs.ContainsKey(args[i].ToLower()))
-                    floatArgs[args[i]] = Single.Parse(args[i + 1], NumberStyles.Any,
-                CultureInfo.InvariantCulture);
-            }
+                    if (floatArgs.ContainsKey(args[i].ToLower()))
+                        floatArgs[args[i]] = Single.Parse(args[i + 1], NumberStyles.Any,
+                        CultureInfo.InvariantCulture);
+                }
+                catch (Exception)
+                {
+                    ExceptionManager.ExceptionControl(ErrorCodes.NoArgGivenToString);
+                } 
+            }               
         }
         
         /// <summary>
