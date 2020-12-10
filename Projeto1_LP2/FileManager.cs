@@ -65,7 +65,7 @@ namespace Projeto1_LP2
             fileFolder = Path.Combine(
                 Environment.GetFolderPath(
                 Environment.SpecialFolder.Desktop), file);
-
+            
             FindValAttributeIndex();
             CreatePlanetCollection();
             CreateStarCollection(); 
@@ -260,7 +260,7 @@ namespace Projeto1_LP2
                 fileFolder, FileMode.Open, FileAccess.Read))
             {
                 // READS CSV FILE
-                using (StreamReader sr = new StreamReader(file))
+                using (StreamReader sr = new StreamReader(fileFolder))
                 {
                     // Skip unwanted lines of the file
                     for (int i = 0; i < firstValLine; i++) sr.ReadLine();
@@ -416,7 +416,7 @@ namespace Projeto1_LP2
         {
             // String representing line of the file
             string attributeline;
-
+        
             using (FileStream fileStream = new FileStream(
                 fileFolder, FileMode.Open, FileAccess.Read))
             {
@@ -521,8 +521,8 @@ namespace Projeto1_LP2
             // 'pl_name' or 'hostname'
             if (!nameFound || !hostNameFound)
             { 
-            ExceptionManager.ExceptionControl(
-                ErrorCodes.AttribsMissing);
+                ExceptionManager.ExceptionControl(
+                    ErrorCodes.AttribsMissing);
             }
         }
     }

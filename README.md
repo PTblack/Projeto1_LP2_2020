@@ -18,12 +18,13 @@ até à sua entrega*
 
     * João Dias:
 
-            Lista do que fez
+            As classes FileSearcher e Menu, envolvido também nas
+            classes Planet, Star, FileManager.
 
     * Pedro Fernandes:
 
             As classes FileManager e ExceptionManager, envolvido também nas
-            classes Planet e Star. Escreveu parte do Markdown.
+            classes Planet, Star, FileSearcher e Menu. Escreveu parte do Markdown.
 
 ### Repositório Git Utilizado (Opcional)
 
@@ -51,6 +52,11 @@ até à sua entrega*
     
     Foram utilizadas HashSets para guardar as coleções de planetas e de 
     estrelas, separadamente.
+    
+   * #### Dictionary
+      Foram utilizados Dictionarys para guardar os argumentos passados
+      pelo utilizador
+   * #### IEnumerable
   
 * #### Algoritmos utilizados e porquê
   
