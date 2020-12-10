@@ -8,6 +8,10 @@ using System.Globalization;
 
 namespace Projeto1_LP2
 {
+    /// <summary>
+    /// This class filters the file's collections 
+    /// to match the user criteria
+    /// </summary>
     class FileSearcher
     {
         // Collection that stores arguments of type boolean
@@ -53,6 +57,7 @@ namespace Projeto1_LP2
 
         /// <summary>
         /// Checks which arguments where selected by the user
+        /// for search
         /// </summary>
         private void CompareInfoWithBoolArgs()
         {
@@ -64,79 +69,6 @@ namespace Projeto1_LP2
             {
                 SearchStar();
             }
-            else if (boolArgs["-planet-info"] == true)
-            {
-                PlanetInfo();
-            }
-            else if (boolArgs["-star-info"] == true)
-            {
-                StarInfo();
-            }
-        }
-
-        /// <summary>
-        /// Includes a query that filters the information of the plannets,
-        /// according with the name and host name
-        /// </summary>
-        private void PlanetInfo()
-        {
-            IEnumerable<Planet> planetInfo =
-                from planet in planetHashSet
-                where planet.Name.ToLower() == stringArgs["-planet-name"].ToLower()
-                    && planet.HostName.ToLower() == stringArgs["-host-name"].ToLower()
-                select planet;
-
-            /* HashSet<Planet> fixedPlanets = new HashSet<Planet>();
-             if (planetInfo.Count() >= 0)
-             {
-                 fixedPlanets = new HashSet<Planet>();
-                 for (int i = planetInfo.Count() - 1; i > 0; i--)
-                 {
-                     Planet planet1 =
-                         planetInfo.ElementAt(i) + planetInfo.ElementAt(i - 1);
-
-                     fixedPlanets.Add(planet1);  
-                 }
-                 Console.WriteLine(fixedPlanets);
-             }*/
-
-            foreach (Planet p in planetInfo)
-                p.ConvertFloatablesToDefault();
-
-            FilteredPlanetCollection = planetInfo;
-        }
-
-        /// <summary>
-        /// Includes a query that filters the information of the stars,
-        /// according with the host name 
-        /// </summary>
-        private void StarInfo()
-        {
-            IEnumerable<Star> starInfo =
-                from star in starHashSet
-                where star.StarName.ToLower() == stringArgs["-host-name"].ToLower()
-                select star;
-
-            // If there is more than one star filtered into starInfo
-            // checks if there is information missing on one star and fills it
-            // another star info
-            HashSet<Star> fixedStars = new HashSet<Star>();
-            if (starInfo.Count() >= 1)
-            {
-                fixedStars = new HashSet<Star>();
-                for (int i = starInfo.Count() - 1; i > 0; i--)
-                {
-                    Star star1 =
-                        starInfo.ElementAt(i) + starInfo.ElementAt(i - 1);
-                    fixedStars.Add(star1);
-                }
-                Console.WriteLine(fixedStars);
-            }
-
-            foreach (Star s in starInfo)
-                s.ConvertFloatablesToDefault();
-
-            FilteredStarCollection = fixedStars;
         }
         
         /// <summary>
