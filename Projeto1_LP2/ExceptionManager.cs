@@ -70,7 +70,6 @@ namespace Projeto1_LP2
                     break;
             }
             ShowHelp();
-            System.Environment.Exit(0);
         }
 
         /// <summary>
@@ -123,6 +122,8 @@ namespace Projeto1_LP2
                 $"-planet-name \"XO-4 b\" -host-name \"XO-4\" -planet-mass-min " +
                 $"2500 -planet-mass 50000\n\n" +
                 $"(WARNING: IN REPEATED ARGUMENTS, ONLY THE LAST ONE IS READ)\n\n");
+
+            System.Environment.Exit(0);
         }
     }
 }

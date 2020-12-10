@@ -228,10 +228,11 @@ namespace Projeto1_LP2
                         }
 
                         Planet p = new Planet(
-                            planetAttributes[0], planetAttributes[1],
-                            planetAttributes[2], planetAttributes[3],
-                            planetAttributes[4], planetAttributes[5],
-                            planetAttributes[6], planetAttributes[7]);
+
+                            planetAttributes[0].Trim(), planetAttributes[1].Trim(), 
+                            planetAttributes[2].Trim(), planetAttributes[3].Trim(),
+                            planetAttributes[4].Trim(), planetAttributes[5].Trim(), 
+                            planetAttributes[6].Trim(), planetAttributes[7].Trim());
 
                         HashSetPL.Add(p);
                     }
@@ -524,8 +525,8 @@ namespace Projeto1_LP2
             // 'pl_name' or 'hostname'
             if (!nameFound || !hostNameFound)
             { 
-            ExceptionManager.ExceptionControl(
-                ErrorCodes.AttribsMissing);
+                ExceptionManager.ExceptionControl(
+                    ErrorCodes.AttribsMissing);
             }
         }
     }
